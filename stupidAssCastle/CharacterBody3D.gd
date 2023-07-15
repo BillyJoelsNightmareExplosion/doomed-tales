@@ -4,37 +4,35 @@ extends CharacterBody3D
 @export var SPEED = 5.0
 # Do we even do jumping?
 @export var JUMP_VELOCITY = 4.5
-@export var LOOK_SENSITVITY = 1
+@export var LOOK_SENSITVITY = 0.1
 
 @export var DAMAGE = 1
-
-var mouse_sense = 0.1
+@export var RANGE = 100
+@export var PELLET_COUNT = 5
+@export var SPREAD = 45 # in max degrees, think cone 
 
 @onready var head = $Head
-@onready var aimcast = $Head/Camera3D/AimCast
+@onready var camera = $Head/Camera3D
 @onready var muzzle = $Head/Gun/Muzzle
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
+var aimcasts = []
+
 func _ready():
+    for i in PELLET_COUNT:
+        var aimcast = RayCast3D.new()
+        aimcast.target_position = Vector3(0, 0, -1 * RANGE)
+        aimcasts.append(aimcast)
+        camera.add_child(aimcast)
+    print("added aimcasts")
     pass
     
 func _physics_process(delta):
     
     if Input.is_action_just_pressed("fire"):
-        if aimcast.is_colliding():
-            var bullet = get_world_3d().direct_space_state
-            var query = PhysicsRayQueryParameters3D.create(muzzle.global_transform.origin, aimcast.get_collision_point())
-            var collision = bullet.intersect_ray(query)
-
-            if collision:
-                var target = collision.collider
-
-                if target.is_in_group("enemy"):
-                    print("hit enemy")
-                    target.health -= DAMAGE
-    
+        fire()
     
     # Add the gravity.
     if not is_on_floor():
@@ -60,7 +58,24 @@ func _physics_process(delta):
 func _input(event):
     #get mouse input for camera rotation
     if event is InputEventMouseMotion:
-        rotate_y(deg_to_rad(-event.relative.x * mouse_sense) * LOOK_SENSITVITY)
+        rotate_y(deg_to_rad(-event.relative.x * LOOK_SENSITVITY))
         # code for up/down look
-        # head.rotate_x(deg_to_rad(-event.relative.y * mouse_sense))
+        # head.rotate_x(deg_to_rad(-event.relative.y * LOOK_SENSITVITY))
         # head.rotation.x = clamp(head.rotation.x, deg_to_rad(-89), deg_to_rad(89))
+
+func fire():
+    for aimcast in aimcasts:
+        # rotate randomly
+        
+        # check collision and do shit
+        if aimcast.is_colliding():
+                var bullet = get_world_3d().direct_space_state
+                var query = PhysicsRayQueryParameters3D.create(muzzle.global_transform.origin, aimcast.get_collision_point())
+                var collision = bullet.intersect_ray(query)
+
+                if collision:
+                    var target = collision.collider
+
+                    if target.is_in_group("enemy"):
+                        print("hit enemy")
+                        target.health -= DAMAGE
