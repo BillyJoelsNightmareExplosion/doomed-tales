@@ -6,9 +6,13 @@ extends CharacterBody3D
 @export var JUMP_VELOCITY = 4.5
 @export var LOOK_SENSITVITY = 1
 
+@export var DAMAGE = 1
+
 var mouse_sense = 0.1
 
 @onready var head = $Head
+@onready var aimcast = $Head/Camera3D/AimCast
+@onready var muzzle = $Head/Gun/Muzzle
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -17,6 +21,21 @@ func _ready():
     pass
     
 func _physics_process(delta):
+    
+    if Input.is_action_just_pressed("fire"):
+        if aimcast.is_colliding():
+            var bullet = get_world_3d().direct_space_state
+            var query = PhysicsRayQueryParameters3D.create(muzzle.global_transform.origin, aimcast.get_collision_point())
+            var collision = bullet.intersect_ray(query)
+
+            if collision:
+                var target = collision.collider
+
+                if target.is_in_group("enemy"):
+                    print("hit enemy")
+                    target.health -= DAMAGE
+    
+    
     # Add the gravity.
     if not is_on_floor():
         velocity.y -= gravity * delta
