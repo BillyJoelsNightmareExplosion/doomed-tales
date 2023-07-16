@@ -1,4 +1,4 @@
-class_name World extends Node3D
+extends Node3D
 
 var capture_mouse = true
 
