@@ -11,3 +11,6 @@ script = ExtResource("1_irkfu")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.33917, 1.78198, -3.52949)
 
 [node name="Room" parent="." instance=ExtResource("4_5sp3r")]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.258819, 0.965926, 0, -0.965926, 0.258819, 0, 4.42457, 0)

@@ -15,6 +15,12 @@ run/main_scene="res://world.tscn"
 config/features=PackedStringArray("4.1", "Forward Plus")
 config/icon="res://icon.svg"
 
+[display]
+
+window/size/viewport_width=1408
+window/size/viewport_height=1056
+window/stretch/mode="viewport"
+
 [dotnet]
 
 project/assembly_name="stupidAssCastle"
