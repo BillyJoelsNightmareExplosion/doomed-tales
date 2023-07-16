@@ -155,6 +155,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.520103, -0.536243)
 target_position = Vector3(0, 0, -100)
 
 [node name="UserInterfaceControl" parent="Head/Camera3D" instance=ExtResource("2_tli1w")]
+visible = false
 
 [node name="Stock" type="MeshInstance3D" parent="Head"]
 transform = Transform3D(4.37114e-08, -1, -1.50996e-07, -1, -4.37114e-08, -1.62921e-07, 1.62921e-07, 1.50996e-07, -1, 0.00231279, 0.293625, -1.02674)
