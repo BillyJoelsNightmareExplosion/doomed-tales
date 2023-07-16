@@ -139,6 +139,7 @@ _data = {
 
 [node name="CharacterBody3D" type="CharacterBody3D"]
 script = ExtResource("1_s478a")
+SHOTTIME = 0.75
 DASHSPEED = 25
 DASHFORTIME = 0.2
 DASHCOOLDOWN = 1.0
@@ -188,5 +189,8 @@ libraries = {
 
 [node name="DashTimer" type="Timer" parent="."]
 
+[node name="ShotgunTimer" type="Timer" parent="."]
+
 [connection signal="timeout" from="DashCooldown" to="." method="reset_dash"]
 [connection signal="timeout" from="DashTimer" to="." method="stop_dash"]
+[connection signal="timeout" from="ShotgunTimer" to="." method="reset_shoot_cooldown"]
