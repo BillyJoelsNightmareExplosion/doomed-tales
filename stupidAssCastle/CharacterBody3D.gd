@@ -15,6 +15,8 @@ extends CharacterBody3D
 @onready var camera = $Head/Camera3D
 @onready var muzzle = $Head/Gun/Muzzle
 
+@onready var world: World = get_tree().root.get_children()[0]
+
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
@@ -23,7 +25,7 @@ var half_spread
 
 func _ready():
     # getting pellet spread to work
-    for i in PELLET_COUNT:
+    for i in range(PELLET_COUNT):
         var aimcast = RayCast3D.new()
         aimcast.target_position = Vector3(0, 0, -1 * RANGE)
         aimcasts.append(aimcast)
@@ -61,7 +63,7 @@ func _physics_process(delta):
     
 func _input(event):
     #get mouse input for camera rotation
-    if event is InputEventMouseMotion:
+    if event is InputEventMouseMotion and world.capture_mouse:
         rotate_y(deg_to_rad(-event.relative.x * LOOK_SENSITVITY))
         # code for up/down look
         # head.rotate_x(deg_to_rad(-event.relative.y * LOOK_SENSITVITY))

@@ -17,4 +17,4 @@ func spawn_random_enemy():
     var path = spawn_paths[randi_range(0, spawn_paths.size() - 1)]
     var enemy: CharacterBody3D = enemy_pool[randi_range(0, enemy_pool.size() - 1)].instantiate()
     add_child(enemy)
-    enemy.global_position = path.curve.samplef(randf())
+    enemy.global_position = path.curve.samplef(randf() * (path.curve.point_count - 1)) + path.global_position
