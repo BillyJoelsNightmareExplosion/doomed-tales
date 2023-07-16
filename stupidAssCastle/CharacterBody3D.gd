@@ -15,6 +15,10 @@ signal need_bluud(posi, rot)
 @export var MAX_AMMO = 7
 @export var MAX_HEALTH = 5
 
+@export var DASHSPEED = 10
+@export var DASHFORTIME = 0.5
+@export var DASHCOOLDOWN = 2.5
+
 @onready var head = $Head
 @onready var camera = $Head/Camera3D
 @onready var stock = $Head/Stock
@@ -32,6 +36,9 @@ var half_spread
 var health = MAX_HEALTH
 var ammo = MAX_AMMO
 
+var can_dash = true
+var is_dashing = false
+
 func _ready():
     # getting pellet spread to work
     for i in range(PELLET_COUNT):
@@ -41,6 +48,9 @@ func _ready():
         camera.add_child(aim_cast)
     half_spread = SPREAD / 2
     fire(false) # randomize rotations without killing anything
+    
+    $DashCooldown.wait_time = DASHCOOLDOWN
+    $DashTimer.wait_time = DASHFORTIME
 
 func _physics_process(delta):
     
@@ -60,22 +70,46 @@ func _physics_process(delta):
         velocity.y -= gravity * delta
 
     # Handle Jump.
-    if Input.is_action_just_pressed("jump") and is_on_floor():
-        velocity.y = JUMP_VELOCITY
+    #if Input.is_action_just_pressed("jump") and is_on_floor():
+        #velocity.y = JUMP_VELOCITY
 
     # Get the input direction and handle the movement/deceleration.
     # As good practice, you should replace UI actions with custom gameplay actions.
     var input_dir = Input.get_vector("move_left", "move_right", "move_up", "move_down")
     var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
     if direction:
-        velocity.x = direction.x * SPEED
-        velocity.z = direction.z * SPEED
+        var use_speed
+        if is_dashing:
+            use_speed = DASHSPEED
+        else:
+            use_speed = SPEED
+        velocity.x = direction.x * use_speed
+        velocity.z = direction.z * use_speed
     else:
-        velocity.x = move_toward(velocity.x, 0, SPEED)
-        velocity.z = move_toward(velocity.z, 0, SPEED)
+        var use_speed
+        if is_dashing:
+            use_speed = DASHSPEED
+        else:
+            use_speed = SPEED
+        velocity.x = move_toward(velocity.x, 0, use_speed)
+        velocity.z = move_toward(velocity.z, 0, use_speed)
+
+    if Input.is_action_just_pressed("dash"):
+        if can_dash:
+            dash()
 
     move_and_slide()
     
+func dash():
+    is_dashing = true
+    $DashTimer.start()
+
+func stop_dash():
+    is_dashing = false
+    can_dash = false
+    $DashTimer.stop()
+    $DashCooldown.start()
+
 func _input(event):
     #get mouse input for camera rotation
     if event is InputEventMouseMotion and world.capture_mouse:
@@ -113,3 +147,7 @@ func fire(kill=true): # I've added this kill arg just so positions get scrambled
                     if target.is_in_group("enemy") and kill:
                         need_bluud.emit(collision.position, Vector3(90,(randi_range (0,360)),0))
                         target.health -= DAMAGE
+                        
+func reset_dash():
+    can_dash = true
+    $DashCooldown.stop()

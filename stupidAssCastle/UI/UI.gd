@@ -7,21 +7,33 @@ extends Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+    var Triggers=get_tree().get_nodes_in_group("DialougTrigger")
+    for i in Triggers:
+        i.dialoug_entered.connect(dialoug)
+        
+    get_tree().paused=true
+    process_mode = Node.PROCESS_MODE_WHEN_PAUSED
     $UserInterfaceControl.visible=false
     $PausedMenu.visible=false
     
 
 var pause = true
+var TriggerCounter=0
 
 
 func _input(event):
+    process_mode = Node.PROCESS_MODE_ALWAYS
     if event.is_action_pressed("ui_cancel"):
         pause = not pause
         if pause:
             $PausedMenu.visible=false
+            get_tree().paused=false
+            #process_mode = Node.PROCESS_MODE_PAUSABLE
             Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
         else:
             $PausedMenu.visible=true
+            get_tree().paused=true
+            #process_mode = Node.PROCESS_MODE_WHEN_PAUSED
             Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -33,6 +45,8 @@ func _process(delta):
 func _on_start_button_pressed():
     $StartScreen.visible=false
     $UserInterfaceControl.visible=true
+    get_tree().paused=false
+    process_mode = Node.PROCESS_MODE_PAUSABLE
     Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
     
 
@@ -40,3 +54,15 @@ func _on_start_button_pressed():
 
 func _on_quit_button_pressed():
     get_tree().quit()
+
+
+func _on_resume_button_pressed():
+    pause = not pause
+    $PausedMenu.visible=false
+    get_tree().paused=false
+    process_mode = Node.PROCESS_MODE_PAUSABLE
+    Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+    
+func dialoug(triggerNode):
+    triggerNode.queue_free()
+    pass

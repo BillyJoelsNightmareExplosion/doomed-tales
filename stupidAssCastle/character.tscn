@@ -139,6 +139,9 @@ _data = {
 
 [node name="CharacterBody3D" type="CharacterBody3D"]
 script = ExtResource("1_s478a")
+DASHSPEED = 25
+DASHFORTIME = 0.2
+DASHCOOLDOWN = 1.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_xobxx")
@@ -180,3 +183,10 @@ skeleton = NodePath("")
 libraries = {
 "": SubResource("AnimationLibrary_4kpgc")
 }
+
+[node name="DashCooldown" type="Timer" parent="."]
+
+[node name="DashTimer" type="Timer" parent="."]
+
+[connection signal="timeout" from="DashCooldown" to="." method="reset_dash"]
+[connection signal="timeout" from="DashTimer" to="." method="stop_dash"]
