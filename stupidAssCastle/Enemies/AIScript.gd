@@ -6,6 +6,7 @@ signal hit_player
 @onready var nav_agent = $"../NavigationAgent3D"
 @onready var state_timer = $"../StateTimer"
 @onready var try_attack_timer = $"../TryAttackTimer"
+@onready var animator: AnimatedSprite3D = $"../AnimatedSprite3D"
 
 @onready var player: CharacterBody3D = get_tree().root.get_children()[0].get_player()
 
@@ -95,14 +96,18 @@ func wander():
     else:
         update_target_location(enemy.position)
         state_timer.wait_time = 0.001;
+        
+    animator.play("idle")
             
 func move_closer():
     update_target_location(player.global_transform.origin)
+    animator.play("walk")
     if nav_agent.distance_to_target() < move_closer_distance:
         update_target_location(enemy.position)
 
 func move_to_attack():
     update_target_location(player.global_transform.origin)
+    animator.play("walk")
     if nav_agent.distance_to_target() < attack_stop_distance:
         update_target_location(enemy.position)
         attacking = true
@@ -112,6 +117,7 @@ func attack():
     if attacking:
         attacking = false
         print("Attacking")
+        animator.play("attack")
         await get_tree().create_timer(attack_startup_time).timeout
         if enemy.position.distance_to(player.position) < attack_range:
             print("Hit!")
