@@ -27,7 +27,8 @@ signal hit_player
 @export var attack_end_lag_time = 0.5 #how long the enemy will be stunned after attacking
 
 var is_attacking = false
-var attacking = false;
+var attacking = false
+var is_dead = false
 
 enum States {
     Wander,
@@ -41,7 +42,6 @@ var current_state = States.Wander
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-    print(get_tree().root.get_children()[0])
     state_timer.wait_time = state_update_time
     state_timer.start()
     
@@ -59,8 +59,6 @@ func update_state():
             wander()
         elif rand == 1:
             current_state = States.MoveCloser
-  
-    print(current_state)
 
 func _physics_process(delta):
     if current_state == States.Wander:
@@ -116,12 +114,12 @@ func move_to_attack():
 func attack():
     if attacking:
         attacking = false
-        print("Attacking")
         animator.play("attack")
         await get_tree().create_timer(attack_startup_time).timeout
         if enemy.position.distance_to(player.position) < attack_range:
-            print("Hit!")
-            player.health -= attack_damage
+            if !is_dead:
+                print("Hit!")
+                player.health -= attack_damage
         else:
             print("Safe!")
             
@@ -166,7 +164,9 @@ func can_attack() -> bool:
         return true
     
 func reset_enemy_to_wander():
-    print("Reset")
     current_state = States.Wander
     state_timer.start()
     try_attack_timer.start()
+    
+func set_to_dead():
+    is_dead = true

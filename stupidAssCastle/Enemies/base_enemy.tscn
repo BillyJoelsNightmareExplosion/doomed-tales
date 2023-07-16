@@ -74,7 +74,7 @@ wander_move_dist = 5.0
 attack_agro_max = 1
 attack_move_speed = 5.0
 attack_stop_distance = 3.0
-attack_range = 3.4
+attack_range = 3.1
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
