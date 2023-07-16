@@ -1,7 +1,7 @@
 extends Node3D
 
 @export var bluud_texture = Texture2D
-@export var life = 0.1
+@export var life = 2
 
 @onready var player: CharacterBody3D = get_tree().root.get_children()[0].get_player()
 
