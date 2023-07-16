@@ -9,11 +9,17 @@ extends CharacterBody3D
 @export var DAMAGE = 1
 @export var RANGE = 100
 @export var PELLET_COUNT = 7
-@export var SPREAD = 40 # in max degrees, think cone 
+@export var SPREAD = 40 # in max degrees, think cone
+
+@export var MAX_AMMO = 7
+@export var MAX_HEALTH = 5
 
 @onready var head = $Head
 @onready var camera = $Head/Camera3D
 @onready var muzzle = $Head/Gun/Muzzle
+
+@onready var healthtext = $Head/Camera3D/UserInterfaceControl/HealthValue
+@onready var ammotext = $Head/Camera3D/UserInterfaceControl/AmmoValue
 
 @onready var world: World = get_tree().root.get_children()[0]
 
@@ -22,6 +28,9 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 var aimcasts = []
 var half_spread
+
+var health = MAX_HEALTH
+var ammo = MAX_AMMO
 
 func _ready():
     # getting pellet spread to work
@@ -33,12 +42,25 @@ func _ready():
     print("added aimcasts")
     half_spread = SPREAD / 2
     fire(false)
+    
+    # setting UI values
+    healthtext.text = str(health)
+    ammotext.text = str(ammo)
     pass
     
+    
+func _process(delta):
+    # replace this with the actual taking damage if it becomes a function
+    healthtext.text = str(health)
+    pass
+
 func _physics_process(delta):
     
     if Input.is_action_just_pressed("fire"):
         fire()
+    elif Input.is_action_just_pressed("reload"):
+        ammo = MAX_AMMO
+        ammotext.text = str(ammo)
     
     # Add the gravity.
     if not is_on_floor():
@@ -70,6 +92,11 @@ func _input(event):
         # head.rotation.x = clamp(head.rotation.x, deg_to_rad(-89), deg_to_rad(89))
 
 func fire(kill=true): # I've added this kill arg just so positions get scrambled on ready
+    if not ammo:
+        return
+    ammo -= 1
+    ammotext.text = str(ammo)
+    
     for aimcast in aimcasts:
         # rotate randomly
         aimcast.rotation_degrees = Vector3((randi_range (half_spread * -1, half_spread)),(randi_range (half_spread * -1, half_spread)), 0)
@@ -90,5 +117,4 @@ func fire(kill=true): # I've added this kill arg just so positions get scrambled
 #                    get_tree().root.add_child(mesh)
                     
                     if target.is_in_group("enemy") and kill:
-                        print("hit enemy")
                         target.health -= DAMAGE

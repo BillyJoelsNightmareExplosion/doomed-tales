@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://rvlyxsc8kbwx"]
+[gd_scene load_steps=9 format=3 uid="uid://rvlyxsc8kbwx"]
 
 [ext_resource type="Script" path="res://CharacterBody3D.gd" id="1_s478a"]
 [ext_resource type="PackedScene" uid="uid://pvebuffyfnnw" path="res://HUD.tscn" id="2_tli1w"]
 [ext_resource type="Shader" path="res://pixelate.gdshader" id="3_dpgx8"]
+[ext_resource type="PackedScene" uid="uid://btb7qi4c4wqil" path="res://art/meshes/shotgun.glb" id="3_lb8vt"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_xobxx"]
 
@@ -31,15 +32,18 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.520103, -0.536243)
 [node name="AimCast" type="RayCast3D" parent="Head/Camera3D"]
 target_position = Vector3(0, 0, -100)
 
-[node name="Control" parent="Head/Camera3D" instance=ExtResource("2_tli1w")]
+[node name="UserInterfaceControl" parent="Head/Camera3D" instance=ExtResource("2_tli1w")]
 
 [node name="Gun" type="Node3D" parent="Head"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.520103, -0.536243)
 
 [node name="Muzzle" type="Node3D" parent="Head/Gun"]
 
+[node name="shotgun" parent="Head" instance=ExtResource("3_lb8vt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00182262, 0.0685177, -0.581086)
+
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.144132, 0.989559, 0, -0.989559, 0.144132, 0, 0.847585, 2.01924)
 material_override = SubResource("ShaderMaterial_1cds8")
 mesh = SubResource("CylinderMesh_0ta4f")
-skeleton = NodePath("../Head/Camera3D/Control")
+skeleton = NodePath("")
