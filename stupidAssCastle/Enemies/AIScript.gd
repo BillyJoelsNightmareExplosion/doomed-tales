@@ -1,5 +1,7 @@
 extends Node
 
+signal hit_player
+
 @onready var enemy: CharacterBody3D = get_parent()
 @onready var nav_agent = $"../NavigationAgent3D"
 @onready var state_timer = $"../StateTimer"
@@ -19,6 +21,7 @@ extends Node
 @export var attack_move_speed = 3.0 #how fast the enemy moves towards the player to attack
 @export var attack_stop_distance = 2.0 #how far away from the player the enemy stops to attack
 @export var attack_range = 2.0 #how far from the enemy the player will take damage
+@export var attack_damage = 10.0 #how much damage the attack does
 @export var attack_startup_time = 0.5 #how long the attack animation takes to play
 @export var attack_end_lag_time = 0.5 #how long the enemy will be stunned after attacking
 
@@ -112,8 +115,11 @@ func attack():
         await get_tree().create_timer(attack_startup_time).timeout
         if enemy.position.distance_to(player.position) < attack_range:
             print("Hit!")
+            player.health -= attack_damage
         else:
             print("Safe!")
+            
+        is_attacking = false
         await  get_tree().create_timer(attack_end_lag_time).timeout
         reset_enemy_to_wander()
     
