@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://beuk1dmgfeydp"]
+
+[ext_resource type="Texture2D" uid="uid://8lm3kd2wui55" path="res://art/textures/T_wood_pink_tiling.png" id="1_4q43l"]
+
+[resource]
+albedo_texture = ExtResource("1_4q43l")
+uv1_scale = Vector3(0.01, 0.01, 0.01)
+uv1_triplanar = true

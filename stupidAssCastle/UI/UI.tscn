@@ -1,0 +1,99 @@
+[gd_scene load_steps=3 format=3 uid="uid://dalqbjgkt1qit"]
+
+[ext_resource type="PackedScene" uid="uid://pvebuffyfnnw" path="res://HUD.tscn" id="1_ohfio"]
+[ext_resource type="Script" path="res://UI/UI.gd" id="1_xgfr4"]
+
+[node name="UI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xgfr4")
+
+[node name="StartScreen" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="StartScreen"]
+layout_mode = 0
+offset_right = 1413.0
+offset_bottom = 1057.0
+color = Color(0.631373, 0, 0.341176, 1)
+
+[node name="Title" type="RichTextLabel" parent="StartScreen"]
+layout_mode = 0
+offset_left = 170.0
+offset_top = 136.0
+offset_right = 1375.0
+offset_bottom = 621.0
+theme_override_font_sizes/normal_font_size = 135
+text = "Stupid Ass Castle"
+
+[node name="StartButton" type="Button" parent="StartScreen"]
+layout_mode = 0
+offset_left = 529.0
+offset_top = 490.0
+offset_right = 879.0
+offset_bottom = 581.0
+theme_override_font_sizes/font_size = 60
+text = "Start Game"
+
+[node name="QuitButton" type="Button" parent="StartScreen"]
+layout_mode = 0
+offset_left = 529.0
+offset_top = 606.0
+offset_right = 879.0
+offset_bottom = 697.0
+theme_override_font_sizes/font_size = 60
+text = "Quit Game"
+
+[node name="UserInterfaceControl" parent="." instance=ExtResource("1_ohfio")]
+layout_mode = 1
+
+[node name="PausedMenu" type="Control" parent="."]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="PausedMenu"]
+layout_mode = 0
+offset_right = 1413.0
+offset_bottom = 1057.0
+color = Color(0.631373, 0, 0.341176, 1)
+
+[node name="Paused" type="RichTextLabel" parent="PausedMenu"]
+layout_mode = 0
+offset_left = 170.0
+offset_top = 136.0
+offset_right = 1375.0
+offset_bottom = 621.0
+theme_override_font_sizes/normal_font_size = 135
+text = " Stupid Ass Pause
+          Menu"
+
+[node name="ResumeButton" type="Button" parent="PausedMenu"]
+layout_mode = 0
+offset_left = 491.0
+offset_top = 587.0
+offset_right = 918.0
+offset_bottom = 678.0
+theme_override_font_sizes/font_size = 60
+text = "Resume Game"
+
+[node name="QuitButton" type="Button" parent="PausedMenu"]
+layout_mode = 0
+offset_left = 529.0
+offset_top = 708.0
+offset_right = 879.0
+offset_bottom = 799.0
+theme_override_font_sizes/font_size = 60
+text = "Quit Game"
+
+[connection signal="pressed" from="StartScreen/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="StartScreen/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="PausedMenu/ResumeButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="PausedMenu/QuitButton" to="." method="_on_quit_button_pressed"]

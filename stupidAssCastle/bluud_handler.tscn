@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://bybhgo7kpxmhk"]
+
+[ext_resource type="Script" path="res://bluud_handler.gd" id="1_6bpj8"]
+[ext_resource type="Texture2D" uid="uid://brem6j50cvu88" path="res://Enemies/Ricardo.jpg" id="2_qapfq"]
+
+[node name="bluud_handler" type="Node3D"]
+script = ExtResource("1_6bpj8")
+bluud_texture = ExtResource("2_qapfq")

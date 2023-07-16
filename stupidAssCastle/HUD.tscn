@@ -1,5 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://pvebuffyfnnw"]
+[gd_scene load_steps=9 format=3 uid="uid://pvebuffyfnnw"]
 
+[ext_resource type="Script" path="res://HUD.gd" id="1_8i32k"]
 [ext_resource type="Texture2D" uid="uid://bjsvqjdrq1250" path="res://art/textures/girlpower.png" id="1_stpfo"]
 [ext_resource type="Texture2D" uid="uid://dook58r01u7gj" path="res://art/textures/hud_back_tiling.png" id="2_k2ljv"]
 [ext_resource type="FontFile" uid="uid://bmxyyghpqp65p" path="res://art/fonts/doomed.ttf" id="3_ak5es"]
@@ -20,6 +21,7 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_8i32k")
 
 [node name="Girlboss" type="TextureRect" parent="."]
 visible = false
