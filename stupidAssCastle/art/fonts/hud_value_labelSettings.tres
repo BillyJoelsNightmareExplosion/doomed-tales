@@ -1,0 +1,8 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://ctly53mg20t5j"]
+
+[ext_resource type="FontFile" uid="uid://bmxyyghpqp65p" path="res://art/fonts/doomed.ttf" id="1_q1lpn"]
+
+[resource]
+font = ExtResource("1_q1lpn")
+font_size = 64
+font_color = Color(0.862745, 0.0509804, 0, 1)
