@@ -8,20 +8,22 @@ extends CharacterBody3D
 
 @export var DAMAGE = 1
 @export var RANGE = 100
-@export var PELLET_COUNT = 7
-@export var SPREAD = 40 # in max degrees, think cone
+@export var PELLET_COUNT = 15
+@export var SPREAD = 30 # in max degrees, think cone
 
 @export var MAX_AMMO = 7
 @export var MAX_HEALTH = 5
 
 @onready var head = $Head
 @onready var camera = $Head/Camera3D
-@onready var muzzle = $Head/Gun/Muzzle
+@onready var stock = $Head/Stock
+@onready var muzzle = $Head/Stock/Barrel/Muzzle
+@onready var animplayer = $AnimationPlayer
 
 @onready var healthtext = $Head/Camera3D/UserInterfaceControl/HealthValue
 @onready var ammotext = $Head/Camera3D/UserInterfaceControl/AmmoValue
 
-@onready var world: World = get_tree().root.get_children()[0]
+@onready var world = get_tree().root.get_children()[0]
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -46,21 +48,25 @@ func _ready():
     # setting UI values
     healthtext.text = str(health)
     ammotext.text = str(ammo)
-    pass
-    
     
 func _process(delta):
     # replace this with the actual taking damage if it becomes a function
     healthtext.text = str(health)
-    pass
+
 
 func _physics_process(delta):
     
     if Input.is_action_just_pressed("fire"):
         fire()
     elif Input.is_action_just_pressed("reload"):
+        # Anim
+        animplayer.play("reload")
+        # UI
         ammo = MAX_AMMO
         ammotext.text = str(ammo)
+    else:
+        # recoil reset
+        stock.rotation_degrees.x = stock.rotation_degrees.x * 0.97
     
     # Add the gravity.
     if not is_on_floor():
@@ -92,10 +98,12 @@ func _input(event):
         # head.rotation.x = clamp(head.rotation.x, deg_to_rad(-89), deg_to_rad(89))
 
 func fire(kill=true): # I've added this kill arg just so positions get scrambled on ready
-    if not ammo:
+    if not ammo or animplayer.is_playing():
         return
     ammo -= 1
     ammotext.text = str(ammo)
+    
+    stock.rotation_degrees.x -= 10
     
     for aimcast in aimcasts:
         # rotate randomly
