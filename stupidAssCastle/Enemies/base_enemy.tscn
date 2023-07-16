@@ -16,10 +16,11 @@ script = ExtResource("1_5rn1f")
 
 [node name="AIScript" type="Node" parent="."]
 script = ExtResource("2_p1fcl")
-wander_for_time = 2.0
+wander_for_time = 1.5
 wander_move_speed = 3.0
-wander_move_dist = 3.0
-attack_agro_max = 3
+wander_move_dist = 5.0
+attack_agro_max = 1
+attack_move_speed = 5.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
