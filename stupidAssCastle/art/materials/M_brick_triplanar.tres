@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://dyrumlf0da8ja"]
+
+[ext_resource type="Texture2D" uid="uid://cy55rysjuhnd8" path="res://art/textures/T_brick_tiling.png" id="1_i6xw7"]
+
+[resource]
+albedo_texture = ExtResource("1_i6xw7")
+uv1_scale = Vector3(0.01, 0.01, 0.01)
+uv1_triplanar = true

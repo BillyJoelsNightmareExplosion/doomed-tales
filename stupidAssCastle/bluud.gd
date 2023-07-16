@@ -24,12 +24,11 @@ func _ready():
     _particles = GPUParticles3D.new()
     add_child(_particles)
     _particles.one_shot = true
+    _particles.amount = 3
     _particles.explosiveness = 1
     # note: these are preloaded and instanced at compile so there's not a bunch of loading here
     _particles.process_material = preload("res://art/particles/bluud_process_mat.tres")
-    var mesh = preload("res://art/particles/bluud_particle_mesh.tres")
-    mesh.material = preload("res://art/particles/bluud_particle_mat.tres")
-    _particles.draw_pass_1 = mesh
+    _particles.draw_pass_1 = preload("res://art/particles/bluud_particle_mesh.tres")
     
     
 func init(_texture, posi, rot, life):
