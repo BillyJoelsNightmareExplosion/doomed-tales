@@ -1,16 +1,17 @@
-[gd_scene load_steps=8 format=3 uid="uid://b03bmk4vyj25c"]
+[gd_scene load_steps=9 format=3 uid="uid://b03bmk4vyj25c"]
 
 [ext_resource type="Script" path="res://Room/room.gd" id="1_14i6b"]
 [ext_resource type="PackedScene" uid="uid://dkjdhrwjpc45o" path="res://Enemies/base_enemy.tscn" id="2_7gxee"]
-[ext_resource type="PackedScene" uid="uid://dr4167jd0rvue" path="res://MeshScenes/room_1_door.tscn" id="3_6d0oy"]
+[ext_resource type="PackedScene" uid="uid://b4or451hsn8gq" path="res://MeshScenes/room_3_door.tscn" id="4_inldi"]
 [ext_resource type="Texture2D" uid="uid://dcrlb0i0ifl1i" path="res://Ricardo.png" id="4_web7b"]
+[ext_resource type="PackedScene" uid="uid://cthlbfjo6ko7i" path="res://Room/Door/door.tscn" id="5_n2sub"]
 
 [sub_resource type="Curve3D" id="Curve3D_6hqnr"]
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -0.901477, 0.144536, -1.46242, 0, 0, 0, 0, 0, 0, 1.24777, -0.964892, 1.71597, 0, 0, 0, 0, 0, 0, 3.79432, -0.47458, 1.16297, 0, 0, 0, 0, 0, 0, 6.55834, -1.78552, 0.191651),
-"tilts": PackedFloat32Array(0, 0, 0, 0)
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -0.901477, 0.144536, -1.46242, 0, 0, 0, 0, 0, 0, 3.48306, -0.129901, 0.654979, 0, 0, 0, 0, 0, 0, 5.27061, -0.0861039, -0.427294),
+"tilts": PackedFloat32Array(0, 0, 0)
 }
-point_count = 4
+point_count = 3
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_0e8hc"]
 vertices = PackedVector3Array(-4.98335, 0.831143, 2.0188, -1.98335, 0.831143, 5.0188, 1.76665, 0.831143, 5.0188, 5.01665, 0.831143, 1.7688, 5.01665, 0.831143, -1.9812, 2.01665, 0.831143, -4.9812, 2.01665, 0.831143, -4.9812, -1.98335, 0.831143, -4.9812, -4.98335, 0.831143, -1.9812, -4.98335, 0.831143, 2.0188, 1.76665, 0.831143, 5.0188, 5.01665, 0.831143, 1.7688)
@@ -26,10 +27,8 @@ spawn_paths = [NodePath("Path3D")]
 enemy_pool = Array[PackedScene]([ExtResource("2_7gxee")])
 
 [node name="Path3D" type="Path3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.07998, 0.951991, 3.83375)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.01888, 0.964655, 3.87431)
 curve = SubResource("Curve3D_6hqnr")
-
-[node name="Room1Door" parent="." instance=ExtResource("3_6d0oy")]
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_0e8hc")
@@ -52,3 +51,13 @@ texture = ExtResource("4_web7b")
 [node name="OmniLight3D" type="OmniLight3D" parent="Chandelier"]
 light_color = Color(1, 0.752941, 0.215686, 1)
 omni_range = 8.0
+
+[node name="Room3Door" parent="." instance=ExtResource("4_inldi")]
+
+[node name="Doors" type="Node3D" parent="."]
+
+[node name="Door" parent="Doors" instance=ExtResource("5_n2sub")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.77969, 0.326707, 0)
+
+[node name="Door2" parent="Doors" instance=ExtResource("5_n2sub")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.0677143, 0.326706, 5.72509)
