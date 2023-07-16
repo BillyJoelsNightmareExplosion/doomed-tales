@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://pvebuffyfnnw"]
+[gd_scene load_steps=8 format=3 uid="uid://pvebuffyfnnw"]
 
 [ext_resource type="Texture2D" uid="uid://bjsvqjdrq1250" path="res://art/textures/girlpower.png" id="1_stpfo"]
-[ext_resource type="Texture2D" uid="uid://g3gdpvna8vmv" path="res://art/textures/hud.png" id="2_escev"]
+[ext_resource type="Texture2D" uid="uid://dook58r01u7gj" path="res://art/textures/hud_back_tiling.png" id="2_k2ljv"]
 [ext_resource type="FontFile" uid="uid://bmxyyghpqp65p" path="res://art/fonts/doomed.ttf" id="3_ak5es"]
 [ext_resource type="LabelSettings" uid="uid://d2pxb54c07cen" path="res://art/fonts/hud_label_labelSettings.tres" id="4_y1xak"]
 [ext_resource type="LabelSettings" uid="uid://ctly53mg20t5j" path="res://art/fonts/hud_value_labelSettings.tres" id="5_6an20"]
+[ext_resource type="Texture2D" uid="uid://ct66srlbf7577" path="res://art/textures/hud_head.png" id="6_tvurv"]
 
 [sub_resource type="Theme" id="Theme_df5y3"]
 default_base_scale = 0.65
@@ -29,21 +30,22 @@ offset_right = 67.0
 offset_bottom = 67.0
 texture = ExtResource("1_stpfo")
 
-[node name="Hud" type="TextureRect" parent="."]
+[node name="HudBack" type="TextureRect" parent="."]
 layout_mode = 0
-offset_left = -576.0
-offset_top = -327.0
-offset_right = 577.0
-offset_bottom = 326.0
-texture = ExtResource("2_escev")
+offset_left = -704.0
+offset_top = 273.0
+offset_right = 709.0
+offset_bottom = 529.0
+texture = ExtResource("2_k2ljv")
 expand_mode = 2
+stretch_mode = 1
 
 [node name="HealthLabel" type="Label" parent="."]
 layout_mode = 0
-offset_left = -512.0
-offset_top = 269.0
-offset_right = -349.0
-offset_bottom = 320.0
+offset_left = -587.0
+offset_top = 429.0
+offset_right = -424.0
+offset_bottom = 480.0
 theme = SubResource("Theme_df5y3")
 text = "HEALTH"
 label_settings = ExtResource("4_y1xak")
@@ -51,10 +53,10 @@ horizontal_alignment = 1
 
 [node name="HealthValue" type="Label" parent="."]
 layout_mode = 0
-offset_left = -485.0
-offset_top = 179.0
-offset_right = -374.0
-offset_bottom = 264.0
+offset_left = -560.0
+offset_top = 339.0
+offset_right = -449.0
+offset_bottom = 424.0
 theme = SubResource("Theme_df5y3")
 text = "100"
 label_settings = ExtResource("5_6an20")
@@ -62,10 +64,10 @@ horizontal_alignment = 1
 
 [node name="ObjectiveLabel" type="Label" parent="."]
 layout_mode = 0
-offset_left = 216.0
-offset_top = 268.0
-offset_right = 416.0
-offset_bottom = 319.0
+offset_left = 271.0
+offset_top = 429.0
+offset_right = 471.0
+offset_bottom = 480.0
 theme = SubResource("Theme_df5y3")
 text = "OBJECTIVE"
 label_settings = ExtResource("4_y1xak")
@@ -73,10 +75,10 @@ horizontal_alignment = 1
 
 [node name="ObjectiveValue" type="Label" parent="."]
 layout_mode = 0
-offset_left = 37.0
-offset_top = 181.0
-offset_right = 614.0
-offset_bottom = 266.0
+offset_left = 223.0
+offset_top = 342.0
+offset_right = 532.0
+offset_bottom = 427.0
 theme = SubResource("Theme_df5y3")
 text = "KILL PIGS"
 label_settings = ExtResource("5_6an20")
@@ -85,10 +87,10 @@ vertical_alignment = 1
 
 [node name="AmmoLabel" type="Label" parent="."]
 layout_mode = 0
-offset_left = -284.0
-offset_top = 267.0
-offset_right = -121.0
-offset_bottom = 318.0
+offset_left = -359.0
+offset_top = 427.0
+offset_right = -196.0
+offset_bottom = 478.0
 theme = SubResource("Theme_df5y3")
 text = "AMMO"
 label_settings = ExtResource("4_y1xak")
@@ -96,11 +98,20 @@ horizontal_alignment = 1
 
 [node name="AmmoValue" type="Label" parent="."]
 layout_mode = 0
-offset_left = -257.0
-offset_top = 182.0
-offset_right = -146.0
-offset_bottom = 267.0
+offset_left = -332.0
+offset_top = 342.0
+offset_right = -221.0
+offset_bottom = 427.0
 theme = SubResource("Theme_df5y3")
 text = "2"
 label_settings = ExtResource("5_6an20")
 horizontal_alignment = 1
+
+[node name="HudHead" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -108.0
+offset_top = 313.0
+offset_right = 113.0
+offset_bottom = 516.0
+texture = ExtResource("6_tvurv")
+expand_mode = 3
