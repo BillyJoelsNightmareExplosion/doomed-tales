@@ -1,8 +1,13 @@
-[gd_scene load_steps=7 format=3 uid="uid://dkjdhrwjpc45o"]
+[gd_scene load_steps=13 format=3 uid="uid://dkjdhrwjpc45o"]
 
 [ext_resource type="Script" path="res://Enemies/base_enemy.gd" id="1_5rn1f"]
 [ext_resource type="Script" path="res://Enemies/AIScript.gd" id="2_p1fcl"]
-[ext_resource type="Texture2D" uid="uid://c6yfxrq18ueig" path="res://Enemies/gingerman_idle.png" id="3_xs5f0"]
+[ext_resource type="Texture2D" uid="uid://ddaf4go6abmsd" path="res://Enemies/ginger_bread_man_sprites/gingerman_attack1.png" id="3_bxu06"]
+[ext_resource type="Texture2D" uid="uid://c6yfxrq18ueig" path="res://Enemies/ginger_bread_man_sprites/gingerman_idle.png" id="3_xs5f0"]
+[ext_resource type="Texture2D" uid="uid://bwoawdecg0suf" path="res://Enemies/ginger_bread_man_sprites/gingerman_attack2.png" id="4_71tvd"]
+[ext_resource type="Texture2D" uid="uid://c54bxs3ww77tc" path="res://Enemies/ginger_bread_man_sprites/gingerman_death.png" id="5_kdi7b"]
+[ext_resource type="Texture2D" uid="uid://7rktxl0aa6ap" path="res://Enemies/ginger_bread_man_sprites/gingerman_walk.png" id="7_v2s71"]
+[ext_resource type="Texture2D" uid="uid://5o4lvcndn31r" path="res://Enemies/ginger_bread_man_sprites/gingerman_walk_flipped.png" id="8_tlnis"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bcar1"]
 albedo_color = Color(1, 0, 0.0666667, 1)
@@ -10,6 +15,53 @@ albedo_color = Color(1, 0, 0.0666667, 1)
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_og76p"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_68g60"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0d1ty"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_bxu06")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_71tvd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_bxu06")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_bxu06")
+}],
+"loop": true,
+"name": &"attack",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_kdi7b")
+}],
+"loop": true,
+"name": &"death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_xs5f0")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_v2s71")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_tlnis")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 4.0
+}]
 
 [node name="Enemy" type="CharacterBody3D" groups=["enemy"]]
 script = ExtResource("1_5rn1f")
@@ -21,6 +73,8 @@ wander_move_speed = 3.0
 wander_move_dist = 5.0
 attack_agro_max = 1
 attack_move_speed = 5.0
+attack_stop_distance = 3.0
+attack_range = 3.4
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -38,15 +92,16 @@ path_height_offset = 1.0
 navigation_layers = 2
 avoidance_enabled = true
 
-[node name="Sprite3D" type="Sprite3D" parent="."]
-transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 1.02001, 0)
-billboard = 2
-double_sided = false
-texture = ExtResource("3_xs5f0")
-
 [node name="StateTimer" type="Timer" parent="."]
 
 [node name="TryAttackTimer" type="Timer" parent="."]
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0.995246, 0)
+billboard = 2
+sprite_frames = SubResource("SpriteFrames_0d1ty")
+animation = &"attack"
+frame_progress = 0.834183
 
 [connection signal="velocity_computed" from="NavigationAgent3D" to="AIScript" method="_on_navigation_agent_3d_velocity_computed"]
 [connection signal="timeout" from="StateTimer" to="AIScript" method="update_state"]

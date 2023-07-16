@@ -1,7 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://don8s2361jneu"]
+[gd_scene load_steps=2 format=3 uid="uid://don8s2361jneu"]
 
 [ext_resource type="PackedScene" uid="uid://dkjdhrwjpc45o" path="res://Enemies/base_enemy.tscn" id="1_5j1g0"]
-[ext_resource type="Texture2D" uid="uid://dcrlb0i0ifl1i" path="res://Ricardo.png" id="2_vesow"]
 
 [node name="TankEnemy" instance=ExtResource("1_5j1g0")]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
@@ -17,8 +16,3 @@ attack_end_lag_time = 2.0
 
 [node name="CollisionShape3D" parent="." index="2"]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 1.5, 0)
-
-[node name="Sprite3D" parent="." index="4"]
-transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 1.67337, 0)
-modulate = Color(0.258824, 1, 1, 1)
-texture = ExtResource("2_vesow")
