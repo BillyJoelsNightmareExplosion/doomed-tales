@@ -7,19 +7,27 @@ extends Node
 
 @onready var player: CharacterBody3D = get_tree().root.get_children()[0].get_player()
 
-@export var state_update_time = 1.0
+@export var state_update_time = 1.0 #how often the enemy should try update state
 
-@export var wander_for_time = 5.0
-@export var wander_move_speed = 2.0
-@export var wander_move_dist = 1.0
+@export var wander_for_time = 5.0 #how long the enemy moves towards a wander point for, before getting a new wander point
+@export var wander_move_speed = 2.0 #how fast the enemy moves while wandering
+@export var wander_move_dist = 1.0 #how far the enemy looks for a new wander point
 
-@export var attack_agro_max = 10;
-@export var attack_move_speed = 3.0
+@export var move_closer_distance = 5.0
+
+@export var attack_agro_max = 10 #how often the enemy attacks
+@export var attack_move_speed = 3.0 #how fast the enemy moves towards the player to attack
+@export var attack_stop_distance = 2.0 #how far away from the player the enemy stops to attack
+@export var attack_range = 2.0 #how far from the enemy the player will take damage
+@export var attack_startup_time = 0.5 #how long the attack animation takes to play
+@export var attack_end_lag_time = 0.5 #how long the enemy will be stunned after attacking
 
 var is_attacking = false
+var attacking = false;
 
 enum States {
-    Wander,  
+    Wander,
+    MoveCloser,
     MoveToAttack, 
     Attack, 
     BackUp
@@ -39,19 +47,22 @@ func _ready():
     current_state = States.Wander
 
 func update_state():
-    #pick random state between idle and wander
-    if !is_attacking:     
-        current_state = States.Wander
+    #pick random state between wander and move closer
+    if !is_attacking:
+        var rand = randi_range(0, 1)
+        if rand == 0: 
+            current_state = States.Wander
+            wander()
+        elif rand == 1:
+            current_state = States.MoveCloser
   
     print(current_state)
-    update_nav_pos()
-
-func update_nav_pos():
-    if current_state == States.Wander:
-        wander()
 
 func _physics_process(delta):
     if current_state == States.Wander:
+        move_enemy(wander_move_speed)
+    elif current_state == States.MoveCloser:
+        move_closer()
         move_enemy(wander_move_speed)
     elif current_state == States.MoveToAttack:
         move_to_attack()
@@ -80,16 +91,31 @@ func wander():
          state_timer.wait_time = wander_for_time;
     else:
         update_target_location(enemy.position)
-        state_timer.wait_time = 0.0;
+        state_timer.wait_time = 0.001;
             
+func move_closer():
+    update_target_location(player.global_transform.origin)
+    if nav_agent.distance_to_target() < move_closer_distance:
+        update_target_location(enemy.position)
+
 func move_to_attack():
     update_target_location(player.global_transform.origin)
-    if nav_agent.is_target_reached():
+    if nav_agent.distance_to_target() < attack_stop_distance:
+        update_target_location(enemy.position)
+        attacking = true
         current_state = States.Attack
 
 func attack():
-    print ("here")
-    pass
+    if attacking:
+        attacking = false
+        print("Attacking")
+        await get_tree().create_timer(attack_startup_time).timeout
+        if enemy.position.distance_to(player.position) < attack_range:
+            print("Hit!")
+        else:
+            print("Safe!")
+        await  get_tree().create_timer(attack_end_lag_time).timeout
+        reset_enemy_to_wander()
     
 #helper funcs
 func update_target_location(target_location):
@@ -127,3 +153,8 @@ func can_attack() -> bool:
     else:
         return true
     
+func reset_enemy_to_wander():
+    print("Reset")
+    current_state = States.Wander
+    state_timer.start()
+    try_attack_timer.start()
