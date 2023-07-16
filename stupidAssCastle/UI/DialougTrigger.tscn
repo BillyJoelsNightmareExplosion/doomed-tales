@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://dte0cgr17fnhb"]
+
+[ext_resource type="Script" path="res://UI/DialougTrigger.gd" id="1_gstou"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_taynq"]
+size = Vector3(1, 3.22652, 3.16753)
+
+[node name="DialougTrigger" type="Area3D" groups=["DialougTrigger"]]
+script = ExtResource("1_gstou")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.52894, 0)
+shape = SubResource("BoxShape3D_taynq")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
