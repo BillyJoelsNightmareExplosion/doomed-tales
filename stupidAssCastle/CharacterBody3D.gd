@@ -11,6 +11,7 @@ signal need_bluud(posi, rot)
 @export var RANGE = 100
 @export var PELLET_COUNT = 15
 @export var SPREAD = 30 # in max degrees, think cone
+@export var SHOTTIME = 0.5
 
 @export var MAX_AMMO = 7
 @export var MAX_HEALTH = 5
@@ -35,6 +36,7 @@ var half_spread
 
 var health = MAX_HEALTH
 var ammo = MAX_AMMO
+var can_shoot = true
 
 var can_dash = true
 var is_dashing = false
@@ -51,11 +53,13 @@ func _ready():
     
     $DashCooldown.wait_time = DASHCOOLDOWN
     $DashTimer.wait_time = DASHFORTIME
+    $ShotgunTimer.wait_time = SHOTTIME
 
 func _physics_process(delta):
     
     if Input.is_action_just_pressed("fire"):
-        fire()
+        if can_shoot:
+            fire()
     elif Input.is_action_just_pressed("reload"):
         # Anim
         anim_player.play("reload")
@@ -122,6 +126,8 @@ func fire(kill=true): # I've added this kill arg just so positions get scrambled
     if not ammo or anim_player.is_playing():
         return
     ammo -= 1
+    can_shoot = false
+    $ShotgunTimer.start()
     
     stock.rotation_degrees.x -= 10
     
@@ -151,3 +157,7 @@ func fire(kill=true): # I've added this kill arg just so positions get scrambled
 func reset_dash():
     can_dash = true
     $DashCooldown.stop()
+
+func reset_shoot_cooldown():
+    can_shoot = true
+    $ShotgunTimer.stop()
