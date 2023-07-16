@@ -33,7 +33,7 @@ func _ready():
     state_timer.wait_time = state_update_time
     state_timer.start()
     
-    try_attack_timer.wait_time = randi() % attack_agro_max
+    try_attack_timer.wait_time = randi_range(1, attack_agro_max)
     try_attack_timer.start()
     
     current_state = States.Wander
@@ -49,8 +49,6 @@ func update_state():
 func update_nav_pos():
     if current_state == States.Wander:
         wander()
-    
-    print (nav_agent.target_position)
 
 func _physics_process(delta):
     if current_state == States.Wander:
@@ -58,8 +56,8 @@ func _physics_process(delta):
     elif current_state == States.MoveToAttack:
         move_to_attack()
         move_enemy(attack_move_speed)
-        if nav_agent.target_reached:
-            attack()
+    elif current_state == States.Attack:
+        attack()
 
 #States
 func wander():
@@ -86,8 +84,11 @@ func wander():
             
 func move_to_attack():
     update_target_location(player.global_transform.origin)
+    if nav_agent.is_target_reached():
+        current_state = States.Attack
 
 func attack():
+    print ("here")
     pass
     
 #helper funcs
@@ -108,7 +109,9 @@ func _on_navigation_agent_3d_velocity_computed(safe_velocity):
 func try_attack():
     if can_attack():
         is_attacking = true
+        current_state = States.MoveToAttack
         state_timer.stop()
+        try_attack_timer.stop()
     else:
         is_attacking = false
 

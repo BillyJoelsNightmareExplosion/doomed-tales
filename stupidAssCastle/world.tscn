@@ -1,20 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://cfk4li1nwsl2e"]
+[gd_scene load_steps=4 format=3 uid="uid://cfk4li1nwsl2e"]
 
 [ext_resource type="Script" path="res://world.gd" id="1_irkfu"]
 [ext_resource type="PackedScene" uid="uid://rvlyxsc8kbwx" path="res://character.tscn" id="2_gb0a7"]
 [ext_resource type="PackedScene" uid="uid://b03bmk4vyj25c" path="res://Room/room.tscn" id="4_5sp3r"]
-[ext_resource type="PackedScene" uid="uid://dmnlp7by3j50d" path="res://MeshScenes/pillar.tscn" id="4_w3fqt"]
 
 [node name="World" type="Node3D"]
 script = ExtResource("1_irkfu")
 
 [node name="Player" parent="." instance=ExtResource("2_gb0a7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.33917, 1.78198, -3.52949)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0644674, 1.78198, -2.94543)
 
 [node name="Room" parent="." instance=ExtResource("4_5sp3r")]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.258819, 0.965926, 0, -0.965926, 0.258819, 0, 4.42457, 0)
-
-[node name="Pillar" parent="." instance=ExtResource("4_w3fqt")]
-transform = Transform3D(0.01, 0, 0, 0, 0, -0.01, 0, 0.01, 0, -0.59576, 0.508095, 4.13647)
