@@ -1,21 +1,42 @@
-[gd_scene load_steps=3 format=3 uid="uid://dnblhhrg6blt6"]
+[gd_scene load_steps=6 format=3 uid="uid://dnblhhrg6blt6"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_2lgjv"]
-size = Vector3(10, 1, 10)
+[ext_resource type="Texture2D" uid="uid://ct1jm0t42yh7u" path="res://art/textures/Grid.jpg" id="1_p1v3v"]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_7thy5"]
+vertices = PackedVector3Array(-4.5, 0.5, -1.25346, -4.5, 0.5, 7.74654, 4.5, 0.5, 7.74654, 4.5, 0.5, -1.25346)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
+agent_height = 0.5
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_3agc2"]
 size = Vector3(10, 1, 10)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sn4hs"]
+transparency = 1
+albedo_texture = ExtResource("1_p1v3v")
+uv1_scale = Vector3(0.25, 0.25, 0.25)
+uv1_triplanar = true
+uv2_triplanar = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_2lgjv"]
+size = Vector3(10, 1, 10)
+
 [node name="environment" type="Node3D"]
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
-mesh = SubResource("BoxMesh_2lgjv")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
-shape = SubResource("BoxShape3D_3agc2")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.605266, 0.796023, 0, -0.796023, 0.605266, 0, 7.78789, 0)
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -6.24971)
+navigation_mesh = SubResource("NavigationMesh_7thy5")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 3.24654)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/StaticBody3D"]
+shape = SubResource("BoxShape3D_3agc2")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_sn4hs")
+mesh = SubResource("BoxMesh_2lgjv")
+skeleton = NodePath("../../..")

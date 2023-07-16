@@ -3,15 +3,15 @@
 [ext_resource type="Script" path="res://main.gd" id="1_14qcd"]
 [ext_resource type="PackedScene" uid="uid://rvlyxsc8kbwx" path="res://character.tscn" id="1_wjn2o"]
 [ext_resource type="PackedScene" uid="uid://dnblhhrg6blt6" path="res://environment.tscn" id="2_e2slr"]
-[ext_resource type="PackedScene" uid="uid://cynx7bnmx6xbn" path="res://base_enemy.tscn" id="4_m3fr7"]
+[ext_resource type="PackedScene" uid="uid://dkjdhrwjpc45o" path="res://Enemies/base_enemy.tscn" id="4_mg604"]
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_14qcd")
 
 [node name="character" parent="." instance=ExtResource("1_wjn2o")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1.11047, 0)
 
 [node name="environment" parent="." instance=ExtResource("2_e2slr")]
 
-[node name="CharacterBody3D" parent="." instance=ExtResource("4_m3fr7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.85791, 1.45192, 0)
+[node name="Enemy" parent="." instance=ExtResource("4_mg604")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 7.4032)

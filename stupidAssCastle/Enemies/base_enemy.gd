@@ -1,3 +1,4 @@
+class_name Enemy
 extends CharacterBody3D
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
