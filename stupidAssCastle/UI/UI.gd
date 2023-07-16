@@ -1,5 +1,9 @@
 extends Control
 
+@onready var player: CharacterBody3D = get_tree().root.get_children()[0].get_player()
+
+@onready var healthtext = $UserInterfaceControl/HealthValue
+@onready var ammotext = $UserInterfaceControl/AmmoValue
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -22,7 +26,8 @@ func _input(event):
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-    pass
+    healthtext.text = str(player.health)
+    ammotext.text = str(player.ammo)
 
 
 func _on_start_button_pressed():

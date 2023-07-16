@@ -19,17 +19,14 @@ signal need_bluud(posi, rot)
 @onready var camera = $Head/Camera3D
 @onready var stock = $Head/Stock
 @onready var muzzle = $Head/Stock/Barrel/Muzzle
-@onready var animplayer = $AnimationPlayer
-
-@onready var healthtext = $Head/Camera3D/UserInterfaceControl/HealthValue
-@onready var ammotext = $Head/Camera3D/UserInterfaceControl/AmmoValue
+@onready var anim_player = $AnimationPlayer
 
 @onready var world = get_tree().root.get_children()[0]
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
-var aimcasts = []
+var aim_casts = []
 var half_spread
 
 var health = MAX_HEALTH
@@ -38,22 +35,12 @@ var ammo = MAX_AMMO
 func _ready():
     # getting pellet spread to work
     for i in range(PELLET_COUNT):
-        var aimcast = RayCast3D.new()
-        aimcast.target_position = Vector3(0, 0, -1 * RANGE)
-        aimcasts.append(aimcast)
-        camera.add_child(aimcast)
-    print("added aimcasts")
+        var aim_cast = RayCast3D.new()
+        aim_cast.target_position = Vector3(0, 0, -1 * RANGE)
+        aim_casts.append(aim_cast)
+        camera.add_child(aim_cast)
     half_spread = SPREAD / 2
-    fire(false)
-    
-    # setting UI values
-    healthtext.text = str(health)
-    ammotext.text = str(ammo)
-    
-func _process(delta):
-    # replace this with the actual taking damage if it becomes a function
-    healthtext.text = str(health)
-
+    fire(false) # randomize rotations without killing anything
 
 func _physics_process(delta):
     
@@ -61,10 +48,9 @@ func _physics_process(delta):
         fire()
     elif Input.is_action_just_pressed("reload"):
         # Anim
-        animplayer.play("reload")
+        anim_player.play("reload")
         # UI
         ammo = MAX_AMMO
-        ammotext.text = str(ammo)
     else:
         # recoil reset
         stock.rotation_degrees.x = stock.rotation_degrees.x * 0.97
@@ -99,20 +85,19 @@ func _input(event):
         # head.rotation.x = clamp(head.rotation.x, deg_to_rad(-89), deg_to_rad(89))
 
 func fire(kill=true): # I've added this kill arg just so positions get scrambled on ready
-    if not ammo or animplayer.is_playing():
+    if not ammo or anim_player.is_playing():
         return
     ammo -= 1
-    ammotext.text = str(ammo)
     
     stock.rotation_degrees.x -= 10
     
-    for aimcast in aimcasts:
+    for aim_cast in aim_casts:
         # rotate randomly
-        aimcast.rotation_degrees = Vector3((randi_range (half_spread * -1, half_spread)),(randi_range (half_spread * -1, half_spread)), 0)
+        aim_cast.rotation_degrees = Vector3((randi_range (half_spread * -1, half_spread)),(randi_range (half_spread * -1, half_spread)), 0)
         # check collision and do shit
-        if aimcast.is_colliding():
+        if aim_cast.is_colliding():
                 var bullet = get_world_3d().direct_space_state
-                var query = PhysicsRayQueryParameters3D.create(muzzle.global_transform.origin, aimcast.get_collision_point())
+                var query = PhysicsRayQueryParameters3D.create(muzzle.global_transform.origin, aim_cast.get_collision_point())
                 var collision = bullet.intersect_ray(query)
 
                 if collision:
