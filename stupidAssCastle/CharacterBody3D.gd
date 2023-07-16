@@ -8,8 +8,8 @@ extends CharacterBody3D
 
 @export var DAMAGE = 1
 @export var RANGE = 100
-@export var PELLET_COUNT = 5
-@export var SPREAD = 45 # in max degrees, think cone 
+@export var PELLET_COUNT = 7
+@export var SPREAD = 40 # in max degrees, think cone 
 
 @onready var head = $Head
 @onready var camera = $Head/Camera3D
@@ -19,14 +19,18 @@ extends CharacterBody3D
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 var aimcasts = []
+var half_spread
 
 func _ready():
+    # getting pellet spread to work
     for i in PELLET_COUNT:
         var aimcast = RayCast3D.new()
         aimcast.target_position = Vector3(0, 0, -1 * RANGE)
         aimcasts.append(aimcast)
         camera.add_child(aimcast)
     print("added aimcasts")
+    half_spread = SPREAD / 2
+    fire(false)
     pass
     
 func _physics_process(delta):
@@ -63,10 +67,10 @@ func _input(event):
         # head.rotate_x(deg_to_rad(-event.relative.y * LOOK_SENSITVITY))
         # head.rotation.x = clamp(head.rotation.x, deg_to_rad(-89), deg_to_rad(89))
 
-func fire():
+func fire(kill=true): # I've added this kill arg just so positions get scrambled on ready
     for aimcast in aimcasts:
         # rotate randomly
-        
+        aimcast.rotation_degrees = Vector3((randi_range (half_spread * -1, half_spread)),(randi_range (half_spread * -1, half_spread)), 0)
         # check collision and do shit
         if aimcast.is_colliding():
                 var bullet = get_world_3d().direct_space_state
@@ -75,7 +79,14 @@ func fire():
 
                 if collision:
                     var target = collision.collider
-
-                    if target.is_in_group("enemy"):
+#                    # debug
+#                    var mesh = MeshInstance3D.new()
+#                    mesh.mesh = SphereMesh.new()
+#                    mesh.mesh.radius = 0.1
+#                    mesh.mesh.height = 0.1
+#                    mesh.global_position = collision.position
+#                    get_tree().root.add_child(mesh)
+                    
+                    if target.is_in_group("enemy") and kill:
                         print("hit enemy")
                         target.health -= DAMAGE
