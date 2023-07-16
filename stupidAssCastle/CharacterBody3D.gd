@@ -1,5 +1,6 @@
 extends CharacterBody3D
 
+signal need_bluud(posi, rot)
 
 @export var SPEED = 5.0
 # Do we even do jumping?
@@ -125,4 +126,5 @@ func fire(kill=true): # I've added this kill arg just so positions get scrambled
 #                    get_tree().root.add_child(mesh)
                     
                     if target.is_in_group("enemy") and kill:
+                        need_bluud.emit(collision.position, Vector3(90,(randi_range (0,360)),0))
                         target.health -= DAMAGE
