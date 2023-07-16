@@ -12,3 +12,6 @@ func _ready():
 func _process(delta):
     if health <= 0:
         queue_free()
+
+func get_ai():
+    return $AIScript

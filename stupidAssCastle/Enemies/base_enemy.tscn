@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://dkjdhrwjpc45o"]
+[gd_scene load_steps=7 format=3 uid="uid://dkjdhrwjpc45o"]
 
 [ext_resource type="Script" path="res://Enemies/base_enemy.gd" id="1_5rn1f"]
 [ext_resource type="Script" path="res://Enemies/AIScript.gd" id="2_p1fcl"]
+[ext_resource type="Texture2D" uid="uid://brem6j50cvu88" path="res://Enemies/Ricardo.jpg" id="3_eujuk"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bcar1"]
 albedo_color = Color(1, 0, 0.0666667, 1)
@@ -15,9 +16,14 @@ script = ExtResource("1_5rn1f")
 
 [node name="AIScript" type="Node" parent="."]
 script = ExtResource("2_p1fcl")
+wander_for_time = 2.0
+wander_move_speed = 3.0
+wander_move_dist = 3.0
+attack_agro_max = 3
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+visible = false
 material_override = SubResource("StandardMaterial3D_bcar1")
 mesh = SubResource("CapsuleMesh_og76p")
 
@@ -27,3 +33,18 @@ shape = SubResource("CapsuleShape3D_68g60")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 path_height_offset = 1.0
+avoidance_enabled = true
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 1.14511, 0)
+billboard = 2
+double_sided = false
+texture = ExtResource("3_eujuk")
+
+[node name="StateTimer" type="Timer" parent="."]
+
+[node name="TryAttackTimer" type="Timer" parent="."]
+
+[connection signal="velocity_computed" from="NavigationAgent3D" to="AIScript" method="_on_navigation_agent_3d_velocity_computed"]
+[connection signal="timeout" from="StateTimer" to="AIScript" method="update_state"]
+[connection signal="timeout" from="TryAttackTimer" to="AIScript" method="try_attack"]
