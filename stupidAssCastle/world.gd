@@ -18,3 +18,6 @@ func _input(event):
 
 func get_player() -> CharacterBody3D:
     return $Player
+    
+func get_ui():
+    return $UI
