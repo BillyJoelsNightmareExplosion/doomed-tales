@@ -21,7 +21,7 @@ extends CharacterBody3D
 @onready var healthtext = $Head/Camera3D/UserInterfaceControl/HealthValue
 @onready var ammotext = $Head/Camera3D/UserInterfaceControl/AmmoValue
 
-@onready var world: World = get_tree().root.get_children()[0]
+@onready var world = get_tree().root.get_children()[0]
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")

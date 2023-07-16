@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cxqryrf5rng0a"
-path.s3tc="res://.godot/imported/Ricardo.jpg-7d8f8e5685dc0607255055240419cc98.s3tc.ctex"
+uid="uid://dcrlb0i0ifl1i"
+path.s3tc="res://.godot/imported/Ricardo.png-53b15fc147032e71a1b136b4af442ec3.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Ricardo.jpg"
-dest_files=["res://.godot/imported/Ricardo.jpg-7d8f8e5685dc0607255055240419cc98.s3tc.ctex"]
+source_file="res://Ricardo.png"
+dest_files=["res://.godot/imported/Ricardo.png-53b15fc147032e71a1b136b4af442ec3.s3tc.ctex"]
 
 [params]
 

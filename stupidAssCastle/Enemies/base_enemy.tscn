@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Enemies/base_enemy.gd" id="1_5rn1f"]
 [ext_resource type="Script" path="res://Enemies/AIScript.gd" id="2_p1fcl"]
-[ext_resource type="Texture2D" uid="uid://brem6j50cvu88" path="res://Enemies/Ricardo.jpg" id="3_eujuk"]
+[ext_resource type="Texture2D" uid="uid://dcrlb0i0ifl1i" path="res://Ricardo.png" id="3_6wthg"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bcar1"]
 albedo_color = Color(1, 0, 0.0666667, 1)
@@ -40,7 +40,7 @@ avoidance_enabled = true
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 1.14511, 0)
 billboard = 2
 double_sided = false
-texture = ExtResource("3_eujuk")
+texture = ExtResource("3_6wthg")
 
 [node name="StateTimer" type="Timer" parent="."]
 
