@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bjsvqjdrq1250"
-path.s3tc="res://.godot/imported/girlpower.png-9f0c60ec5406479ff71dd2d8b9183bd9.s3tc.ctex"
+uid="uid://ct1jm0t42yh7u"
+path.s3tc="res://.godot/imported/Grid.jpg-f22774399c14abc7d29f2bd8dad1474b.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://art/textures/girlpower.png"
-dest_files=["res://.godot/imported/girlpower.png-9f0c60ec5406479ff71dd2d8b9183bd9.s3tc.ctex"]
+source_file="res://art/textures/Grid.jpg"
+dest_files=["res://.godot/imported/Grid.jpg-f22774399c14abc7d29f2bd8dad1474b.s3tc.ctex"]
 
 [params]
 
