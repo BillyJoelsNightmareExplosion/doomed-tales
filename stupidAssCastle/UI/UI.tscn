@@ -1,7 +1,45 @@
-[gd_scene load_steps=3 format=3 uid="uid://dalqbjgkt1qit"]
+[gd_scene load_steps=8 format=3 uid="uid://dalqbjgkt1qit"]
 
 [ext_resource type="PackedScene" uid="uid://pvebuffyfnnw" path="res://HUD.tscn" id="1_ohfio"]
 [ext_resource type="Script" path="res://UI/UI.gd" id="1_xgfr4"]
+[ext_resource type="Texture2D" uid="uid://dook58r01u7gj" path="res://art/textures/hud_back_tiling.png" id="3_gf6tj"]
+[ext_resource type="FontFile" uid="uid://bmxyyghpqp65p" path="res://art/fonts/doomed.ttf" id="4_0nu61"]
+
+[sub_resource type="Animation" id="Animation_d1nhc"]
+resource_name = "TextCrawl"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_56kr4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.5]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1w31a"]
+_data = {
+"RESET": SubResource("Animation_56kr4"),
+"TextCrawl": SubResource("Animation_d1nhc")
+}
 
 [node name="UI" type="Control"]
 layout_mode = 3
@@ -93,8 +131,39 @@ offset_bottom = 799.0
 theme_override_font_sizes/font_size = 60
 text = "Quit Game"
 
+[node name="Dialoug" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HudBack" type="TextureRect" parent="Dialoug"]
+offset_top = 801.0
+offset_right = 1413.0
+offset_bottom = 1057.0
+texture = ExtResource("3_gf6tj")
+expand_mode = 2
+stretch_mode = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Dialoug"]
+layout_mode = 0
+offset_left = 100.0
+offset_top = 831.0
+offset_right = 1313.0
+offset_bottom = 1047.0
+theme_override_fonts/normal_font = ExtResource("4_0nu61")
+theme_override_font_sizes/normal_font_size = 25
+text = "Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test "
+visible_characters = 255
+visible_ratio = 0.5
+
+[node name="TextAnimation" type="AnimationPlayer" parent="Dialoug/RichTextLabel"]
+libraries = {
+"": SubResource("AnimationLibrary_1w31a")
+}
+
 [connection signal="pressed" from="StartScreen/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="StartScreen/QuitButton" to="." method="_on_quit_button_pressed"]
-[connection signal="pressed" from="PausedMenu/ResumeButton" to="." method="_on_resume_button_pressed"]
 [connection signal="pressed" from="PausedMenu/ResumeButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="PausedMenu/ResumeButton" to="." method="_on_resume_button_pressed"]
 [connection signal="pressed" from="PausedMenu/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="visibility_changed" from="Dialoug" to="." method="_on_dialoug_visibility_changed"]
