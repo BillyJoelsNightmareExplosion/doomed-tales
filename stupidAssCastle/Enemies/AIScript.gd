@@ -95,7 +95,7 @@ func wander():
         update_target_location(enemy.position)
         state_timer.wait_time = 0.001;
         
-    animator.play("idle")
+    #animator.play("idle")
             
 func move_closer():
     update_target_location(player.global_transform.origin)
