@@ -4,9 +4,6 @@
 
 [node name="castle_bottom" type="Node3D"]
 
-[node name="Room1Door2" parent="." instance=ExtResource("1_knexc")]
-transform = Transform3D(0.0001, 0, 0, 0, -0.0001, 7.15256e-11, 0, -7.15256e-11, -0.0001, 0, 5.925, 0)
-
 [node name="Room1Door" parent="." instance=ExtResource("1_knexc")]
 transform = Transform3D(0.000526324, 0.00998614, -3.57132e-09, -1.18423e-17, -3.57628e-09, -0.01, -0.00998614, 0.000526324, -1.88229e-10, 0, -4.75151, 0)
 
