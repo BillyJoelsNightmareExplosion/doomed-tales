@@ -6,10 +6,14 @@ class_name Zipline extends Path3D
     set(value):
         INSTANCE_DISTANCE = value
         is_dirty = true
-@export var END_POS = Vector3(0,0,1)
+@export var END_POS_LOCAL  = Vector3(0,0,1)
+
+
 
 
 @onready var player: CharacterBody3D = get_tree().root.get_children()[0].get_player()
+#@onready var END_POS = $END.position
+
 
 var path_follow
 var mm
@@ -27,10 +31,19 @@ var start_col
 var end_col
 
 
-func new_collider(pos=position):
+func new_collider(pos=null):
     var new_area = Area3D.new()
     add_child(new_area)
-    new_area.position = pos
+    
+    if pos:
+        var mesh = MeshInstance3D.new()
+        mesh.mesh = SphereMesh.new()
+        mesh.mesh.radius = 6
+        mesh.mesh.height = 6
+        new_area.position = pos
+        mesh.position = pos
+        new_area.add_child(mesh)
+    
     var new_col = CollisionShape3D.new()
     new_area.add_child(new_col)
     new_col.shape = preload("res://Zipline/zipline_collision_shape.tres")
@@ -39,11 +52,14 @@ func new_collider(pos=position):
 # Called when the node enters the scene tree for the first time.
 func _ready():
     # adding all items to tree
-    curve = preload("res://Zipline/zipline_base_curve.tres")
-    curve.set_point_position(0, position)
-    curve.set_point_position(1, END_POS)
-    var end_in = ( END_POS - END_POS/2 ) * -1
-    end_in.y = END_POS.y - DROOP_Y
+    #curve = preload("res://Zipline/zipline_base_curve.tres")
+    curve.add_point(Vector3.ZERO)
+    curve.add_point(Vector3.ZERO)
+    #curve.set_point_position(0, position)
+    print(END_POS_LOCAL)
+    curve.set_point_position(1, END_POS_LOCAL)
+    var end_in = ( END_POS_LOCAL - END_POS_LOCAL/2 ) * -1
+    end_in.y = END_POS_LOCAL.y - DROOP_Y
     curve.set_point_in(1, end_in)
     path_follow = PathFollow3D.new()
     add_child(path_follow)
@@ -51,7 +67,9 @@ func _ready():
     
     var multi_mesh = MultiMeshInstance3D.new()
     add_child(multi_mesh)
-    multi_mesh.multimesh = preload("res://Zipline/zipline_multi_mesh.tres")
+    multi_mesh.multimesh = MultiMesh.new()
+    multi_mesh.multimesh.transform_format = MultiMesh.TRANSFORM_3D
+    multi_mesh.multimesh.set_mesh(preload("res://art/particles/zip_mesh.tres"))
     mm = multi_mesh.multimesh
     
     var csg_poly = CSGPolygon3D.new()
@@ -63,7 +81,7 @@ func _ready():
     csg_poly.material = preload("res://Zipline/M_zipline.tres")
     
     start_col = new_collider()
-    end_col = new_collider(END_POS)
+    end_col = new_collider(END_POS_LOCAL)
     
     _update_multimesh()
 
@@ -76,11 +94,8 @@ func toggle_grab_player():
 func _process(delta):
     if Input.is_action_just_pressed("jump"):
         if start_col.overlaps_body(player):
+            print("this fuck")
             direction = 1
-            toggle_grab_player()
-        if end_col.overlaps_body(player):
-            print("reverse")
-            direction = -1
             toggle_grab_player()
     
     if has_player:
@@ -93,7 +108,7 @@ func _process(delta):
             abs_progress = 0
         else:
             abs_progress += FOLLOW_RATE * delta
-            path_follow.progress_ratio = abs_progress * direction
+            path_follow.progress_ratio = abs_progress
             #print(path_follow.progress)
             player.position = init_player_pos + path_follow.position
 #    if is_dirty:
@@ -102,7 +117,7 @@ func _process(delta):
     pass
 
 func _update_multimesh():
-    curve.set_point_position(1, END_POS)
+    curve.set_point_position(1, END_POS_LOCAL)
     
     var path_length: float = curve.get_baked_length()
     var count = floor(path_length / INSTANCE_DISTANCE)
