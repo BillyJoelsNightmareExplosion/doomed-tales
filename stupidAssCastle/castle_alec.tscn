@@ -1,0 +1,58 @@
+[gd_scene load_steps=8 format=3 uid="uid://cfxa4cfsmdg2c"]
+
+[ext_resource type="PackedScene" uid="uid://bu62kv4n1rrx1" path="res://MeshScenes/bridge.tscn" id="1_iojuw"]
+[ext_resource type="PackedScene" uid="uid://dlwmtldwa7a4y" path="res://art/materials/castle_bottom.tscn" id="2_ssaug"]
+[ext_resource type="PackedScene" uid="uid://bjtid8fpd786i" path="res://MeshScenes/column.tscn" id="3_0jwfu"]
+[ext_resource type="Material" uid="uid://be4pxd6e388qo" path="res://art/materials/M_grass_triplanar.tres" id="4_ima6a"]
+[ext_resource type="PackedScene" uid="uid://c64sx7badclbu" path="res://MeshScenes/tree.tscn" id="5_rq4su"]
+[ext_resource type="Script" path="res://Zipline/ZiplineClass.gd" id="6_w7e5l"]
+
+[sub_resource type="Curve3D" id="Curve3D_oqfnh"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -0.141919, 0.0348308, 0.112288, 0, 0, 0, 0, 0, 0, -11.2333, 5.73988, 7.1343),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
+
+[node name="CastleVANIA" type="Node3D"]
+
+[node name="Bridge" parent="." instance=ExtResource("1_iojuw")]
+
+[node name="castle_bottom" parent="." instance=ExtResource("2_ssaug")]
+transform = Transform3D(0.707539, 0, 0.706675, 0, 1, 0, -0.706675, 0, 0.707539, 21.2605, -5.97235, 2)
+
+[node name="castle_bottom2" parent="." instance=ExtResource("2_ssaug")]
+transform = Transform3D(0.353769, 0, 0.353337, 0, 1, 0, -0.353337, 0, 0.353769, 40.2986, 1.6429, 2)
+
+[node name="castle_bottom3" parent="." instance=ExtResource("2_ssaug")]
+transform = Transform3D(0.353769, 0, 0.353337, 0, 1, 0, -0.353337, 0, 0.353769, 55.2155, 5.42904, 9.48712)
+
+[node name="castle_bottom4" parent="." instance=ExtResource("2_ssaug")]
+transform = Transform3D(0.353769, 0, 0.353337, 0, 1, 0, -0.353337, 0, 0.353769, 71.2864, 1.6429, -10.4434)
+
+[node name="Column2" parent="." instance=ExtResource("3_0jwfu")]
+transform = Transform3D(0.02, 0, 0, 0, -8.74228e-10, -0.02, 0, 0.02, -8.74228e-10, 18.3002, -0.00995159, -1.07085)
+material_override = ExtResource("4_ima6a")
+
+[node name="Column3" parent="." instance=ExtResource("3_0jwfu")]
+transform = Transform3D(0.02, 0, 0, 0, -8.74228e-10, -0.02, 0, 0.02, -8.74228e-10, 24.0813, -0.00995159, -1.07085)
+material_override = ExtResource("4_ima6a")
+
+[node name="Column4" parent="." instance=ExtResource("3_0jwfu")]
+transform = Transform3D(0.02, 0, 0, 0, -8.74228e-10, -0.02, 0, 0.02, -8.74228e-10, 18.3002, -0.00995159, 5.29612)
+material_override = ExtResource("4_ima6a")
+
+[node name="Column5" parent="." instance=ExtResource("3_0jwfu")]
+transform = Transform3D(0.02, 0, 0, 0, -8.74228e-10, -0.02, 0, 0.02, -8.74228e-10, 24.0813, -0.00995159, 5.29612)
+material_override = ExtResource("4_ima6a")
+
+[node name="Tree" parent="." instance=ExtResource("5_rq4su")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 20.9619, -0.0973899, 1.93928)
+
+[node name="Zipline" type="Path3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 1, 0, 0, 0, 0.5, 0.145081, 1.1373, 3.31571)
+curve = SubResource("Curve3D_oqfnh")
+script = ExtResource("6_w7e5l")
+
+[node name="Column" parent="." instance=ExtResource("3_0jwfu")]
+transform = Transform3D(0.01, 0, 0, 0, 0, -0.01, 0, 0.01, 0, 9.48174, 0, -7.89348)
