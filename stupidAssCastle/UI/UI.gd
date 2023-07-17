@@ -5,6 +5,14 @@ extends Control
 @onready var healthtext = $UserInterfaceControl/HealthValue
 @onready var ammotext = $UserInterfaceControl/AmmoValue
 
+var pause = true
+var TriggerCounter=0
+var TextArray
+var ArrSize
+var CurrentText
+var can_press_escape=true
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
     var Triggers=get_tree().get_nodes_in_group("DialogueTrigger")
@@ -12,23 +20,16 @@ func _ready():
         i.start_dialogue.connect(dialogue)
         
     get_tree().paused=true
+    can_press_escape=false
     process_mode = Node.PROCESS_MODE_WHEN_PAUSED
     $UserInterfaceControl.visible=false
     $Dialoug.visible=false
     $PausedMenu.visible=false
     $RestartMenu.visible=false
     
-
-var pause = true
-var TriggerCounter=0
-var TextArray
-var ArrSize
-var CurrentText
-
-
 func _input(event):
     process_mode = Node.PROCESS_MODE_ALWAYS
-    if event.is_action_pressed("ui_cancel"):
+    if event.is_action_pressed("ui_cancel")&&can_press_escape==true:
         pause = not pause
         if pause:
             $PausedMenu.visible=false
@@ -63,6 +64,7 @@ func _process(delta):
 
 
 func _on_start_button_pressed():
+    can_press_escape=true
     $StartScreen.visible=false
     $UserInterfaceControl.visible=true
     get_tree().paused=false
@@ -77,6 +79,7 @@ func _on_quit_button_pressed():
 
 
 func _on_resume_button_pressed():
+    can_press_escape=true
     pause = not pause
     $PausedMenu.visible=false
     get_tree().paused=false
@@ -100,5 +103,6 @@ func play():
 
 
 func _on_restart_button_pressed():
+    can_press_escape=false
     get_tree().reload_current_scene()
     Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
