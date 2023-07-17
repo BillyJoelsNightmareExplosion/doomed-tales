@@ -780,7 +780,7 @@ num_enemies_max = 0
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -6, 0, -2.62268e-07)
 
 [node name="RoomEntered" parent="Tower2/Room" index="4"]
-dialogue = Array[String](["This is a health basket", "It will heal you to full"])
+dialogue = Array[String](["This is a health basket", "It will heal you 20 hp"])
 
 [node name="CollisionShape3D" parent="Tower2/Room/RoomEntered" index="0"]
 shape = SubResource("BoxShape3D_hhot1")
@@ -978,7 +978,7 @@ visible = false
 
 [node name="RoomEntered" parent="ConnectorPath2/Room" index="4"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.0579, 1.57056, 0)
-dialogue = Array[String](["Space to use vines"])
+dialogue = Array[String](["Hold space to use vines"])
 
 [node name="ConnectorPath3" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 39.6612, 5, 63)
