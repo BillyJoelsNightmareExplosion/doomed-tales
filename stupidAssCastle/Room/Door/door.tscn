@@ -5,6 +5,7 @@
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1xnes"]
 transparency = 1
+cull_mode = 2
 albedo_texture = ExtResource("2_p1lwa")
 uv1_scale = Vector3(2, 1, 1)
 uv1_offset = Vector3(0, 0.03, 0)
