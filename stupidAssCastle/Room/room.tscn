@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://b03bmk4vyj25c"]
+[gd_scene load_steps=14 format=3 uid="uid://b03bmk4vyj25c"]
 
 [ext_resource type="Script" path="res://Room/room.gd" id="1_14i6b"]
 [ext_resource type="PackedScene" uid="uid://dkjdhrwjpc45o" path="res://Enemies/base_enemy.tscn" id="2_7gxee"]
 [ext_resource type="PackedScene" uid="uid://b4or451hsn8gq" path="res://MeshScenes/room_3_door.tscn" id="4_inldi"]
 [ext_resource type="Texture2D" uid="uid://dcrlb0i0ifl1i" path="res://Ricardo.png" id="4_web7b"]
 [ext_resource type="PackedScene" uid="uid://cthlbfjo6ko7i" path="res://Room/Door/door.tscn" id="5_n2sub"]
+[ext_resource type="Script" path="res://Room/RoomEntered.gd" id="6_g1bd7"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_0e8hc"]
 vertices = PackedVector3Array(-4.98335, 0.831143, 2.0188, -1.98335, 0.831143, 5.0188, 1.76665, 0.831143, 5.0188, 5.01665, 0.831143, 1.7688, 5.01665, 0.831143, -1.9812, 2.01665, 0.831143, -4.9812, 2.01665, 0.831143, -4.9812, -1.98335, 0.831143, -4.9812, -4.98335, 0.831143, -1.9812, -4.98335, 0.831143, 2.0188, 1.76665, 0.831143, 5.0188, 5.01665, 0.831143, 1.7688)
@@ -14,8 +15,20 @@ geometry_parsed_geometry_type = 1
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_xqp0o"]
 data = PackedVector3Array(-548.12, 178.677, -33.2577, 178.677, 548.12, -33.2577, -178.677, 548.12, -33.2577, -548.12, 178.677, -33.2577, 548.12, 178.677, -33.2577, 178.677, 548.12, -33.2577, -548.12, 178.677, -33.2577, -548.335, 134.046, -33.1143, 548.12, 178.677, -33.2577, -548.335, -134.046, -33.1143, -548.12, -178.677, -33.2577, 548.12, -178.677, -33.2577, -548.335, 134.046, -33.1143, 548.12, -178.677, -33.2577, 548.12, 178.677, -33.2577, -548.335, 134.046, -33.1143, -548.335, -134.046, -33.1143, 548.12, -178.677, -33.2577, 548.12, -178.677, -33.2577, -178.677, -548.12, -33.2577, 178.677, -548.12, -33.2577, 548.12, -178.677, -33.2577, -548.12, -178.677, -33.2577, -178.677, -548.12, -33.2577)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_0fcmg"]
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_h241b"]
 size = Vector3(3, 1, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3wlnc"]
+size = Vector3(1, 3, 2)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nmd0n"]
+transparency = 1
+albedo_color = Color(0, 1, 0, 0.627451)
+
+[sub_resource type="BoxMesh" id="BoxMesh_crced"]
+size = Vector3(1, 3, 2)
 
 [node name="Room" type="Node3D"]
 script = ExtResource("1_14i6b")
@@ -57,8 +70,22 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.0677
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SpawnShapes"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.09953, 1.00883, 0.00562143)
-shape = SubResource("BoxShape3D_h241b")
+shape = SubResource("BoxShape3D_0fcmg")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="SpawnShapes"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00376558, 1.00883, 3.86239)
 shape = SubResource("BoxShape3D_h241b")
+
+[node name="RoomEntered" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.83798, 1.8926, 0)
+collision_layer = 0
+script = ExtResource("6_g1bd7")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RoomEntered"]
+shape = SubResource("BoxShape3D_3wlnc")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RoomEntered"]
+material_override = SubResource("StandardMaterial3D_nmd0n")
+mesh = SubResource("BoxMesh_crced")
+
+[connection signal="body_entered" from="RoomEntered" to="RoomEntered" method="_on_body_entered"]
