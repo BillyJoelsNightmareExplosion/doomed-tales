@@ -14,6 +14,8 @@ func _ready():
 
 
 func _on_body_entered(body):
+    if body != player:
+        return
     room.spawn_enemies()
     
     # TODO: Close door behind player
