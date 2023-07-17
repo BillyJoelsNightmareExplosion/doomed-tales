@@ -54,6 +54,9 @@ func _ready():
     $DashCooldown.wait_time = DASHCOOLDOWN
     $DashTimer.wait_time = DASHFORTIME
     $ShotgunTimer.wait_time = SHOTTIME
+    
+    $MeshInstance3D.visible = false
+    $MeshInstance3D.queue_free()
 
 func _physics_process(delta):
     $Head/flash.hide()
@@ -134,6 +137,8 @@ func fire(kill=true): # I've added this kill arg just so positions get scrambled
         $Head/flash.show()
     
     stock.rotation_degrees.x -= 10
+    
+    $Head/Camera3D.shake()
     
     for aim_cast in aim_casts:
         # rotate randomly

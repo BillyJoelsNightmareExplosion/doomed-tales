@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://c64sx7badclbu"]
+
+[ext_resource type="Texture2D" uid="uid://vi3aiybdh2bw" path="res://art/textures/T_tree.png" id="1_57sy3"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_v5ag5"]
+
+[node name="Tree" type="StaticBody3D"]
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 1.96941, 0)
+billboard = 2
+texture = ExtResource("1_57sy3")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CylinderShape3D_v5ag5")
