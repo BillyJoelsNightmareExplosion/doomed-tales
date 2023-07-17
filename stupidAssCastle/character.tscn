@@ -148,7 +148,6 @@ _data = {
 [node name="CharacterBody3D" type="CharacterBody3D"]
 script = ExtResource("1_s478a")
 SHOTTIME = 0.75
-MAX_AMMO = 2
 DASHSPEED = 25
 DASHFORTIME = 0.2
 DASHCOOLDOWN = 1.0

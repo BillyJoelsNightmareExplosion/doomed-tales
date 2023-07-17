@@ -13,7 +13,7 @@ signal need_bluud(posi, rot)
 @export var SPREAD = 30 # in max degrees, think cone
 @export var SHOTTIME = 0.5
 
-@export var MAX_AMMO = 7
+@export var MAX_AMMO = 2
 @export var MAX_HEALTH = 100
 
 @export var DASHSPEED = 10
