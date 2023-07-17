@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://b03bmk4vyj25c"]
+[gd_scene load_steps=12 format=3 uid="uid://b03bmk4vyj25c"]
 
 [ext_resource type="Script" path="res://Room/room.gd" id="1_14i6b"]
 [ext_resource type="PackedScene" uid="uid://dkjdhrwjpc45o" path="res://Enemies/base_enemy.tscn" id="2_7gxee"]
-[ext_resource type="Texture2D" uid="uid://dcrlb0i0ifl1i" path="res://Ricardo.png" id="4_web7b"]
+[ext_resource type="Texture2D" uid="uid://damhtqkk1m7ho" path="res://art/textures/T_chandeleire.png" id="3_6lqsx"]
+[ext_resource type="Texture2D" uid="uid://c25i0docnxc00" path="res://art/textures/T_Chandeleire_mask.png" id="4_h2biq"]
 [ext_resource type="Script" path="res://Room/RoomEntered.gd" id="6_g1bd7"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_0e8hc"]
@@ -12,6 +13,15 @@ geometry_parsed_geometry_type = 1
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_xqp0o"]
 data = PackedVector3Array(-548.12, 178.677, -33.2577, 178.677, 548.12, -33.2577, -178.677, 548.12, -33.2577, -548.12, 178.677, -33.2577, 548.12, 178.677, -33.2577, 178.677, 548.12, -33.2577, -548.12, 178.677, -33.2577, -548.335, 134.046, -33.1143, 548.12, 178.677, -33.2577, -548.335, -134.046, -33.1143, -548.12, -178.677, -33.2577, 548.12, -178.677, -33.2577, -548.335, 134.046, -33.1143, 548.12, -178.677, -33.2577, 548.12, 178.677, -33.2577, -548.335, 134.046, -33.1143, -548.335, -134.046, -33.1143, 548.12, -178.677, -33.2577, 548.12, -178.677, -33.2577, -178.677, -548.12, -33.2577, 178.677, -548.12, -33.2577, 548.12, -178.677, -33.2577, -548.12, -178.677, -33.2577, -178.677, -548.12, -33.2577)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_22jej"]
+transparency = 1
+cull_mode = 2
+albedo_texture = ExtResource("3_6lqsx")
+emission_enabled = true
+emission_energy_multiplier = 10000.0
+emission_texture = ExtResource("4_h2biq")
+billboard_mode = 2
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_3wlnc"]
 size = Vector3(1, 3, 2)
@@ -41,12 +51,13 @@ shape = SubResource("ConcavePolygonShape3D_xqp0o")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.8048, 0)
 
 [node name="Sprite3D" type="Sprite3D" parent="Chandelier"]
-transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_22jej")
 billboard = 2
-texture = ExtResource("4_web7b")
+texture = ExtResource("3_6lqsx")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="Chandelier"]
 light_color = Color(1, 0.752941, 0.215686, 1)
+light_energy = 5.561
 omni_range = 8.0
 
 [node name="Doors" type="Node3D" parent="."]
