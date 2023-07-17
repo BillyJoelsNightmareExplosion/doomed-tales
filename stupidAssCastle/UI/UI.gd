@@ -48,6 +48,7 @@ func _process(delta):
     if $Dialoug.visible==true:
         if Input.is_action_just_pressed("ui_accept"):
             if CurrentText==ArrSize:
+                get_tree().paused=false
                 $UserInterfaceControl.visible=true
                 $Dialoug.visible=false
             else:
@@ -78,6 +79,7 @@ func _on_resume_button_pressed():
     Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
     
 func dialogue(textArray: Array[String]):
+    get_tree().paused=true
     play()
     $UserInterfaceControl.visible=false
     $Dialoug.visible=true
