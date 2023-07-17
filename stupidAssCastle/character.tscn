@@ -1,8 +1,8 @@
-[gd_scene load_steps=16 format=3 uid="uid://rvlyxsc8kbwx"]
+[gd_scene load_steps=15 format=3 uid="uid://rvlyxsc8kbwx"]
 
 [ext_resource type="Script" path="res://CharacterBody3D.gd" id="1_s478a"]
 [ext_resource type="PackedScene" uid="uid://pvebuffyfnnw" path="res://HUD.tscn" id="2_tli1w"]
-[ext_resource type="Shader" path="res://pixelate.gdshader" id="3_dpgx8"]
+[ext_resource type="Texture2D" uid="uid://dclvftd2xow1b" path="res://art/textures/explosion.png" id="3_riv8j"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_xobxx"]
 
@@ -108,11 +108,13 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_5t6oq")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_1cds8"]
-render_priority = 0
-shader = ExtResource("3_dpgx8")
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_0ta4f"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wojsa"]
+transparency = 1
+albedo_texture = ExtResource("3_riv8j")
+emission_enabled = true
+emission = Color(0.560784, 0, 0.0196078, 1)
+emission_energy_multiplier = 6.1
+emission_texture = ExtResource("3_riv8j")
 
 [sub_resource type="Animation" id="Animation_dj17p"]
 resource_name = "reload"
@@ -162,7 +164,7 @@ target_position = Vector3(0, 0, -100)
 visible = false
 
 [node name="Stock" type="MeshInstance3D" parent="Head"]
-transform = Transform3D(4.37114e-08, -1, -1.50996e-07, -1, -4.37114e-08, -1.62921e-07, 1.62921e-07, 1.50996e-07, -1, 0.00231279, 0.293625, -1.02674)
+transform = Transform3D(4.37114e-08, -1, -1.50996e-07, -1, -4.37114e-08, -1.6292e-07, 1.6292e-07, 1.50996e-07, -1, 0.00231279, 0.293625, -1.02674)
 mesh = SubResource("ArrayMesh_emxff")
 skeleton = NodePath("")
 
@@ -174,11 +176,11 @@ skeleton = NodePath("")
 [node name="Muzzle" type="Node3D" parent="Head/Stock/Barrel"]
 transform = Transform3D(4.37114e-08, -0.999371, 0.0354578, -1, -3.83299e-08, 1.52451e-07, -1.50996e-07, -0.0354578, -0.999371, -0.226478, 0.00231286, -0.444798)
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.144132, 0.989559, 0, -0.989559, 0.144132, 0, 0.847585, 2.01924)
-material_override = SubResource("ShaderMaterial_1cds8")
-mesh = SubResource("CylinderMesh_0ta4f")
-skeleton = NodePath("")
+[node name="flash" type="Sprite3D" parent="Head"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.407728, -1.9552)
+visible = false
+material_override = SubResource("StandardMaterial3D_wojsa")
+texture = ExtResource("3_riv8j")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://dlwmtldwa7a4y"]
+
+[ext_resource type="PackedScene" uid="uid://dr4167jd0rvue" path="res://MeshScenes/room_1_door.tscn" id="1_knexc"]
+
+[node name="castle_bottom" type="Node3D"]
+
+[node name="Room1Door2" parent="." instance=ExtResource("1_knexc")]
+transform = Transform3D(0.0001, 0, 0, 0, -0.0001, 7.15256e-11, 0, -7.15256e-11, -0.0001, 0, 5.925, 0)
+
+[node name="Room1Door" parent="." instance=ExtResource("1_knexc")]
+transform = Transform3D(0.000526324, 0.00998614, -3.57132e-09, -1.18423e-17, -3.57628e-09, -0.01, -0.00998614, 0.000526324, -1.88229e-10, 0, -4.75151, 0)
+
+[node name="Room1Door3" parent="." instance=ExtResource("1_knexc")]
+transform = Transform3D(-0.00999331, -0.00036574, 1.30799e-10, 0, -3.57628e-09, -0.01, 0.00036574, -0.00999331, 3.57389e-09, 0, -9.68001, 0)
+
+[node name="Room1Door4" parent="." instance=ExtResource("1_knexc")]
+transform = Transform3D(0.000351088, -0.00999383, 3.57408e-09, 0, -3.57628e-09, -0.01, 0.00999383, 0.000351088, -1.25559e-10, 0, -13.7219, 0)
+
+[node name="Room1Door5" parent="." instance=ExtResource("1_knexc")]
