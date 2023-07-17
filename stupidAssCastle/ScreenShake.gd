@@ -12,9 +12,6 @@ var trauma = 0.0
 var time = 0.0
 var initial_rotation = rotation_degrees
 
-func _ready():
-    shake()
-
 func shake():
     initial_rotation = rotation_degrees
     trauma = 1.0
