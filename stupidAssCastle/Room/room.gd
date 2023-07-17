@@ -5,7 +5,7 @@ extends Node3D
 
 @export var enemy_pool: Array[PackedScene] = []
 
-@onready var spawn_shapes = $SpawnShapes.get_children() as Array[CollisionShape3D]
+#@onready var spawn_shapes = $SpawnShapes.get_children() as Array[CollisionShape3D]
 
 var enemies_alive = 0
 
@@ -16,7 +16,8 @@ func spawn_enemies():
 
 
 func spawn_random_enemy():
-    if not enemy_pool or enemy_pool.size() == 0:
+    var spawn_shapes = $SpawnShapes.get_children() as Array[CollisionShape3D]
+    if not enemy_pool or enemy_pool.size() == 0 and spawn_shapes and spawn_shapes.size() > 0:
         return
     
     var shape = spawn_shapes[randi_range(0, spawn_shapes.size() - 1)]
