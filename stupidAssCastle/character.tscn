@@ -171,7 +171,7 @@ noise = SubResource("FastNoiseLite_sfuj8")
 visible = false
 
 [node name="Stock" type="MeshInstance3D" parent="Head"]
-transform = Transform3D(4.37114e-08, -1, -1.50996e-07, -1, -4.37114e-08, -1.6292e-07, 1.6292e-07, 1.50996e-07, -1, 0.00231279, 0.293625, -0.681491)
+transform = Transform3D(4.37114e-08, -1, -1.50996e-07, -1, -4.37114e-08, -1.6292e-07, 1.6292e-07, 1.50996e-07, -1, 0.00231279, 0.170905, -0.681491)
 layers = 2
 mesh = SubResource("ArrayMesh_emxff")
 skeleton = NodePath("")
