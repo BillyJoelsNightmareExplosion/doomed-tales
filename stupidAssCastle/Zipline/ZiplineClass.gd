@@ -43,8 +43,6 @@ func new_collider(pos=null):
 func _ready():
     end_pos_local = END.position
     
-    
-    print(end_pos_local)
     # adding all items to tree
     #curve = preload("res://Zipline/zipline_base_curve.tres")
     curve.add_point(Vector3.ZERO)
@@ -87,7 +85,6 @@ func toggle_grab_player():
 func _process(delta):
     if Input.is_action_just_pressed("jump"):
         if start_col.overlaps_body(player):
-            print("this fuck")
             direction = 1
             toggle_grab_player()
     
@@ -95,12 +92,11 @@ func _process(delta):
         if not abs_progress:
             path_follow.progress_ratio = 0 if direction > 0 else 1
         
-        print(abs_progress)
-        if abs_progress >= 0.95:
+        if abs_progress >= 1:
             has_player = false
             abs_progress = 0
         else:
-            abs_progress += FOLLOW_RATE * delta
+            abs_progress = min(abs_progress + FOLLOW_RATE * delta, 1.0)
             path_follow.progress_ratio = abs_progress
             #print(path_follow.progress)
             player.position = init_player_pos + path_follow.position

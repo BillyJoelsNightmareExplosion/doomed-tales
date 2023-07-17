@@ -511,14 +511,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.18773, 0.691448, 10.0617)
 shape = SubResource("BoxShape3D_84br7")
 
 [node name="RoomEntered" parent="CourtYard3" index="4"]
-transform = Transform3D(1, 0, 1.06581e-14, 0, 1, 0, -1.06581e-14, 0, 1, 9.67636, 1.62703, 0.0499573)
+transform = Transform3D(1, 0, 1.06581e-14, 0, 1, 0, -1.06581e-14, 0, 1, 8.74566, 1.62703, 0.0499573)
 dialogue = Array[String]([])
 
 [node name="CollisionShape3D" parent="CourtYard3/RoomEntered" index="0"]
 shape = SubResource("BoxShape3D_uu8hs")
 
 [node name="MeshInstance3D" parent="CourtYard3/RoomEntered" index="1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.775084, 0, 0)
 mesh = SubResource("BoxMesh_brcyu")
 
 [node name="Base" type="MeshInstance3D" parent="CourtYard3"]
@@ -833,7 +832,7 @@ script = ExtResource("18_xuyxq")
 DROOP_Y = 15
 
 [node name="END" type="Node3D" parent="Tower2/Zipline"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.7522, 8.54004, -1.10697)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.8423, 6.61275, -1.10697)
 
 [node name="Tower3" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 7.45058e-08, 0, 1, 0, -7.45058e-08, 0, 1, 39, 5, 97)

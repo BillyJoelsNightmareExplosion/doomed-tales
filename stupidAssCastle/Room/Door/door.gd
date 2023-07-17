@@ -13,7 +13,6 @@ func _ready():
 func close():
     visible = true
     collision_shape.set_deferred("disabled", false)
-    print(collision_shape.disabled)
 
 
 func open():
