@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cfk4li1nwsl2e"]
+[gd_scene load_steps=16 format=3 uid="uid://cfk4li1nwsl2e"]
 
 [ext_resource type="Script" path="res://world.gd" id="1_irkfu"]
 [ext_resource type="PackedScene" uid="uid://rvlyxsc8kbwx" path="res://character.tscn" id="2_gb0a7"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://n4u3fdjc8i32" path="res://art/textures/bluud.png" id="6_ogbo4"]
 [ext_resource type="PackedScene" uid="uid://csussm5ox6t3v" path="res://CastleScenes/castle.tscn" id="7_gtvld"]
 [ext_resource type="Texture2D" uid="uid://bl73g3sjolcv0" path="res://art/textures/clouds.png" id="8_cvfbw"]
+[ext_resource type="PackedScene" uid="uid://cfxa4cfsmdg2c" path="res://castle_alec.tscn" id="9_jay3e"]
 [ext_resource type="AudioStream" uid="uid://br4gh7u0g05mb" path="res://sound/mariometal.mp3" id="9_pn7ob"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_hikpi"]
@@ -74,7 +75,7 @@ uv1_world_triplanar = true
 script = ExtResource("1_irkfu")
 
 [node name="Player" parent="." instance=ExtResource("2_gb0a7")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.085107, 1.78198, -53.4894)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -40.2139, 1.12857, 51.3455)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.849893, -0.240052, -0.469103, 0, -0.890213, 0.455545, -0.526956, -0.387164, -0.756585, 0, 4.42457, 0)
@@ -109,5 +110,8 @@ mesh = SubResource("PlaneMesh_ay47a")
 process_mode = 3
 stream = ExtResource("9_pn7ob")
 autoplay = true
+
+[node name="CastleVANIA" parent="." instance=ExtResource("9_jay3e")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -37.9781, 0, 49.9824)
 
 [connection signal="need_bluud" from="Player" to="bluud_handler" method="add_bluud"]

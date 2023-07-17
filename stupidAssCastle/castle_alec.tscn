@@ -22,9 +22,6 @@
 
 [node name="Bridge" parent="." instance=ExtResource("1_iojuw")]
 
-[node name="Column" parent="." instance=ExtResource("3_0jwfu")]
-transform = Transform3D(0.01, 0, 0, 0, 0, -0.01, 0, 0.01, 0, 9.48174, 0, -7.89348)
-
 [node name="vert_plat" type="Node3D" parent="."]
 transform = Transform3D(0.02, 0, 0, 0, -8.74228e-10, -0.02, 0, 0.02, -8.74228e-10, 18.3002, -0.328816, -1.07085)
 
@@ -123,7 +120,7 @@ curve = SubResource("Curve3D_8iaaj")
 script = ExtResource("6_w7e5l")
 END_POS_LOCAL = Vector3(11.4962, 15.8273, 14.3199)
 
-[node name="Node3D" type="Node3D" parent="Zipline"]
+[node name="END" type="Node3D" parent="Zipline"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.4962, 15.8273, 14.3199)
 
 [node name="Zipline2" type="Path3D" parent="."]
@@ -133,7 +130,7 @@ script = ExtResource("6_w7e5l")
 DROOP_Y = -30
 END_POS_LOCAL = Vector3(12.3641, -6.37099, -27.1529)
 
-[node name="Node3D" type="Node3D" parent="Zipline2"]
+[node name="END" type="Node3D" parent="Zipline2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.3641, -6.37099, -27.1529)
 
 [node name="Zipline3" type="Path3D" parent="."]
@@ -142,7 +139,7 @@ curve = SubResource("Curve3D_rke4s")
 script = ExtResource("6_w7e5l")
 END_POS_LOCAL = Vector3(36.012, 12.7907, 24.5812)
 
-[node name="Node3D" type="Node3D" parent="Zipline3"]
+[node name="END" type="Node3D" parent="Zipline3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36.012, 12.7907, 24.5812)
 
 [node name="Zipline4" type="Path3D" parent="."]
@@ -152,7 +149,7 @@ script = ExtResource("6_w7e5l")
 FOLLOW_RATE = 0.1
 END_POS_LOCAL = Vector3(1000, 0, 0)
 
-[node name="Node3D" type="Node3D" parent="Zipline4"]
+[node name="END" type="Node3D" parent="Zipline4"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2000, 0, 0)
 
 [node name="tree_group" type="Node3D" parent="."]
