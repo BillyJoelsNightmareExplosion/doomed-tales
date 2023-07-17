@@ -17,7 +17,7 @@ func spawn_enemies():
 
 func spawn_random_enemy():
     var spawn_shapes = $SpawnShapes.get_children() as Array[CollisionShape3D]
-    if not enemy_pool or enemy_pool.size() == 0 and spawn_shapes and spawn_shapes.size() > 0:
+    if not enemy_pool or enemy_pool.size() == 0 or spawn_shapes or spawn_shapes.size() == 0:
         return
     
     var shape = spawn_shapes[randi_range(0, spawn_shapes.size() - 1)]
