@@ -166,6 +166,7 @@ visible = false
 
 [node name="Stock" type="MeshInstance3D" parent="Head"]
 transform = Transform3D(4.37114e-08, -1, -1.50996e-07, -1, -4.37114e-08, -1.6292e-07, 1.6292e-07, 1.50996e-07, -1, 0.00231279, 0.293625, -1.02674)
+layers = 2
 mesh = SubResource("ArrayMesh_emxff")
 skeleton = NodePath("")
 
