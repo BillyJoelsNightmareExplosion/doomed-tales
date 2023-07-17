@@ -159,6 +159,7 @@ theme_override_font_sizes/font_size = 60
 text = "Quit Game"
 
 [node name="Paused2" type="RichTextLabel" parent="PausedMenu"]
+layout_mode = 0
 offset_left = 112.0
 offset_top = 260.0
 offset_right = 1317.0
@@ -176,9 +177,9 @@ offset_top = 473.0
 offset_right = 967.0
 offset_bottom = 489.0
 theme_override_styles/slider = SubResource("StyleBoxFlat_cutd5")
-step = 12.0
-value = 60.0
-tick_count = 8
+step = 10.0
+value = 20.0
+tick_count = 11
 ticks_on_borders = true
 
 [node name="Dialoug" type="Control" parent="."]
@@ -266,7 +267,7 @@ text = "Quit Game"
 [connection signal="pressed" from="PausedMenu/QuitButton" to="." method="_on_quit_button_pressed"]
 [connection signal="value_changed" from="PausedMenu/HSlider" to="." method="_on_h_slider_value_changed"]
 [connection signal="visibility_changed" from="Dialoug" to="." method="_on_dialoug_visibility_changed"]
-[connection signal="pressed" from="RestartMenu/RestartButton" to="." method="_on_restart_button_pressed"]
 [connection signal="pressed" from="RestartMenu/RestartButton" to="." method="_on_resume_button_pressed"]
 [connection signal="pressed" from="RestartMenu/RestartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="RestartMenu/RestartButton" to="." method="_on_restart_button_pressed"]
 [connection signal="pressed" from="RestartMenu/QuitButton" to="." method="_on_quit_button_pressed"]

@@ -73,4 +73,3 @@ transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 1.5, 0)
 [node name="AnimatedSprite3D" parent="." index="5"]
 transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 1.28405, 0)
 sprite_frames = SubResource("SpriteFrames_xa3ei")
-animation = &"idle"
