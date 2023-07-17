@@ -57,15 +57,16 @@ animations = [{
 
 [node name="TankEnemy" instance=ExtResource("1_5j1g0")]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
-health = 8
+health = 50
 
 [node name="AIScript" parent="." index="0"]
-wander_for_time = 2.5
-wander_move_speed = 1.5
-attack_agro_max = 2
-attack_range = 4.0
-attack_startup_time = 1.5
-attack_end_lag_time = 2.0
+wander_for_time = 1.0
+wander_move_speed = 1.0
+attack_move_speed = 20.0
+attack_stop_distance = 4.0
+attack_range = 5.0
+attack_damage = 15.0
+attack_end_lag_time = 1.5
 
 [node name="CollisionShape3D" parent="." index="1"]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 1.5, 0)
