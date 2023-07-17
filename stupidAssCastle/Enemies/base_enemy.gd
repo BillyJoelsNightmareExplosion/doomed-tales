@@ -18,9 +18,9 @@ func _process(delta):
     if health <= 0 && not dead:
         died.emit()
         dead = true
+        $AIScript.set_to_dead()
     
     if health <= 0:
-        $AIScript.set_to_dead()
         animator.play("death")
         await get_tree().create_timer(0.75).timeout
         queue_free()
