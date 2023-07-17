@@ -16,6 +16,7 @@ func _ready():
     $UserInterfaceControl.visible=false
     $Dialoug.visible=false
     $PausedMenu.visible=false
+    $RestartMenu.visible=false
     
 
 var pause = true
@@ -55,6 +56,10 @@ func _process(delta):
                 CurrentText+=1
                 play()
                 $Dialoug/RichTextLabel.text=TextArray[CurrentText-1]
+                
+    if player.health<=0:
+        $RestartMenu.visible=true
+        Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
 
 func _on_start_button_pressed():
@@ -92,3 +97,8 @@ func dialogue(textArray: Array[String]):
 func play():
     $Dialoug/RichTextLabel.visible_ratio = 0
     $Dialoug/RichTextLabel/TextAnimation.play("TextCrawl")
+
+
+func _on_restart_button_pressed():
+    get_tree().reload_current_scene()
+    Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
