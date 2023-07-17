@@ -124,14 +124,15 @@ func attack():
     if attacking:
         attacking = false
         animator.play("attack")
-        stream_player.stream = s_attack
-        stream_player.play()
+        if !is_dead:
+            stream_player.stream = s_player_hurt
+            stream_player.play()
         await get_tree().create_timer(attack_startup_time).timeout
         if enemy.global_position.distance_to(player.global_position) < attack_range:
             if !is_dead:
                 print("Hit!")
                 player.health -= attack_damage
-                stream_player.stream = s_player_hurt
+                stream_player.stream = s_attack
                 stream_player.play()
         else:
             print("Safe!")
