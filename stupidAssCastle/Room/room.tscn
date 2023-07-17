@@ -76,10 +76,11 @@ shape = SubResource("BoxShape3D_0fcmg")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00376558, 1.00883, 3.86239)
 shape = SubResource("BoxShape3D_h241b")
 
-[node name="RoomEntered" type="Area3D" parent="."]
+[node name="RoomEntered" type="Area3D" parent="." groups=["DialogueTrigger"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.83798, 1.8926, 0)
 collision_layer = 0
 script = ExtResource("6_g1bd7")
+dialogue = Array[String](["\"Hi\"", "\"Hello\""])
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RoomEntered"]
 shape = SubResource("BoxShape3D_3wlnc")
