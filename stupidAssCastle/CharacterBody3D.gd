@@ -129,16 +129,14 @@ func _input(event):
 func fire(kill=true): # I've added this kill arg just so positions get scrambled on ready
     if not ammo or anim_player.is_playing():
         return
-    ammo -= 1
     can_shoot = false
     $ShotgunTimer.start()
     
     if kill:
         $Head/flash.show()
-    
-    stock.rotation_degrees.x -= 10
-    
-    $Head/Camera3D.shake()
+        stock.rotation_degrees.x -= 10
+        $Head/Camera3D.shake()
+        ammo -= 1
     
     for aim_cast in aim_casts:
         # rotate randomly
