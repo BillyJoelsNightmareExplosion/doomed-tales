@@ -1,0 +1,6 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://cily6c8anik4e"]
+
+[ext_resource type="Texture2D" uid="uid://cmi7gse2kbw27" path="res://art/textures/T_roof_blue_tiling.png" id="1_ifvi5"]
+
+[resource]
+albedo_texture = ExtResource("1_ifvi5")
