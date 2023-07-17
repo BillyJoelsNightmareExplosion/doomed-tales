@@ -805,9 +805,8 @@ transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 25.758
 curve = SubResource("Curve3D_cq4qm")
 script = ExtResource("18_xuyxq")
 DROOP_Y = 15
-END_POS_LOCAL = Vector3(19.7522, 8.54004, -1.10697)
 
-[node name="Node3D" type="Node3D" parent="Tower2/Zipline"]
+[node name="END" type="Node3D" parent="Tower2/Zipline"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.7522, 8.54004, -1.10697)
 
 [node name="Tower3" type="Node3D" parent="."]
@@ -855,9 +854,8 @@ transform = Transform3D(0.999999, 0, -2.13163e-14, 0, 1, 0, 2.13163e-14, 0, 0.99
 curve = SubResource("Curve3D_gpuen")
 script = ExtResource("18_xuyxq")
 DROOP_Y = 5
-END_POS_LOCAL = Vector3(-5.34058e-05, 0.941825, 23.791)
 
-[node name="Node3D" type="Node3D" parent="Tower3/Zipline"]
+[node name="END" type="Node3D" parent="Tower3/Zipline"]
 transform = Transform3D(0.999999, 0, -4.9738e-14, 0, 1, 0, 4.9738e-14, 0, 0.999999, -5.34058e-05, 0.941825, 23.791)
 
 [node name="Zipline2" type="Path3D" parent="Tower3"]
@@ -865,9 +863,8 @@ transform = Transform3D(1, 0, -1.42109e-14, 0, 1, 0, 1.42109e-14, 0, 1, -9.04806
 curve = SubResource("Curve3D_2rcgv")
 script = ExtResource("18_xuyxq")
 DROOP_Y = 5
-END_POS_LOCAL = Vector3(-30.0095, 1.87877, 0)
 
-[node name="Node3D" type="Node3D" parent="Tower3/Zipline2"]
+[node name="END" type="Node3D" parent="Tower3/Zipline2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.0095, 1.87877, 0)
 
 [node name="Bridge" parent="." instance=ExtResource("6_bh5iq")]

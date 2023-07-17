@@ -6,10 +6,8 @@ class_name Zipline extends Path3D
     set(value):
         INSTANCE_DISTANCE = value
         is_dirty = true
-@export var END_POS_LOCAL  = Vector3(0,0,1)
 
-
-
+@onready var END = get_children()[0]
 
 @onready var player: CharacterBody3D = get_tree().root.get_children()[0].get_player()
 #@onready var END_POS = $END.position
@@ -30,6 +28,7 @@ var abs_progress = 0
 var start_col
 var end_col
 
+var end_pos_local
 
 func new_collider(pos=null):
     var new_area = Area3D.new()
@@ -42,16 +41,19 @@ func new_collider(pos=null):
      
 # Called when the node enters the scene tree for the first time.
 func _ready():
+    end_pos_local = END.position
+    
+    
+    print(end_pos_local)
     # adding all items to tree
     #curve = preload("res://Zipline/zipline_base_curve.tres")
     curve.add_point(Vector3.ZERO)
     curve.add_point(Vector3.ZERO)
     #curve.set_point_position(0, position)
-    print(END_POS_LOCAL)
-    curve.set_point_position(1, END_POS_LOCAL)
-    var end_in = ( END_POS_LOCAL - END_POS_LOCAL/2 ) * -1
-    end_in.y = END_POS_LOCAL.y - DROOP_Y
-    curve.set_point_in(1, end_in)
+    curve.set_point_position(1, end_pos_local)
+#    var end_in = ( end_pos_local - end_pos_local/2 ) * -1
+#    end_in.y = end_pos_local.y - DROOP_Y
+#    curve.set_point_in(1, end_in)
     path_follow = PathFollow3D.new()
     add_child(path_follow)
     # path_follow.loop = false
@@ -72,7 +74,7 @@ func _ready():
     csg_poly.material = preload("res://Zipline/M_zipline.tres")
     
     start_col = new_collider()
-    end_col = new_collider(END_POS_LOCAL)
+    end_col = new_collider(end_pos_local)
     
     _update_multimesh()
 
@@ -108,7 +110,7 @@ func _process(delta):
     pass
 
 func _update_multimesh():
-    curve.set_point_position(1, END_POS_LOCAL)
+    curve.set_point_position(1, end_pos_local)
     
     var path_length: float = curve.get_baked_length()
     var count = floor(path_length / INSTANCE_DISTANCE)
