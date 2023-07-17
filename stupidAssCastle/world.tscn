@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cfk4li1nwsl2e"]
+[gd_scene load_steps=14 format=3 uid="uid://cfk4li1nwsl2e"]
 
 [ext_resource type="Script" path="res://world.gd" id="1_irkfu"]
 [ext_resource type="PackedScene" uid="uid://rvlyxsc8kbwx" path="res://character.tscn" id="2_gb0a7"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bybhgo7kpxmhk" path="res://bluud_handler.tscn" id="5_u45y8"]
 [ext_resource type="Texture2D" uid="uid://n4u3fdjc8i32" path="res://art/textures/bluud.png" id="6_ogbo4"]
 [ext_resource type="PackedScene" uid="uid://csussm5ox6t3v" path="res://CastleScenes/castle.tscn" id="7_gtvld"]
+[ext_resource type="PackedScene" uid="uid://xd4b58smg1ia" path="res://Room/Medkit.tscn" id="8_4mejy"]
 [ext_resource type="Texture2D" uid="uid://bl73g3sjolcv0" path="res://art/textures/clouds.png" id="8_cvfbw"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_hikpi"]
@@ -85,5 +86,8 @@ environment = SubResource("Environment_2gcbj")
 transform = Transform3D(-0.95882, 0, -0.284015, 0, 1, 0, 0.284015, 0, -0.95882, 0, -11.94, -0.08)
 material_override = SubResource("StandardMaterial3D_beqe1")
 mesh = SubResource("PlaneMesh_ay47a")
+
+[node name="Medkit" parent="." instance=ExtResource("8_4mejy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.503674, 0.545944, -23.6078)
 
 [connection signal="need_bluud" from="Player" to="bluud_handler" method="add_bluud"]
