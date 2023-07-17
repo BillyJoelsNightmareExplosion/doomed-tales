@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://cfk4li1nwsl2e"]
+[gd_scene load_steps=19 format=3 uid="uid://cfk4li1nwsl2e"]
 
 [ext_resource type="Script" path="res://world.gd" id="1_irkfu"]
 [ext_resource type="PackedScene" uid="uid://rvlyxsc8kbwx" path="res://character.tscn" id="2_gb0a7"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bybhgo7kpxmhk" path="res://bluud_handler.tscn" id="5_u45y8"]
 [ext_resource type="Texture2D" uid="uid://n4u3fdjc8i32" path="res://art/textures/bluud.png" id="6_ogbo4"]
 [ext_resource type="PackedScene" uid="uid://csussm5ox6t3v" path="res://CastleScenes/castle.tscn" id="7_gtvld"]
+[ext_resource type="Environment" uid="uid://djx3co104qfax" path="res://world.tres" id="7_x6g2o"]
 [ext_resource type="Texture2D" uid="uid://bl73g3sjolcv0" path="res://art/textures/clouds.png" id="8_cvfbw"]
 [ext_resource type="PackedScene" uid="uid://cfxa4cfsmdg2c" path="res://castle_alec.tscn" id="9_jay3e"]
 [ext_resource type="AudioStream" uid="uid://br4gh7u0g05mb" path="res://sound/mariometal.mp3" id="9_pn7ob"]
@@ -70,6 +71,7 @@ bluud_texture = ExtResource("6_ogbo4")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -32)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource("7_x6g2o")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(-0.95882, 0, -0.284015, 0, 1, 0, 0.284015, 0, -0.95882, 0, -11.94, -0.08)
@@ -117,7 +119,7 @@ curve = SubResource("Curve3D_ohm4k")
 script = ExtResource("3_86fc0")
 
 [node name="END" type="Node3D" parent="Zipline4"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2000)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 982.692)
 
 [node name="CastleVANIA" parent="." instance=ExtResource("9_jay3e")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -37.9781, 0, 49.9824)
