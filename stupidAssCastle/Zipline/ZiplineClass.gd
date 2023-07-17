@@ -34,16 +34,7 @@ var end_col
 func new_collider(pos=null):
     var new_area = Area3D.new()
     add_child(new_area)
-    
-    if pos:
-        var mesh = MeshInstance3D.new()
-        mesh.mesh = SphereMesh.new()
-        mesh.mesh.radius = 6
-        mesh.mesh.height = 6
-        new_area.position = pos
-        mesh.position = pos
-        new_area.add_child(mesh)
-    
+        
     var new_col = CollisionShape3D.new()
     new_area.add_child(new_col)
     new_col.shape = preload("res://Zipline/zipline_collision_shape.tres")
