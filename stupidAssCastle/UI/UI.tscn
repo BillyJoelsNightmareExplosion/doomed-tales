@@ -1,7 +1,45 @@
-[gd_scene load_steps=3 format=3 uid="uid://dalqbjgkt1qit"]
+[gd_scene load_steps=8 format=3 uid="uid://dalqbjgkt1qit"]
 
 [ext_resource type="PackedScene" uid="uid://pvebuffyfnnw" path="res://HUD.tscn" id="1_ohfio"]
 [ext_resource type="Script" path="res://UI/UI.gd" id="1_xgfr4"]
+[ext_resource type="Texture2D" uid="uid://dook58r01u7gj" path="res://art/textures/hud_back_tiling.png" id="3_gf6tj"]
+[ext_resource type="FontFile" uid="uid://bmxyyghpqp65p" path="res://art/fonts/doomed.ttf" id="4_0nu61"]
+
+[sub_resource type="Animation" id="Animation_56kr4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.5]
+}
+
+[sub_resource type="Animation" id="Animation_d1nhc"]
+resource_name = "TextCrawl"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1w31a"]
+_data = {
+"RESET": SubResource("Animation_56kr4"),
+"TextCrawl": SubResource("Animation_d1nhc")
+}
 
 [node name="UI" type="Control"]
 layout_mode = 3
@@ -25,28 +63,32 @@ color = Color(0.631373, 0, 0.341176, 1)
 
 [node name="Title" type="RichTextLabel" parent="StartScreen"]
 layout_mode = 0
-offset_left = 170.0
-offset_top = 136.0
-offset_right = 1375.0
-offset_bottom = 621.0
-theme_override_font_sizes/normal_font_size = 135
-text = "Stupid Ass Castle"
+offset_left = 129.0
+offset_top = 76.0
+offset_right = 1334.0
+offset_bottom = 561.0
+theme_override_fonts/normal_font = ExtResource("4_0nu61")
+theme_override_font_sizes/normal_font_size = 140
+bbcode_enabled = true
+text = "[center] Stupid Ass Castle [/center]"
 
 [node name="StartButton" type="Button" parent="StartScreen"]
 layout_mode = 0
-offset_left = 529.0
-offset_top = 490.0
-offset_right = 879.0
-offset_bottom = 581.0
+offset_left = 523.0
+offset_top = 599.0
+offset_right = 895.0
+offset_bottom = 690.0
+theme_override_fonts/font = ExtResource("4_0nu61")
 theme_override_font_sizes/font_size = 60
 text = "Start Game"
 
 [node name="QuitButton" type="Button" parent="StartScreen"]
 layout_mode = 0
-offset_left = 529.0
-offset_top = 606.0
-offset_right = 879.0
-offset_bottom = 697.0
+offset_left = 534.0
+offset_top = 724.0
+offset_right = 884.0
+offset_bottom = 815.0
+theme_override_fonts/font = ExtResource("4_0nu61")
 theme_override_font_sizes/font_size = 60
 text = "Quit Game"
 
@@ -67,13 +109,14 @@ color = Color(0.631373, 0, 0.341176, 1)
 
 [node name="Paused" type="RichTextLabel" parent="PausedMenu"]
 layout_mode = 0
-offset_left = 170.0
-offset_top = 136.0
-offset_right = 1375.0
-offset_bottom = 621.0
+offset_left = 130.0
+offset_top = 28.0
+offset_right = 1335.0
+offset_bottom = 513.0
+theme_override_fonts/normal_font = ExtResource("4_0nu61")
 theme_override_font_sizes/normal_font_size = 135
-text = " Stupid Ass Pause
-          Menu"
+bbcode_enabled = true
+text = " [center] Stupid Ass Pause Menu [/center]"
 
 [node name="ResumeButton" type="Button" parent="PausedMenu"]
 layout_mode = 0
@@ -81,6 +124,7 @@ offset_left = 491.0
 offset_top = 587.0
 offset_right = 918.0
 offset_bottom = 678.0
+theme_override_fonts/font = ExtResource("4_0nu61")
 theme_override_font_sizes/font_size = 60
 text = "Resume Game"
 
@@ -90,11 +134,44 @@ offset_left = 529.0
 offset_top = 708.0
 offset_right = 879.0
 offset_bottom = 799.0
+theme_override_fonts/font = ExtResource("4_0nu61")
 theme_override_font_sizes/font_size = 60
 text = "Quit Game"
 
+[node name="Dialoug" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HudBack" type="TextureRect" parent="Dialoug"]
+layout_mode = 0
+offset_top = 801.0
+offset_right = 1413.0
+offset_bottom = 1057.0
+texture = ExtResource("3_gf6tj")
+expand_mode = 2
+stretch_mode = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Dialoug"]
+layout_mode = 0
+offset_left = 100.0
+offset_top = 831.0
+offset_right = 1313.0
+offset_bottom = 1047.0
+theme_override_fonts/normal_font = ExtResource("4_0nu61")
+theme_override_font_sizes/normal_font_size = 25
+text = "Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test "
+visible_characters = 255
+visible_ratio = 0.5
+
+[node name="TextAnimation" type="AnimationPlayer" parent="Dialoug/RichTextLabel"]
+libraries = {
+"": SubResource("AnimationLibrary_1w31a")
+}
+
 [connection signal="pressed" from="StartScreen/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="StartScreen/QuitButton" to="." method="_on_quit_button_pressed"]
-[connection signal="pressed" from="PausedMenu/ResumeButton" to="." method="_on_resume_button_pressed"]
 [connection signal="pressed" from="PausedMenu/ResumeButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="PausedMenu/ResumeButton" to="." method="_on_resume_button_pressed"]
 [connection signal="pressed" from="PausedMenu/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="visibility_changed" from="Dialoug" to="." method="_on_dialoug_visibility_changed"]

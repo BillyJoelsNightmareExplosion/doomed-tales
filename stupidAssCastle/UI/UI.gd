@@ -14,11 +14,15 @@ func _ready():
     get_tree().paused=true
     process_mode = Node.PROCESS_MODE_WHEN_PAUSED
     $UserInterfaceControl.visible=false
+    $Dialoug.visible=false
     $PausedMenu.visible=false
     
 
 var pause = true
 var TriggerCounter=0
+var TextArray
+var ArrSize
+var CurrentText
 
 
 func _input(event):
@@ -40,6 +44,16 @@ func _input(event):
 func _process(delta):
     healthtext.text = str(player.health)
     ammotext.text = str(player.ammo)
+    
+    if $Dialoug.visible==true:
+        if Input.is_action_just_pressed("dialog_forward"):
+            if CurrentText==ArrSize:
+                $UserInterfaceControl.visible=true
+                $Dialoug.visible=false
+            else:
+                CurrentText+=1
+                play()
+                $Dialoug/RichTextLabel.text=TextArray[CurrentText-1]
 
 
 func _on_start_button_pressed():
@@ -65,4 +79,15 @@ func _on_resume_button_pressed():
     
 func dialoug(triggerNode):
     triggerNode.queue_free()
-    pass
+    play()
+    $UserInterfaceControl.visible=false
+    $Dialoug/RichTextLabel.visible=true
+    #Here you need to fill TextArray with the current dialoug
+    ArrSize=TextArray.size()
+    $Dialoug/RichTextLabel.text=TextArray[0]
+    CurrentText=1
+
+
+func play():
+    $Dialoug/RichTextLabel.visible_ratio = 0
+    $Dialoug/RichTextLabel/TextAnimation.play("TextCrawl")
