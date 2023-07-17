@@ -167,9 +167,6 @@ script = ExtResource("2_vy1wg")
 trauma_reduction_rate = 2.0
 noise = SubResource("FastNoiseLite_sfuj8")
 
-[node name="AimCast" type="RayCast3D" parent="Head/Camera3D"]
-target_position = Vector3(0, 0, -100)
-
 [node name="UserInterfaceControl" parent="Head/Camera3D" instance=ExtResource("2_tli1w")]
 visible = false
 
