@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://csussm5ox6t3v"]
+[gd_scene load_steps=24 format=3 uid="uid://csussm5ox6t3v"]
 
 [ext_resource type="Material" uid="uid://dyrumlf0da8ja" path="res://art/materials/M_brick_triplanar.tres" id="1_mqsgh"]
 [ext_resource type="PackedScene" uid="uid://cg6c842ym4xcg" path="res://MeshScenes/arc_four_sides.tscn" id="2_le7ca"]
@@ -11,6 +11,8 @@
 [ext_resource type="PackedScene" uid="uid://qmdyi7h2fiho" path="res://MeshScenes/arc.tscn" id="7_w4ux6"]
 [ext_resource type="PackedScene" uid="uid://cthlbfjo6ko7i" path="res://Room/Door/door.tscn" id="8_5llmo"]
 [ext_resource type="PackedScene" uid="uid://cqruvhoxci3jr" path="res://MeshScenes/room_2_door.tscn" id="9_3wsgu"]
+[ext_resource type="PackedScene" uid="uid://dlwmtldwa7a4y" path="res://art/materials/castle_bottom.tscn" id="10_o06bf"]
+[ext_resource type="PackedScene" uid="uid://bltj81t0fk6me" path="res://MeshScenes/roof.tscn" id="11_0f80i"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_w5uln"]
 vertices = PackedVector3Array(-9.5, 0.5, 0, -7.25, 0.5, 0, -6.75, 0.5, -1.25, -1.25, 0.5, -0.75, 0, 0.5, -1.25, 0, 0.5, -3.75, -1.25, 0.5, -4.25, -5.25, 0.5, -1.25, -4.75, 0.5, 0, -9.5, 0.5, -9.5, -9.5, 0.5, 0, -6.75, 0.5, -1.25, -1.25, 0.5, -5.75, 0, 0.5, -9.5, -4.75, 0.5, 0, -1.25, 0.5, 0, -1.25, 0.5, -0.75, -1.25, 0.5, -5.75, 0, 0.5, -6.25, 0, 0.5, -9.5, -5.25, 0.5, -1.25, -1.25, 0.5, -4.25, -1.25, 0.5, -5.75, -6.75, 0.5, -1.25, 0, 0.5, -3.75, 0, 0.5, -1.25, 0.75, 0.5, -1.25, 6.75, 0.5, -1.25, 7.25, 0.5, 0, 9.5, 0.5, 0, 1.25, 0.5, -4.25, 0, 0.5, -3.75, 0.75, 0.5, -1.25, 1.25, 0.5, 0, 4.75, 0.5, 0, 5.25, 0.5, -1.25, 0, 0.5, -9.5, 0, 0.5, -6.25, 1.25, 0.5, -5.75, 6.75, 0.5, -1.25, 9.5, 0.5, 0, 9.5, 0.5, -9.5, 0, 0.5, -9.5, 1.25, 0.5, -5.75, 1.25, 0.5, -5.75, 1.25, 0.5, -4.25, 5.25, 0.5, -1.25, 6.75, 0.5, -1.25, -0.25, 4.5, -5.25, -0.25, 4.5, -4.75, 0.25, 4.5, -4.75, 0.25, 4.5, -5.25, -6.25, 4.5, -0.25, -6.25, 4.5, 0.25, -5.75, 4.5, 0.25, -5.75, 4.5, -0.25, -0.25, 4.5, -0.25, -0.25, 4.5, 0.25, 0.25, 4.5, 0.25, 0.25, 4.5, -0.25, 5.75, 4.5, -0.25, 5.75, 4.5, 0.25, 6.25, 4.5, 0.25, 6.25, 4.5, -0.25, 0, 0.5, 9.5, 0, 0.5, 7.25, -1.25, 0.5, 6.75, -6.75, 0.5, 1.25, -7.25, 0.5, 0, -9.5, 0.5, 0, -1.25, 0.5, 0.75, -1.25, 0.5, 0, -4.75, 0.5, 0, -1.25, 0.5, 0.75, -4.75, 0.5, 0, -5.25, 0.5, 1.25, -1.25, 0.5, 5.25, 0, 0.5, 4.75, 0, 0.5, 1.25, -1.25, 0.5, 6.75, -6.75, 0.5, 1.25, -9.5, 0.5, 0, -9.5, 0.5, 9.5, 0, 0.5, 9.5, -1.25, 0.5, 6.75, -1.25, 0.5, 5.25, -5.25, 0.5, 1.25, -6.75, 0.5, 1.25, 1.25, 0.5, 6.75, 0, 0.5, 7.25, 0, 0.5, 9.5, 9.5, 0.5, 0, 7.25, 0.5, 0, 6.75, 0.5, 1.25, 0.75, 0.5, 1.25, 0, 0.5, 1.25, 0, 0.5, 4.75, 0.75, 0.5, 1.25, 0, 0.5, 4.75, 1.25, 0.5, 5.25, 5.25, 0.5, 1.25, 4.75, 0.5, 0, 1.25, 0.5, 0, 6.75, 0.5, 1.25, 1.25, 0.5, 6.75, 0, 0.5, 9.5, 9.5, 0.5, 9.5, 9.5, 0.5, 0, 6.75, 0.5, 1.25, 5.25, 0.5, 1.25, 1.25, 0.5, 5.25, 1.25, 0.5, 6.75, -0.25, 4.5, 5.75, -0.25, 4.5, 6.25, 0.25, 4.5, 6.25, 0.25, 4.5, 5.75)
@@ -93,7 +95,7 @@ shape = SubResource("BoxShape3D_r4fhx")
 
 [node name="RoomEntered" parent="CourtYard" index="4"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.112757, 1.62703, -9.315)
-dialogue = Array[String]([])
+dialogue = Array[String](["WASD to move (Space to continue)", "Mouse 1 to shoot, R to reload", "Kill all of the enemies in each room to progress"])
 
 [node name="CollisionShape3D" parent="CourtYard/RoomEntered" index="0"]
 shape = SubResource("BoxShape3D_ppvio")
@@ -329,15 +331,6 @@ transform = Transform3D(0.01, 2.77556e-17, 0, 0, 0, -0.01, -2.77556e-17, 0.01, 0
 [node name="Arc3" parent="CourtYard2/Walls" instance=ExtResource("7_w4ux6")]
 transform = Transform3D(0.01, 2.77556e-17, 0, 0, 0, -0.01, -2.77556e-17, 0.01, 0, 10, 0.006, -2)
 
-[node name="Room1Door" parent="." instance=ExtResource("4_46xmv")]
-transform = Transform3D(-4.37114e-10, 0.01, -3.57628e-09, 0, -3.57628e-09, -0.01, -0.01, -4.37114e-10, 1.56324e-16, 0, 0, -20)
-
-[node name="Bridge" parent="." instance=ExtResource("6_bh5iq")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 2, 0, 10)
-
-[node name="Bridge2" parent="." instance=ExtResource("6_bh5iq")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 2, 0, 38)
-
 [node name="Tower" type="Node3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 32)
 
@@ -356,7 +349,31 @@ shape = SubResource("BoxShape3D_lq7jg")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 3)
 shape = SubResource("BoxShape3D_lq7jg")
 
+[node name="RoomEntered" parent="Tower/Room" index="4"]
+dialogue = Array[String](["Shift to dash", "Use this to dodge punches"])
+
 [node name="Room2Door" parent="Tower/Room" instance=ExtResource("9_3wsgu")]
+
+[node name="castle_bottom" parent="Tower" instance=ExtResource("10_o06bf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5, 0)
+
+[node name="Roof" parent="Tower" instance=ExtResource("11_0f80i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
+
+[node name="Room1Door" parent="." instance=ExtResource("4_46xmv")]
+transform = Transform3D(-4.37114e-10, 0.01, -3.57628e-09, 0, -3.57628e-09, -0.01, -0.01, -4.37114e-10, 1.56324e-16, 0, 0, -20)
+
+[node name="castle_bottom2" parent="Room1Door" instance=ExtResource("10_o06bf")]
+transform = Transform3D(100, 2.51016e-18, -4.54747e-13, 4.54747e-13, -3.57628e-05, 100, -2.1684e-19, -100, -3.57628e-05, 0, 0.000178814, 500)
+
+[node name="Roof2" parent="Room1Door" instance=ExtResource("11_0f80i")]
+transform = Transform3D(100, 2.84898e-18, -4.54747e-13, 4.54747e-13, -3.57628e-05, 100, -2.1684e-19, -100, -3.57628e-05, 0, -0.000178814, -500)
+
+[node name="Bridge" parent="." instance=ExtResource("6_bh5iq")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 2, 0, 10)
+
+[node name="Bridge2" parent="." instance=ExtResource("6_bh5iq")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 2, 0, 38)
 
 [editable path="CourtYard"]
 [editable path="CourtYard2"]
