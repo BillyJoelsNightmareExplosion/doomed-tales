@@ -147,6 +147,10 @@ visible = false
 [node name="Door" parent="CourtYard/Doors" index="0" instance=ExtResource("8_5llmo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10.2604)
 
+[node name="Closing Door" parent="CourtYard/Doors" index="1" instance=ExtResource("8_5llmo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10.3448)
+open_at_start = true
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CourtYard/SpawnShapes" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 1, 0)
 shape = SubResource("BoxShape3D_q8yhj")
@@ -163,6 +167,7 @@ dialogue = Array[String](["WASD to move (Space to continue)", "Mouse 1 to shoot,
 shape = SubResource("BoxShape3D_o7wrj")
 
 [node name="MeshInstance3D" parent="CourtYard/RoomEntered" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.902828, 0, -5.21541e-08)
 mesh = SubResource("BoxMesh_brcyu")
 
 [node name="Path" type="StaticBody3D" parent="CourtYard"]
@@ -249,6 +254,12 @@ transform = Transform3D(-4.37114e-10, 0.01, 0, 0, 0, -0.01, -0.01, -4.37114e-10,
 [node name="Arc1ColumnHalf2" parent="CourtYard/Walls" instance=ExtResource("4_npp3l")]
 transform = Transform3D(1.31134e-09, -0.01, 0, 0, 0, -0.01, 0.01, 1.31134e-09, 0, 2, 0, 10)
 
+[node name="Arc1ColumnHalf3" parent="CourtYard/Walls" instance=ExtResource("4_npp3l")]
+transform = Transform3D(-4.37114e-10, 0.01, 0, 0, 0, -0.01, -0.01, -4.37114e-10, 0, -2, 0, -10.1274)
+
+[node name="Arc1ColumnHalf4" parent="CourtYard/Walls" instance=ExtResource("4_npp3l")]
+transform = Transform3D(1.31134e-09, -0.01, 0, 0, 0, -0.01, 0.01, 1.31134e-09, 0, 2, 0, -10.6274)
+
 [node name="CourtYard2" parent="." instance=ExtResource("7_0x2iv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 64)
 num_enemies_min = 4
@@ -293,6 +304,10 @@ visible = false
 [node name="Door2" parent="CourtYard2/Doors" index="0" instance=ExtResource("8_5llmo")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 10.1884, 0, 0.0579224)
 
+[node name="ClosingDoor" parent="CourtYard2/Doors" index="1" instance=ExtResource("8_5llmo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00477836, -2.38419e-07, -10.268)
+open_at_start = true
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CourtYard2/SpawnShapes" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.98769, 0.781518, 6.05851)
 shape = SubResource("BoxShape3D_m3oav")
@@ -317,6 +332,7 @@ dialogue = Array[String]([])
 shape = SubResource("BoxShape3D_g6drm")
 
 [node name="MeshInstance3D" parent="CourtYard2/RoomEntered" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.416634, 0, -1.49012e-08)
 mesh = SubResource("BoxMesh_brcyu")
 
 [node name="Path" type="StaticBody3D" parent="CourtYard2"]
@@ -482,6 +498,10 @@ visible = false
 [node name="Door" parent="CourtYard3/Doors" index="0" instance=ExtResource("8_5llmo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.99135, 0, 18.1826)
 
+[node name="Door2" parent="CourtYard3/Doors" index="1" instance=ExtResource("8_5llmo")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 10.4411, 0, 0.0121918)
+open_at_start = true
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CourtYard3/SpawnShapes" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.691448, 0)
 shape = SubResource("BoxShape3D_84br7")
@@ -498,6 +518,7 @@ dialogue = Array[String]([])
 shape = SubResource("BoxShape3D_uu8hs")
 
 [node name="MeshInstance3D" parent="CourtYard3/RoomEntered" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.775084, 0, 0)
 mesh = SubResource("BoxMesh_brcyu")
 
 [node name="Base" type="MeshInstance3D" parent="CourtYard3"]
@@ -745,7 +766,11 @@ num_enemies_min = 2
 num_enemies_max = 2
 
 [node name="Door" parent="Tower/Room/Doors" index="0" instance=ExtResource("8_5llmo")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -6, 0, -2.62268e-07)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.8882, 0, -2.57381e-07)
+
+[node name="ClosingDoor" parent="Tower/Room/Doors" index="1" instance=ExtResource("8_5llmo")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.65444, 0, 2.47164e-07)
+open_at_start = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Tower/Room/SpawnShapes" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.228168, 0.997168, -3.12874)
@@ -756,6 +781,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.228168, 0.997168, 2.87126)
 shape = SubResource("BoxShape3D_rgg31")
 
 [node name="RoomEntered" parent="Tower/Room" index="4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.42665, 1.8926, -1.79799e-08)
 dialogue = Array[String](["Shift to dash", "Use this to dodge punches"])
 
 [node name="CollisionShape3D" parent="Tower/Room/RoomEntered" index="0"]
@@ -819,9 +845,6 @@ num_enemies_max = 4
 [node name="Door" parent="Tower3/Room/Doors" index="0" instance=ExtResource("8_5llmo")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -6, 0, -2.62268e-07)
 
-[node name="Door2" parent="Tower3/Room/Doors" index="1" instance=ExtResource("8_5llmo")]
-transform = Transform3D(-4.37113e-08, 0, 0.999999, 0, 1, 0, -0.999999, 0, -4.37113e-08, 5.57748, 0.35569, 0)
-
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Tower3/Room/SpawnShapes" index="0"]
 transform = Transform3D(0.999999, 0, -2.13163e-14, 0, 1, 0, 2.13163e-14, 0, 0.999999, 3.24739, 0.880966, -0.262001)
 shape = SubResource("BoxShape3D_35uqa")
@@ -839,6 +862,9 @@ shape = SubResource("BoxShape3D_hhot1")
 
 [node name="Room3Door" parent="Tower3/Room" instance=ExtResource("17_06psg")]
 transform = Transform3D(-0.01, -8.74228e-10, 3.12648e-16, 0, -3.57628e-09, -0.01, 8.74228e-10, -0.01, 3.57628e-09, 0, 0, 0)
+
+[node name="Door2" parent="Tower3/Room" instance=ExtResource("8_5llmo")]
+transform = Transform3D(-4.37113e-08, 0, 0.999999, 0, 1, 0, -0.999999, 0, -4.37113e-08, 5.57748, 0.35569, 0)
 
 [node name="castle_bottom" parent="Tower3" instance=ExtResource("10_o06bf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5, 0)

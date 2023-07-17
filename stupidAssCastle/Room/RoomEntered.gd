@@ -16,9 +16,11 @@ func _ready():
 func _on_body_entered(body):
     if body != player:
         return
+    
     room.spawn_enemies()
     
-    # TODO: Close door behind player
+    for door in room.get_node("Doors").get_children():
+        door.close()
     
     if dialogue.size() > 0:
         start_dialogue.emit(dialogue)

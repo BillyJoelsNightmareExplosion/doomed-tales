@@ -178,7 +178,7 @@ offset_right = 967.0
 offset_bottom = 489.0
 theme_override_styles/slider = SubResource("StyleBoxFlat_cutd5")
 step = 10.0
-value = 20.0
+value = 40.0
 tick_count = 11
 ticks_on_borders = true
 

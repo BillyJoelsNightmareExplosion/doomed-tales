@@ -52,7 +52,7 @@ uv1_world_triplanar = true
 script = ExtResource("1_irkfu")
 
 [node name="Player" parent="." instance=ExtResource("2_gb0a7")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -42.1323, 10.2209, 1067.49)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1.47232, -51.1359)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.849893, -0.240052, -0.469103, 0, -0.890213, 0.455545, -0.526956, -0.387164, -0.756585, 0, 4.42457, 0)

@@ -336,6 +336,7 @@ dialogue = Array[String](["Now...", "YOU DIE!!"])
 shape = SubResource("BoxShape3D_k2t6e")
 
 [node name="MeshInstance3D" parent="FinalBoss/RoomEntered" index="1"]
+transform = Transform3D(32.8512, 0, -1.42393e-15, 0, 0.202479, 0, -2.27374e-13, 0, 1, -17.4387, -11.6763, -1.43051e-06)
 mesh = SubResource("BoxMesh_2240l")
 
 [node name="Roof" parent="FinalBoss" instance=ExtResource("8_um7i8")]
