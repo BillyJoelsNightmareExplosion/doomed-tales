@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dlqn8anngalwc"]
+[gd_scene load_steps=9 format=3 uid="uid://dlqn8anngalwc"]
 
 [ext_resource type="Material" uid="uid://beuk1dmgfeydp" path="res://art/materials/M_wood_triplanar.tres" id="1_mtqdn"]
 [ext_resource type="Material" uid="uid://dyrumlf0da8ja" path="res://art/materials/M_brick_triplanar.tres" id="2_fd4sm"]
@@ -92,6 +92,9 @@ data = PackedVector3Array(0, 191.851, -504.48, -575.554, -191.851, -504.48, 0, -
 [sub_resource type="BoxShape3D" id="BoxShape3D_mjp4k"]
 size = Vector3(12, 1, 12)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_kbc5o"]
+size = Vector3(1, 1, 2.67)
+
 [node name="Room4Door" type="MeshInstance3D"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
 mesh = SubResource("ArrayMesh_i7jpi")
@@ -110,3 +113,17 @@ transform = Transform3D(100, 0, 0, 0, -4.37114e-06, 100, 0, -100, -4.37114e-06, 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.157766, 4.95252e-08)
 shape = SubResource("BoxShape3D_mjp4k")
+
+[node name="StaticBody3D4" type="StaticBody3D" parent="."]
+transform = Transform3D(1.91069e-13, 4.37114e-06, -100, 100, -4.37114e-06, 0, -4.37114e-06, -100, -4.37114e-06, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D4"]
+transform = Transform3D(0.896996, -0.442038, 1.38763e-07, 0.442038, 0.896996, 3.23346e-08, -1.38763e-07, 3.23346e-08, 1, -5.95578, -0.336213, 1.05543e-07)
+shape = SubResource("BoxShape3D_kbc5o")
+
+[node name="StaticBody3D5" type="StaticBody3D" parent="."]
+transform = Transform3D(-0.104725, -3.57719e-05, 99.9999, -99.9999, -4.44676e-05, -0.104725, 4.4505e-05, -100, -3.57253e-05, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D5"]
+transform = Transform3D(0.896996, -0.442038, 1.38763e-07, 0.442038, 0.896996, 3.23346e-08, -1.38763e-07, 3.23346e-08, 1, -5.95578, -0.336213, 1.05543e-07)
+shape = SubResource("BoxShape3D_kbc5o")
