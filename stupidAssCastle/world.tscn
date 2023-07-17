@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cfk4li1nwsl2e"]
+[gd_scene load_steps=15 format=3 uid="uid://cfk4li1nwsl2e"]
 
 [ext_resource type="Script" path="res://world.gd" id="1_irkfu"]
 [ext_resource type="PackedScene" uid="uid://rvlyxsc8kbwx" path="res://character.tscn" id="2_gb0a7"]
@@ -57,6 +57,19 @@ uv1_world_triplanar = true
 [sub_resource type="PlaneMesh" id="PlaneMesh_ay47a"]
 size = Vector2(10000, 10000)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5dbf0"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+albedo_texture = ExtResource("8_cvfbw")
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+emission_energy_multiplier = 100000.0
+uv1_scale = Vector3(0.001, 0.001, 0.001)
+uv1_offset = Vector3(0.12, 0.095, 0.03)
+uv1_triplanar = true
+uv1_world_triplanar = true
+
 [node name="World" type="Node3D"]
 script = ExtResource("1_irkfu")
 
@@ -85,6 +98,11 @@ environment = SubResource("Environment_2gcbj")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(-0.95882, 0, -0.284015, 0, 1, 0, 0.284015, 0, -0.95882, 0, -11.94, -0.08)
 material_override = SubResource("StandardMaterial3D_beqe1")
+mesh = SubResource("PlaneMesh_ay47a")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MeshInstance3D"]
+transform = Transform3D(-0.95882, 0, -0.284015, 0, 1, 0, 0.284015, 0, -0.95882, 1.86265e-09, -30, -0.08)
+material_override = SubResource("StandardMaterial3D_5dbf0")
 mesh = SubResource("PlaneMesh_ay47a")
 
 [node name="Medkit" parent="." instance=ExtResource("8_4mejy")]
