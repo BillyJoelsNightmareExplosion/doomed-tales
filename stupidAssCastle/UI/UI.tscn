@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dalqbjgkt1qit"]
+[gd_scene load_steps=11 format=3 uid="uid://dalqbjgkt1qit"]
 
 [ext_resource type="PackedScene" uid="uid://pvebuffyfnnw" path="res://HUD.tscn" id="1_ohfio"]
 [ext_resource type="Script" path="res://UI/UI.gd" id="1_xgfr4"]
@@ -10,6 +10,13 @@ default_font = ExtResource("4_0nu61")
 
 [sub_resource type="Theme" id="Theme_refy8"]
 default_font = ExtResource("4_0nu61")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cutd5"]
+bg_color = Color(1, 0, 0, 1)
+expand_margin_left = 4.0
+expand_margin_top = 4.0
+expand_margin_right = 4.0
+expand_margin_bottom = 4.0
 
 [sub_resource type="Animation" id="Animation_56kr4"]
 length = 0.001
@@ -122,12 +129,12 @@ layout_mode = 0
 offset_left = 127.0
 offset_top = -32.0
 offset_right = 1332.0
-offset_bottom = 516.0
+offset_bottom = 326.0
 theme_override_colors/default_color = Color(0.862745, 0.0509804, 0, 1)
 theme_override_fonts/normal_font = ExtResource("4_0nu61")
 theme_override_font_sizes/normal_font_size = 135
 bbcode_enabled = true
-text = " [center] Stupid Ass Pause Menu [/center]"
+text = " [center]Paused[/center]"
 
 [node name="ResumeButton" type="Button" parent="PausedMenu"]
 layout_mode = 0
@@ -150,6 +157,29 @@ theme_override_colors/font_color = Color(0.862745, 0.0509804, 0, 1)
 theme_override_fonts/font = ExtResource("4_0nu61")
 theme_override_font_sizes/font_size = 60
 text = "Quit Game"
+
+[node name="Paused2" type="RichTextLabel" parent="PausedMenu"]
+offset_left = 112.0
+offset_top = 260.0
+offset_right = 1317.0
+offset_bottom = 618.0
+theme_override_colors/default_color = Color(0.862745, 0.0509804, 0, 1)
+theme_override_fonts/normal_font = ExtResource("4_0nu61")
+theme_override_font_sizes/normal_font_size = 80
+bbcode_enabled = true
+text = " [center]Paused[/center]"
+
+[node name="HSlider" type="HSlider" parent="PausedMenu"]
+layout_mode = 0
+offset_left = 464.0
+offset_top = 473.0
+offset_right = 967.0
+offset_bottom = 489.0
+theme_override_styles/slider = SubResource("StyleBoxFlat_cutd5")
+step = 12.0
+value = 60.0
+tick_count = 8
+ticks_on_borders = true
 
 [node name="Dialoug" type="Control" parent="."]
 anchors_preset = 0
@@ -183,6 +213,7 @@ libraries = {
 }
 
 [node name="RestartMenu" type="Control" parent="."]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
@@ -230,11 +261,12 @@ text = "Quit Game"
 
 [connection signal="pressed" from="StartScreen/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="StartScreen/QuitButton" to="." method="_on_quit_button_pressed"]
-[connection signal="pressed" from="PausedMenu/ResumeButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="PausedMenu/ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="PausedMenu/ResumeButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="PausedMenu/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="value_changed" from="PausedMenu/HSlider" to="." method="_on_h_slider_value_changed"]
 [connection signal="visibility_changed" from="Dialoug" to="." method="_on_dialoug_visibility_changed"]
-[connection signal="pressed" from="RestartMenu/RestartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="RestartMenu/RestartButton" to="." method="_on_restart_button_pressed"]
 [connection signal="pressed" from="RestartMenu/RestartButton" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="RestartMenu/RestartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="RestartMenu/QuitButton" to="." method="_on_quit_button_pressed"]

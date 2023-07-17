@@ -18,6 +18,8 @@ func _ready():
     var Triggers=get_tree().get_nodes_in_group("DialogueTrigger")
     for i in Triggers:
         i.start_dialogue.connect(dialogue)
+    
+    change_volume($PausedMenu/HSlider.value)
         
     get_tree().paused=true
     can_press_escape=false
@@ -72,8 +74,6 @@ func _on_start_button_pressed():
     Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
     
 
-
-
 func _on_quit_button_pressed():
     get_tree().quit()
 
@@ -106,3 +106,10 @@ func _on_restart_button_pressed():
     can_press_escape=false
     get_tree().reload_current_scene()
     Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+
+func change_volume(value):
+    AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"), linear_to_db(value / 100))
+
+
+func _on_h_slider_value_changed(value):
+    change_volume(value)
