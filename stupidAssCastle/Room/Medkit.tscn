@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://xd4b58smg1ia"]
+
+[ext_resource type="Script" path="res://Room/Medkit.gd" id="1_uuta8"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wiyxm"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8b1gh"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_p6tof"]
+material = SubResource("StandardMaterial3D_8b1gh")
+
+[node name="Medkit" type="Node3D"]
+script = ExtResource("1_uuta8")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("BoxShape3D_wiyxm")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Area3D/CollisionShape3D"]
+mesh = SubResource("BoxMesh_p6tof")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

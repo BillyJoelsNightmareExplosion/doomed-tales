@@ -9,13 +9,17 @@ signal died
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 @export var health = 3
+var dead = false
 
 func _ready():
     pass
 
 func _process(delta):
-    if health <= 0:
+    if health <= 0 && not dead:
         died.emit()
+        dead = true
+    
+    if health <= 0:
         $AIScript.set_to_dead()
         animator.play("death")
         await get_tree().create_timer(0.75).timeout

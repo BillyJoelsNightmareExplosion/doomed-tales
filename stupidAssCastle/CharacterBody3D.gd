@@ -14,7 +14,7 @@ signal need_bluud(posi, rot)
 @export var SHOTTIME = 0.5
 
 @export var MAX_AMMO = 7
-@export var MAX_HEALTH = 5
+@export var MAX_HEALTH = 100
 
 @export var DASHSPEED = 10
 @export var DASHFORTIME = 0.5
