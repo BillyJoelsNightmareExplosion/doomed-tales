@@ -1,12 +1,18 @@
-[gd_scene load_steps=15 format=3 uid="uid://rvlyxsc8kbwx"]
+[gd_scene load_steps=17 format=3 uid="uid://rvlyxsc8kbwx"]
 
 [ext_resource type="Script" path="res://CharacterBody3D.gd" id="1_s478a"]
 [ext_resource type="PackedScene" uid="uid://pvebuffyfnnw" path="res://HUD.tscn" id="2_tli1w"]
+[ext_resource type="Script" path="res://ScreenShake.gd" id="2_vy1wg"]
 [ext_resource type="Texture2D" uid="uid://dclvftd2xow1b" path="res://art/textures/explosion.png" id="3_riv8j"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_xobxx"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_77wot"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_sfuj8"]
+fractal_octaves = 4
+fractal_lacunarity = 20.0
+fractal_gain = 0.8
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8ycpl"]
 resource_name = "Material"
@@ -156,7 +162,10 @@ mesh = SubResource("CapsuleMesh_77wot")
 [node name="Head" type="Node3D" parent="."]
 
 [node name="Camera3D" type="Camera3D" parent="Head"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.520103, -0.536243)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.520103, -0.0396881)
+script = ExtResource("2_vy1wg")
+trauma_reduction_rate = 2.0
+noise = SubResource("FastNoiseLite_sfuj8")
 
 [node name="AimCast" type="RayCast3D" parent="Head/Camera3D"]
 target_position = Vector3(0, 0, -100)
@@ -165,7 +174,7 @@ target_position = Vector3(0, 0, -100)
 visible = false
 
 [node name="Stock" type="MeshInstance3D" parent="Head"]
-transform = Transform3D(4.37114e-08, -1, -1.50996e-07, -1, -4.37114e-08, -1.6292e-07, 1.6292e-07, 1.50996e-07, -1, 0.00231279, 0.293625, -1.02674)
+transform = Transform3D(4.37114e-08, -1, -1.50996e-07, -1, -4.37114e-08, -1.6292e-07, 1.6292e-07, 1.50996e-07, -1, 0.00231279, 0.293625, -0.681491)
 layers = 2
 mesh = SubResource("ArrayMesh_emxff")
 skeleton = NodePath("")
