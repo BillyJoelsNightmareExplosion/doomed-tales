@@ -2,7 +2,7 @@ extends Area3D
 
 signal start_dialogue(dialogue: Array[String])
 
-@export var dialogue: Array[String] = []
+@export_multiline var dialogue: Array[String] = []
 
 @onready var room = get_parent()
 @onready var player: CharacterBody3D = get_tree().root.get_children()[0].get_player()

@@ -1,6 +1,59 @@
-[gd_scene load_steps=2 format=3 uid="uid://don8s2361jneu"]
+[gd_scene load_steps=9 format=3 uid="uid://don8s2361jneu"]
 
 [ext_resource type="PackedScene" uid="uid://dkjdhrwjpc45o" path="res://Enemies/base_enemy.tscn" id="1_5j1g0"]
+[ext_resource type="Texture2D" uid="uid://ddaf4go6abmsd" path="res://Enemies/ginger_bread_man_sprites/gingerman_attack1.png" id="2_am2jf"]
+[ext_resource type="Texture2D" uid="uid://bwoawdecg0suf" path="res://Enemies/ginger_bread_man_sprites/gingerman_attack2.png" id="3_w86fm"]
+[ext_resource type="Texture2D" uid="uid://c54bxs3ww77tc" path="res://Enemies/ginger_bread_man_sprites/gingerman_death.png" id="4_461t3"]
+[ext_resource type="Texture2D" uid="uid://c6s0e4thye7lp" path="res://Enemies/tank_sprites/wolf_idle.png" id="5_c165q"]
+[ext_resource type="Texture2D" uid="uid://c37b4fd0ha56f" path="res://Enemies/tank_sprites/wolf_walk.png" id="6_k6luq"]
+[ext_resource type="Texture2D" uid="uid://ca04jkp710itr" path="res://Enemies/tank_sprites/wolf_walk_flipped.png" id="7_qr4bm"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xa3ei"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_am2jf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_w86fm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_am2jf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_am2jf")
+}],
+"loop": true,
+"name": &"attack",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_461t3")
+}],
+"loop": true,
+"name": &"death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_c165q")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_k6luq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_qr4bm")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 4.0
+}]
 
 [node name="TankEnemy" instance=ExtResource("1_5j1g0")]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
@@ -14,5 +67,9 @@ attack_range = 4.0
 attack_startup_time = 1.5
 attack_end_lag_time = 2.0
 
-[node name="CollisionShape3D" parent="." index="2"]
+[node name="CollisionShape3D" parent="." index="1"]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 1.5, 0)
+
+[node name="AnimatedSprite3D" parent="." index="5"]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 1.28405, 0)
+sprite_frames = SubResource("SpriteFrames_xa3ei")

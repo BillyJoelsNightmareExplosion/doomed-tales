@@ -13,7 +13,7 @@ signal need_bluud(posi, rot)
 @export var SPREAD = 30 # in max degrees, think cone
 @export var SHOTTIME = 0.5
 
-@export var MAX_AMMO = 7
+@export var MAX_AMMO = 2
 @export var MAX_HEALTH = 100
 
 @export var DASHSPEED = 10
@@ -76,6 +76,9 @@ func _ready():
 
 func _physics_process(delta):
     $Head/flash.hide()
+    
+    if global_position.y <= -25:
+        health = 0
     
     if Input.is_action_just_pressed("fire"):
         if can_shoot:

@@ -2,27 +2,26 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://vi2mut2rytei"
-path.s3tc="res://.godot/imported/T_sculpture.png-2b8d6eff4cc27b0bdd70a5874caf06f5.s3tc.ctex"
+uid="uid://ca04jkp710itr"
+path="res://.godot/imported/wolf_walk_flipped.png-3431adccaae26201868a3dcdcad17d29.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/textures/T_sculpture.png"
-dest_files=["res://.godot/imported/T_sculpture.png-2b8d6eff4cc27b0bdd70a5874caf06f5.s3tc.ctex"]
+source_file="res://Enemies/tank_sprites/wolf_walk_flipped.png"
+dest_files=["res://.godot/imported/wolf_walk_flipped.png-3431adccaae26201868a3dcdcad17d29.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=true
+mipmaps/generate=false
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""
@@ -32,4 +31,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=0
+detect_3d/compress_to=1
