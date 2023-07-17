@@ -133,4 +133,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.35878, 0, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.64122, 0, 0)
 
 [node name="Bridge" parent="." instance=ExtResource("6_bh5iq")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 1, 0, 10)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 2, 0, 10)

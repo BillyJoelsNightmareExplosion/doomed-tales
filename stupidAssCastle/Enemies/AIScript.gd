@@ -76,7 +76,7 @@ func _physics_process(delta):
 func wander():
     #move in a random cardinal direction
     var rand = randi() % 4
-    var current_location = enemy.position
+    var current_location = enemy.global_position
     var try_pos;
     match (rand):
         0:
@@ -92,7 +92,7 @@ func wander():
     if nav_agent.is_target_reachable():
          state_timer.wait_time = wander_for_time;
     else:
-        update_target_location(enemy.position)
+        update_target_location(enemy.global_position)
         state_timer.wait_time = 0.001;
         
     #animator.play("idle")
@@ -101,13 +101,13 @@ func move_closer():
     update_target_location(player.global_transform.origin)
     animator.play("walk")
     if nav_agent.distance_to_target() < move_closer_distance:
-        update_target_location(enemy.position)
+        update_target_location(enemy.global_position)
 
 func move_to_attack():
     update_target_location(player.global_transform.origin)
     animator.play("walk")
     if nav_agent.distance_to_target() < attack_stop_distance:
-        update_target_location(enemy.position)
+        update_target_location(enemy.global_position)
         attacking = true
         current_state = States.Attack
 
@@ -116,7 +116,7 @@ func attack():
         attacking = false
         animator.play("attack")
         await get_tree().create_timer(attack_startup_time).timeout
-        if enemy.position.distance_to(player.position) < attack_range:
+        if enemy.global_position.distance_to(player.global_position) < attack_range:
             if !is_dead:
                 print("Hit!")
                 player.health -= attack_damage
