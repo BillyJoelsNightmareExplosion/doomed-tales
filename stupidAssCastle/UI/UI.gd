@@ -7,9 +7,9 @@ extends Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-    var Triggers=get_tree().get_nodes_in_group("DialougTrigger")
+    var Triggers=get_tree().get_nodes_in_group("DialogueTrigger")
     for i in Triggers:
-        i.dialoug_entered.connect(dialoug)
+        i.start_dialogue.connect(dialogue)
         
     get_tree().paused=true
     process_mode = Node.PROCESS_MODE_WHEN_PAUSED
@@ -46,8 +46,9 @@ func _process(delta):
     ammotext.text = str(player.ammo)
     
     if $Dialoug.visible==true:
-        if Input.is_action_just_pressed("dialog_forward"):
+        if Input.is_action_just_pressed("ui_accept"):
             if CurrentText==ArrSize:
+                get_tree().paused=false
                 $UserInterfaceControl.visible=true
                 $Dialoug.visible=false
             else:
@@ -77,12 +78,12 @@ func _on_resume_button_pressed():
     process_mode = Node.PROCESS_MODE_PAUSABLE
     Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
     
-func dialoug(triggerNode):
-    triggerNode.queue_free()
+func dialogue(textArray: Array[String]):
+    get_tree().paused=true
     play()
     $UserInterfaceControl.visible=false
-    $Dialoug/RichTextLabel.visible=true
-    #Here you need to fill TextArray with the current dialoug
+    $Dialoug.visible=true
+    TextArray=textArray
     ArrSize=TextArray.size()
     $Dialoug/RichTextLabel.text=TextArray[0]
     CurrentText=1

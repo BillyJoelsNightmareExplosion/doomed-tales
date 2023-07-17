@@ -150,6 +150,7 @@ DASHCOOLDOWN = 1.0
 shape = SubResource("CapsuleShape3D_xobxx")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+layers = 2
 mesh = SubResource("CapsuleMesh_77wot")
 
 [node name="Head" type="Node3D" parent="."]
@@ -170,6 +171,7 @@ skeleton = NodePath("")
 
 [node name="Barrel" type="MeshInstance3D" parent="Head/Stock"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.47035e-08, -4.65661e-10, -0.045696)
+layers = 2
 mesh = SubResource("ArrayMesh_r3u8x")
 skeleton = NodePath("")
 
