@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://vi3aiybdh2bw"
-path.s3tc="res://.godot/imported/T_tree.png-c20f9129cc65f2c9430c4fae2c069fb5.s3tc.ctex"
+uid="uid://cuqox8ncymxeg"
+path.s3tc="res://.godot/imported/medkit.png-5c24ec4bf0b4c83a9b8a13d7c5bb7c0d.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://art/textures/T_tree.png"
-dest_files=["res://.godot/imported/T_tree.png-c20f9129cc65f2c9430c4fae2c069fb5.s3tc.ctex"]
+source_file="res://art/textures/medkit.png"
+dest_files=["res://.godot/imported/medkit.png-5c24ec4bf0b4c83a9b8a13d7c5bb7c0d.s3tc.ctex"]
 
 [params]
 
