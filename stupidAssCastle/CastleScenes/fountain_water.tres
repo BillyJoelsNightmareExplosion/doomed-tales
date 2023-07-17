@@ -1,0 +1,7 @@
+[gd_resource type="QuadMesh" load_steps=2 format=3 uid="uid://dmxsgykm8c6dh"]
+
+[ext_resource type="Material" uid="uid://b5dw1j0egugu8" path="res://art/particles/water_particle_mat.tres" id="1_jucqf"]
+
+[resource]
+material = ExtResource("1_jucqf")
+size = Vector2(0.5, 0.5)

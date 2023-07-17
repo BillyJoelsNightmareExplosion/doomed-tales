@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://dr540adohyt1f" path="res://art/textures/T_dirt.png" id="1_guqfp"]
 
 [resource]
+albedo_color = Color(0.678431, 0.733333, 1, 1)
 albedo_texture = ExtResource("1_guqfp")
 uv1_triplanar = true
 uv1_world_triplanar = true

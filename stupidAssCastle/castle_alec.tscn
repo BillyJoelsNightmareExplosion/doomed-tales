@@ -1,58 +1,386 @@
-[gd_scene load_steps=8 format=3 uid="uid://cfxa4cfsmdg2c"]
+[gd_scene load_steps=14 format=3 uid="uid://cfxa4cfsmdg2c"]
 
 [ext_resource type="PackedScene" uid="uid://bu62kv4n1rrx1" path="res://MeshScenes/bridge.tscn" id="1_iojuw"]
-[ext_resource type="PackedScene" uid="uid://dlwmtldwa7a4y" path="res://art/materials/castle_bottom.tscn" id="2_ssaug"]
 [ext_resource type="PackedScene" uid="uid://bjtid8fpd786i" path="res://MeshScenes/column.tscn" id="3_0jwfu"]
 [ext_resource type="Material" uid="uid://be4pxd6e388qo" path="res://art/materials/M_grass_triplanar.tres" id="4_ima6a"]
 [ext_resource type="PackedScene" uid="uid://c64sx7badclbu" path="res://MeshScenes/tree.tscn" id="5_rq4su"]
+[ext_resource type="Material" uid="uid://bah3dpdhx40d1" path="res://art/materials/M_cobble_triplanar.tres" id="5_yn0b6"]
+[ext_resource type="PackedScene" uid="uid://dtmnnit0p3350" path="res://CastleScenes/fountain.tscn" id="6_2le83"]
 [ext_resource type="Script" path="res://Zipline/ZiplineClass.gd" id="6_w7e5l"]
+[ext_resource type="QuadMesh" uid="uid://dgvcw031w3knl" path="res://art/particles/bluud_particle_mesh.tres" id="8_pbxg1"]
+[ext_resource type="PackedScene" uid="uid://bltj81t0fk6me" path="res://MeshScenes/roof.tscn" id="8_um7i8"]
 
-[sub_resource type="Curve3D" id="Curve3D_oqfnh"]
-_data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -0.141919, 0.0348308, 0.112288, 0, 0, 0, 0, 0, 0, -11.2333, 5.73988, 7.1343),
-"tilts": PackedFloat32Array(0, 0)
-}
-point_count = 2
+[sub_resource type="Curve3D" id="Curve3D_8iaaj"]
+
+[sub_resource type="Curve3D" id="Curve3D_nmrjd"]
+
+[sub_resource type="Curve3D" id="Curve3D_rke4s"]
+
+[sub_resource type="Curve3D" id="Curve3D_q2s0n"]
 
 [node name="CastleVANIA" type="Node3D"]
 
 [node name="Bridge" parent="." instance=ExtResource("1_iojuw")]
 
-[node name="castle_bottom" parent="." instance=ExtResource("2_ssaug")]
-transform = Transform3D(0.707539, 0, 0.706675, 0, 1, 0, -0.706675, 0, 0.707539, 21.2605, -5.97235, 2)
-
-[node name="castle_bottom2" parent="." instance=ExtResource("2_ssaug")]
-transform = Transform3D(0.353769, 0, 0.353337, 0, 1, 0, -0.353337, 0, 0.353769, 40.2986, 1.6429, 2)
-
-[node name="castle_bottom3" parent="." instance=ExtResource("2_ssaug")]
-transform = Transform3D(0.353769, 0, 0.353337, 0, 1, 0, -0.353337, 0, 0.353769, 55.2155, 5.42904, 9.48712)
-
-[node name="castle_bottom4" parent="." instance=ExtResource("2_ssaug")]
-transform = Transform3D(0.353769, 0, 0.353337, 0, 1, 0, -0.353337, 0, 0.353769, 71.2864, 1.6429, -10.4434)
-
-[node name="Column2" parent="." instance=ExtResource("3_0jwfu")]
-transform = Transform3D(0.02, 0, 0, 0, -8.74228e-10, -0.02, 0, 0.02, -8.74228e-10, 18.3002, -0.00995159, -1.07085)
-material_override = ExtResource("4_ima6a")
-
-[node name="Column3" parent="." instance=ExtResource("3_0jwfu")]
-transform = Transform3D(0.02, 0, 0, 0, -8.74228e-10, -0.02, 0, 0.02, -8.74228e-10, 24.0813, -0.00995159, -1.07085)
-material_override = ExtResource("4_ima6a")
-
-[node name="Column4" parent="." instance=ExtResource("3_0jwfu")]
-transform = Transform3D(0.02, 0, 0, 0, -8.74228e-10, -0.02, 0, 0.02, -8.74228e-10, 18.3002, -0.00995159, 5.29612)
-material_override = ExtResource("4_ima6a")
-
-[node name="Column5" parent="." instance=ExtResource("3_0jwfu")]
-transform = Transform3D(0.02, 0, 0, 0, -8.74228e-10, -0.02, 0, 0.02, -8.74228e-10, 24.0813, -0.00995159, 5.29612)
-material_override = ExtResource("4_ima6a")
-
-[node name="Tree" parent="." instance=ExtResource("5_rq4su")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 20.9619, -0.0973899, 1.93928)
-
-[node name="Zipline" type="Path3D" parent="."]
-transform = Transform3D(0.5, 0, 0, 0, 1, 0, 0, 0, 0.5, 0.145081, 1.1373, 3.31571)
-curve = SubResource("Curve3D_oqfnh")
-script = ExtResource("6_w7e5l")
-
 [node name="Column" parent="." instance=ExtResource("3_0jwfu")]
 transform = Transform3D(0.01, 0, 0, 0, 0, -0.01, 0, 0.01, 0, 9.48174, 0, -7.89348)
+
+[node name="vert_plat" type="Node3D" parent="."]
+transform = Transform3D(0.02, 0, 0, 0, -8.74228e-10, -0.02, 0, 0.02, -8.74228e-10, 18.3002, -0.328816, -1.07085)
+
+[node name="Column2" parent="vert_plat" instance=ExtResource("3_0jwfu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+material_override = ExtResource("4_ima6a")
+
+[node name="Column3" parent="vert_plat" instance=ExtResource("3_0jwfu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 289.055, 0, 0)
+material_override = ExtResource("4_ima6a")
+
+[node name="Column6" parent="vert_plat" instance=ExtResource("3_0jwfu")]
+transform = Transform3D(5, 0, 0, 0, 5, 7.10543e-14, 0, -7.10543e-14, 5, 140.34, 152.893, 1998.71)
+material_override = ExtResource("5_yn0b6")
+
+[node name="Column4" parent="vert_plat" instance=ExtResource("3_0jwfu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 318.349, -1.33514e-05)
+material_override = ExtResource("4_ima6a")
+
+[node name="Column5" parent="vert_plat" instance=ExtResource("3_0jwfu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 289.055, 318.349, -1.33514e-05)
+material_override = ExtResource("4_ima6a")
+
+[node name="Tree" parent="vert_plat" instance=ExtResource("5_rq4su")]
+transform = Transform3D(100, 0, 0, 0, -4.37114e-06, 100, 0, -100, -4.37114e-06, 133.085, 150.507, 4.37191)
+
+[node name="vert_plat2" type="Node3D" parent="."]
+transform = Transform3D(0.02, 0, 0, 0, -8.74228e-10, -0.02, 0, 0.02, -8.74228e-10, 37.0193, 12.9604, 13.5718)
+
+[node name="Column2" parent="vert_plat2" instance=ExtResource("3_0jwfu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+material_override = ExtResource("4_ima6a")
+
+[node name="Column3" parent="vert_plat2" instance=ExtResource("3_0jwfu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 289.055, 0, 0)
+material_override = ExtResource("4_ima6a")
+
+[node name="Column6" parent="vert_plat2" instance=ExtResource("3_0jwfu")]
+transform = Transform3D(5, 0, 0, 0, 5, 7.10543e-14, 0, -7.10543e-14, 5, 140.34, 152.893, 1998.71)
+material_override = ExtResource("5_yn0b6")
+
+[node name="Column4" parent="vert_plat2" instance=ExtResource("3_0jwfu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 318.349, -1.33514e-05)
+material_override = ExtResource("4_ima6a")
+
+[node name="Column5" parent="vert_plat2" instance=ExtResource("3_0jwfu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 289.055, 318.349, -1.33514e-05)
+material_override = ExtResource("4_ima6a")
+
+[node name="Tree" parent="vert_plat2" instance=ExtResource("5_rq4su")]
+transform = Transform3D(100, 0, 0, 0, -4.37114e-06, 100, 0, -100, -4.37114e-06, 133.085, 150.507, 4.37191)
+
+[node name="vert_plat3" type="Node3D" parent="."]
+transform = Transform3D(0.02, 0, 0, 0, -8.74228e-10, -0.02, 0, 0.02, -8.74228e-10, 53.0774, 6.2107, -17.0225)
+
+[node name="Column2" parent="vert_plat3" instance=ExtResource("3_0jwfu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+material_override = ExtResource("4_ima6a")
+
+[node name="Column3" parent="vert_plat3" instance=ExtResource("3_0jwfu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 289.055, 0, 0)
+material_override = ExtResource("4_ima6a")
+
+[node name="Column6" parent="vert_plat3" instance=ExtResource("3_0jwfu")]
+transform = Transform3D(5, 0, 0, 0, 5, 7.10543e-14, 0, -7.10543e-14, 5, 140.34, 152.893, 1998.71)
+material_override = ExtResource("5_yn0b6")
+
+[node name="Column4" parent="vert_plat3" instance=ExtResource("3_0jwfu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 318.349, -1.33514e-05)
+material_override = ExtResource("4_ima6a")
+
+[node name="Column5" parent="vert_plat3" instance=ExtResource("3_0jwfu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 289.055, 318.349, -1.33514e-05)
+material_override = ExtResource("4_ima6a")
+
+[node name="Tree" parent="vert_plat3" instance=ExtResource("5_rq4su")]
+transform = Transform3D(100, 0, 0, 0, -4.37114e-06, 100, 0, -100, -4.37114e-06, 133.085, 150.507, 4.37191)
+
+[node name="vert_plat4" type="Node3D" parent="."]
+transform = Transform3D(0.02, 0, 0, 0, -8.74228e-10, -0.02, 0, 0.02, -8.74228e-10, 95.0608, 15.277, 7.20972)
+
+[node name="Column3" parent="vert_plat4" instance=ExtResource("3_0jwfu")]
+transform = Transform3D(1.885, 0, 0, 0, 1.885, -7.10543e-15, 0, 7.10543e-15, 1.885, 139.286, 164.749, 691.846)
+material_override = ExtResource("5_yn0b6")
+
+[node name="Column6" parent="vert_plat4" instance=ExtResource("3_0jwfu")]
+transform = Transform3D(5, 0, 0, 0, 5, 7.10543e-14, 0, -7.10543e-14, 5, 140.34, 152.893, 1998.71)
+material_override = ExtResource("5_yn0b6")
+
+[node name="Fountain" parent="vert_plat4" instance=ExtResource("6_2le83")]
+transform = Transform3D(50, 0, 0, 0, -2.18557e-06, 50, 0, -50, -2.18557e-06, 138.56, 162.841, -66.7786)
+
+[node name="Zipline" type="Path3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.2713, 1.57887, 2.14709)
+curve = SubResource("Curve3D_8iaaj")
+script = ExtResource("6_w7e5l")
+END_POS_LOCAL = Vector3(11.4962, 15.8273, 14.3199)
+
+[node name="Node3D" type="Node3D" parent="Zipline"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.4962, 15.8273, 14.3199)
+
+[node name="Zipline2" type="Path3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43.0077, 14.6297, 16.9959)
+curve = SubResource("Curve3D_nmrjd")
+script = ExtResource("6_w7e5l")
+DROOP_Y = -30
+END_POS_LOCAL = Vector3(12.3641, -6.37099, -27.1529)
+
+[node name="Node3D" type="Node3D" parent="Zipline2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.3641, -6.37099, -27.1529)
+
+[node name="Zipline3" type="Path3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 60.1586, 7.3924, -14.3527)
+curve = SubResource("Curve3D_rke4s")
+script = ExtResource("6_w7e5l")
+END_POS_LOCAL = Vector3(36.012, 12.7907, 24.5812)
+
+[node name="Node3D" type="Node3D" parent="Zipline3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36.012, 12.7907, 24.5812)
+
+[node name="Zipline4" type="Path3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 101.843, 18.8195, 10.2457)
+curve = SubResource("Curve3D_q2s0n")
+script = ExtResource("6_w7e5l")
+FOLLOW_RATE = 0.1
+END_POS_LOCAL = Vector3(1000, 0, 0)
+
+[node name="Node3D" type="Node3D" parent="Zipline4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2000, 0, 0)
+
+[node name="tree_group" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.84905, 0)
+
+[node name="Tree" parent="tree_group" instance=ExtResource("5_rq4su")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 37.2253, -7.5333, 2.64183)
+
+[node name="Tree2" parent="tree_group" instance=ExtResource("5_rq4su")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 32.2574, -7.5333, 18.719)
+
+[node name="Tree3" parent="tree_group" instance=ExtResource("5_rq4su")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 29.9151, -7.5333, 9.40665)
+
+[node name="Tree4" parent="tree_group" instance=ExtResource("5_rq4su")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 33.655, -7.5333, -7.79688)
+
+[node name="tree_group2" type="Node3D" parent="."]
+transform = Transform3D(0.895673, 0, -0.444713, 0, 1, 0, 0.444713, 0, 0.895673, 40.7625, 0, -24.4175)
+
+[node name="Tree" parent="tree_group2" instance=ExtResource("5_rq4su")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 37.2253, -7.5333, 2.64183)
+
+[node name="Tree2" parent="tree_group2" instance=ExtResource("5_rq4su")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 32.2574, -7.5333, 18.719)
+
+[node name="Tree3" parent="tree_group2" instance=ExtResource("5_rq4su")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 29.9151, -7.5333, 9.40665)
+
+[node name="Tree4" parent="tree_group2" instance=ExtResource("5_rq4su")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 33.655, -7.5333, -7.79688)
+
+[node name="tree_group4" type="Node3D" parent="."]
+transform = Transform3D(0.895673, 0, -0.444713, 0, 1, 0, 0.444713, 0, 0.895673, 52.078, 0, -4.86269)
+
+[node name="Tree" parent="tree_group4" instance=ExtResource("5_rq4su")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 37.2253, -7.5333, 2.64183)
+
+[node name="Tree2" parent="tree_group4" instance=ExtResource("5_rq4su")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 32.2574, -7.5333, 18.719)
+
+[node name="Tree3" parent="tree_group4" instance=ExtResource("5_rq4su")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 29.9151, -7.5333, 9.40665)
+
+[node name="Tree4" parent="tree_group4" instance=ExtResource("5_rq4su")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 33.655, -7.5333, -7.79688)
+
+[node name="tree_group3" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 87.8983, 13.1634, 7.53724)
+
+[node name="Tree" parent="tree_group3" instance=ExtResource("5_rq4su")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 37.2253, -7.5333, 2.64183)
+
+[node name="Tree2" parent="tree_group3" instance=ExtResource("5_rq4su")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 32.2574, -7.5333, 18.719)
+
+[node name="Tree3" parent="tree_group3" instance=ExtResource("5_rq4su")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 29.9151, -7.5333, 9.40665)
+
+[node name="Tree4" parent="tree_group3" instance=ExtResource("5_rq4su")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 33.655, -7.5333, -7.79688)
+
+[node name="tree_group7" type="Node3D" parent="."]
+transform = Transform3D(0.589972, 0, -0.807424, 0, 1, 0, 0.807424, 0, 0.589972, 87.8983, 13.1634, 7.53724)
+
+[node name="Tree" parent="tree_group7" instance=ExtResource("5_rq4su")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 37.2253, -7.5333, 2.64183)
+
+[node name="Tree2" parent="tree_group7" instance=ExtResource("5_rq4su")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 32.2574, -7.5333, 18.719)
+
+[node name="Tree3" parent="tree_group7" instance=ExtResource("5_rq4su")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 29.9151, -7.5333, 9.40665)
+
+[node name="Tree4" parent="tree_group7" instance=ExtResource("5_rq4su")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 33.655, -7.5333, -7.79688)
+
+[node name="tree_group6" type="Node3D" parent="."]
+transform = Transform3D(0.730127, 0, 0.683312, 0, 1, 0, -0.683312, 0, 0.730127, 87.8983, 13.1634, 7.53724)
+
+[node name="Tree" parent="tree_group6" instance=ExtResource("5_rq4su")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 37.2253, -7.5333, 2.64183)
+
+[node name="Tree2" parent="tree_group6" instance=ExtResource("5_rq4su")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 32.2574, -7.5333, 18.719)
+
+[node name="Tree3" parent="tree_group6" instance=ExtResource("5_rq4su")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 29.9151, -7.5333, 9.40665)
+
+[node name="Tree4" parent="tree_group6" instance=ExtResource("5_rq4su")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 33.655, -7.5333, -7.79688)
+
+[node name="tree_group5" type="Node3D" parent="."]
+transform = Transform3D(0.0760925, 0, 0.997101, 0, 1, 0, -0.997101, 0, 0.0760925, 87.8983, 5.07736, 22.0658)
+
+[node name="Tree" parent="tree_group5" instance=ExtResource("5_rq4su")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 37.2253, -7.5333, 2.64183)
+
+[node name="Tree2" parent="tree_group5" instance=ExtResource("5_rq4su")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 32.2574, -7.5333, 18.719)
+
+[node name="Tree3" parent="tree_group5" instance=ExtResource("5_rq4su")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 29.9151, -7.5333, 9.40665)
+
+[node name="Tree4" parent="tree_group5" instance=ExtResource("5_rq4su")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 33.655, -7.5333, -7.79688)
+
+[node name="boss_column" parent="." instance=ExtResource("3_0jwfu")]
+transform = Transform3D(0.0105242, -0.999945, 2.18545e-08, 0, -4.37114e-08, -0.5, 0.999945, 0.0105242, -2.30013e-10, 1072.74, -191.277, 0)
+material_override = ExtResource("5_yn0b6")
+
+[node name="Column8" parent="boss_column" instance=ExtResource("3_0jwfu")]
+transform = Transform3D(0.07, 0, 0, 0, 0.07, -3.77476e-15, 0, 1.77636e-15, 0.14, -19.2626, 44.4826, -400.647)
+material_override = ExtResource("4_ima6a")
+
+[node name="Column9" parent="boss_column" instance=ExtResource("3_0jwfu")]
+transform = Transform3D(0.0513187, -0.0476066, 8.3238e-09, 0.0476066, 0.0513187, 3.26633e-09, -4.1619e-09, 1.63317e-09, 0.14, -36.5681, 35.6709, -400.647)
+material_override = ExtResource("4_ima6a")
+
+[node name="Column10" parent="boss_column" instance=ExtResource("3_0jwfu")]
+transform = Transform3D(0.0513187, -0.0476066, 8.3238e-09, 0.0476066, 0.0513187, 3.26633e-09, -4.1619e-09, 1.63317e-09, 0.14, -47.2339, 17.3508, -400.647)
+material_override = ExtResource("4_ima6a")
+
+[node name="Column11" parent="boss_column" instance=ExtResource("3_0jwfu")]
+transform = Transform3D(-0.00176155, -0.0699778, 1.22353e-08, 0.0699778, -0.00176155, 1.25472e-08, -6.11766e-09, 6.27359e-09, 0.14, -54.5403, -2.6639, -400.647)
+material_override = ExtResource("4_ima6a")
+
+[node name="Column12" parent="boss_column" instance=ExtResource("3_0jwfu")]
+transform = Transform3D(-0.00176155, -0.0699778, 1.22353e-08, 0.0699778, -0.00176155, 1.25472e-08, -6.11766e-09, 6.27359e-09, 0.14, -46.1296, -21.125, -400.647)
+material_override = ExtResource("4_ima6a")
+
+[node name="Column13" parent="boss_column" instance=ExtResource("3_0jwfu")]
+transform = Transform3D(-0.0488829, -0.0501045, 8.76054e-09, 0.0501045, -0.0488829, 2.07862e-08, -4.38027e-09, 1.03931e-08, 0.14, -37.2673, -38.8088, -400.647)
+material_override = ExtResource("4_ima6a")
+
+[node name="Column14" parent="boss_column" instance=ExtResource("3_0jwfu")]
+transform = Transform3D(-0.0488829, -0.0501045, 8.76054e-09, 0.0501045, -0.0488829, 2.07862e-08, -4.38027e-09, 1.03931e-08, 0.14, -18.5461, -47.6159, -400.647)
+material_override = ExtResource("4_ima6a")
+
+[node name="Column15" parent="boss_column" instance=ExtResource("3_0jwfu")]
+transform = Transform3D(-0.0699918, 0.00107019, -1.87116e-10, -0.00107019, -0.0699918, 2.44769e-08, 9.35583e-11, 1.22385e-08, 0.14, 2.2146, -53.7996, -400.647)
+material_override = ExtResource("4_ima6a")
+
+[node name="Column16" parent="boss_column" instance=ExtResource("3_0jwfu")]
+transform = Transform3D(-0.0699918, 0.00107019, -1.87116e-10, -0.00107019, -0.0699918, 2.44769e-08, 9.35583e-11, 1.22385e-08, 0.14, 20.7579, -45.5718, -400.647)
+material_override = ExtResource("4_ima6a")
+
+[node name="Column17" parent="boss_column" instance=ExtResource("3_0jwfu")]
+transform = Transform3D(-0.0505849, 0.0483856, -8.46001e-09, -0.0483856, -0.0505849, 2.10837e-08, 4.23e-09, 1.05419e-08, 0.14, 38.5282, -36.8846, -400.647)
+material_override = ExtResource("4_ima6a")
+
+[node name="Column18" parent="boss_column" instance=ExtResource("3_0jwfu")]
+transform = Transform3D(-0.0505849, 0.0483856, -8.46001e-09, -0.0483856, -0.0505849, 2.10837e-08, 4.23e-09, 1.05419e-08, 0.14, 47.7185, -19.433, -400.647)
+material_override = ExtResource("4_ima6a")
+
+[node name="Column19" parent="boss_column" instance=ExtResource("3_0jwfu")]
+transform = Transform3D(0.000572984, 0.0699976, -1.32367e-08, -0.0699976, 0.000572984, 1.21798e-08, 6.14385e-09, 6.5683e-09, 0.14, 56.1051, -0.37454, -400.647)
+material_override = ExtResource("4_ima6a")
+
+[node name="Column20" parent="boss_column" instance=ExtResource("3_0jwfu")]
+transform = Transform3D(0.000572984, 0.0699976, -1.32367e-08, -0.0699976, 0.000572984, 1.21798e-08, 6.14385e-09, 6.5683e-09, 0.14, 48.009, 18.2268, -400.647)
+material_override = ExtResource("4_ima6a")
+
+[node name="Column21" parent="boss_column" instance=ExtResource("3_0jwfu")]
+transform = Transform3D(0.0480251, 0.0509273, -9.90238e-09, -0.0509273, 0.0480251, 3.88297e-09, 4.80937e-09, 2.27016e-09, 0.14, 39.4485, 36.0583, -400.647)
+material_override = ExtResource("4_ima6a")
+
+[node name="Column22" parent="boss_column" instance=ExtResource("3_0jwfu")]
+transform = Transform3D(0.0480251, 0.0509273, -9.90238e-09, -0.0509273, 0.0480251, 3.88297e-09, 4.80937e-09, 2.27016e-09, 0.14, 20.4655, 45.7781, -400.647)
+material_override = ExtResource("4_ima6a")
+
+[node name="Column4" parent="boss_column" instance=ExtResource("3_0jwfu")]
+transform = Transform3D(0.00105242, 0.0999945, -1.72213e-08, -0.0999945, 0.00105242, 1.70411e-08, 8.7418e-09, 8.65027e-09, 0.197, 0, 0, -332.602)
+material_override = ExtResource("5_yn0b6")
+
+[node name="Fountain2" parent="boss_column/Column4" instance=ExtResource("6_2le83")]
+transform = Transform3D(26.5252, 0, 0, 0, -1.15945e-06, 26.5252, 0, -26.5252, -1.15945e-06, 0, -1.76165e-05, -403.019)
+
+[node name="GPUParticles3D" parent="boss_column/Column4/Fountain2" index="1"]
+transform = Transform3D(1, -8.88147e-16, 4.44089e-16, -2.05968e-22, 1, 0, 0, 0, 1, 0, 2, 0)
+draw_pass_1 = ExtResource("8_pbxg1")
+
+[node name="Roof" parent="boss_column" instance=ExtResource("8_um7i8")]
+transform = Transform3D(-3.00274, -1.05281e-06, 8.52673, -8.52673, -7.45431e-07, -3.00274, 5.26405e-07, -18.08, -3.72715e-07, 0, 0, -506.518)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="boss_column"]
+transform = Transform3D(4.37722e-08, -1, -4.37114e-08, -1, -4.37722e-08, -2.01505e-14, 3.35452e-14, 8.74227e-08, -2, -25.7771, -0.270874, -459.509)
+light_color = Color(1, 0.980392, 0.823529, 1)
+light_energy = 500.0
+shadow_enabled = true
+spot_range = 39.511
+spot_angle = 22.04
+
+[node name="SpotLight3D2" type="SpotLight3D" parent="boss_column"]
+transform = Transform3D(4.37722e-08, -1, -4.37114e-08, -1, -4.37722e-08, -2.71727e-14, 4.77561e-14, 8.74227e-08, -2, 23.9399, 0.252441, -459.509)
+light_color = Color(1, 0.980392, 0.823529, 1)
+light_energy = 500.0
+shadow_enabled = true
+spot_range = 39.511
+spot_angle = 22.04
+
+[node name="SpotLight3D3" type="SpotLight3D" parent="boss_column"]
+transform = Transform3D(4.37722e-08, -1, -4.37113e-08, -1, -4.37722e-08, -4.12448e-14, 7.61778e-14, 8.74227e-08, -2, 0.324495, -26.9478, -464.287)
+light_color = Color(1, 0.980392, 0.823529, 1)
+light_energy = 500.0
+shadow_enabled = true
+spot_range = 39.511
+spot_angle = 22.04
+
+[node name="SpotLight3D4" type="SpotLight3D" parent="boss_column"]
+transform = Transform3D(4.37722e-08, -1, -4.37113e-08, -1, -4.37722e-08, -4.82669e-14, 9.03886e-14, 8.74227e-08, -2, -0.246052, 27.2623, -464.287)
+light_color = Color(1, 0.980392, 0.823529, 1)
+light_energy = 500.0
+shadow_enabled = true
+spot_range = 39.511
+spot_angle = 22.04
+
+[node name="SpotLight3D5" type="SpotLight3D" parent="boss_column"]
+transform = Transform3D(4.37722e-08, -1, -4.37113e-08, -1, -4.37722e-08, -7.29139e-14, 1.40127e-13, 8.74226e-08, -2, 0.0379887, 0.274414, -472.091)
+light_color = Color(1, 0.980392, 0.823529, 1)
+light_energy = 200.0
+shadow_enabled = true
+spot_range = 39.511
+spot_angle = 22.04
+
+[node name="boss_column2" parent="." instance=ExtResource("3_0jwfu")]
+transform = Transform3D(0.0105242, -0.999945, 2.62254e-09, 0, -4.37114e-08, -0.06, 0.999945, 0.0105242, -2.76015e-11, 1072.74, 37.0447, 0)
+material_override = ExtResource("5_yn0b6")
+
+[editable path="boss_column/Column4/Fountain2"]
+[editable path="boss_column/Column4/Fountain2/fountain"]
