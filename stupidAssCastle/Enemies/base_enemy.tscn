@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dkjdhrwjpc45o"]
+[gd_scene load_steps=11 format=3 uid="uid://dkjdhrwjpc45o"]
 
 [ext_resource type="Script" path="res://Enemies/base_enemy.gd" id="1_5rn1f"]
 [ext_resource type="Script" path="res://Enemies/AIScript.gd" id="2_p1fcl"]
@@ -8,11 +8,6 @@
 [ext_resource type="Texture2D" uid="uid://c54bxs3ww77tc" path="res://Enemies/ginger_bread_man_sprites/gingerman_death.png" id="5_kdi7b"]
 [ext_resource type="Texture2D" uid="uid://7rktxl0aa6ap" path="res://Enemies/ginger_bread_man_sprites/gingerman_walk.png" id="7_v2s71"]
 [ext_resource type="Texture2D" uid="uid://5o4lvcndn31r" path="res://Enemies/ginger_bread_man_sprites/gingerman_walk_flipped.png" id="8_tlnis"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bcar1"]
-albedo_color = Color(1, 0, 0.0666667, 1)
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_og76p"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_68g60"]
 
@@ -76,12 +71,6 @@ attack_move_speed = 5.0
 attack_stop_distance = 3.0
 attack_range = 3.1
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-visible = false
-material_override = SubResource("StandardMaterial3D_bcar1")
-mesh = SubResource("CapsuleMesh_og76p")
-
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_68g60")
@@ -98,6 +87,7 @@ avoidance_enabled = true
 
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
 transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0.995246, 0)
+layers = 2
 billboard = 2
 sprite_frames = SubResource("SpriteFrames_0d1ty")
 animation = &"attack"

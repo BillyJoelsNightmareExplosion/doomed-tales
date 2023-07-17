@@ -56,6 +56,7 @@ func _ready():
     $ShotgunTimer.wait_time = SHOTTIME
 
 func _physics_process(delta):
+    $Head/flash.hide()
     
     if Input.is_action_just_pressed("fire"):
         if can_shoot:
@@ -74,8 +75,8 @@ func _physics_process(delta):
         velocity.y -= gravity * delta
 
     # Handle Jump.
-    if Input.is_action_just_pressed("jump") and is_on_floor():
-        velocity.y = JUMP_VELOCITY
+    #if Input.is_action_just_pressed("jump") and is_on_floor():
+        #velocity.y = JUMP_VELOCITY
 
     # Get the input direction and handle the movement/deceleration.
     # As good practice, you should replace UI actions with custom gameplay actions.
@@ -128,6 +129,9 @@ func fire(kill=true): # I've added this kill arg just so positions get scrambled
     ammo -= 1
     can_shoot = false
     $ShotgunTimer.start()
+    
+    if kill:
+        $Head/flash.show()
     
     stock.rotation_degrees.x -= 10
     

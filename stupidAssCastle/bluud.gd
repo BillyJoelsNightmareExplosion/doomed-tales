@@ -19,8 +19,10 @@ func _ready():
     _decal = Decal.new()
     add_child(_decal)
     _decal.set_texture(0, texture)
-    # pariticles
     
+    _decal.cull_mask = 1;
+    
+    # pariticles
     _particles = GPUParticles3D.new()
     add_child(_particles)
     _particles.one_shot = true
