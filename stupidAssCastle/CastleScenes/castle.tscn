@@ -832,7 +832,7 @@ script = ExtResource("18_xuyxq")
 DROOP_Y = 15
 
 [node name="END" type="Node3D" parent="Tower2/Zipline"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.8423, 6.61275, -1.10697)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.3856, 6.61275, -1.10697)
 
 [node name="Tower3" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 7.45058e-08, 0, 1, 0, -7.45058e-08, 0, 1, 39, 5, 97)
