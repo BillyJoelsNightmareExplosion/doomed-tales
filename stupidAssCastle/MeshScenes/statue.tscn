@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://dwljxe3gksrhj"]
+
+[ext_resource type="Texture2D" uid="uid://vi2mut2rytei" path="res://art/textures/T_sculpture.png" id="1_4ykpr"]
+[ext_resource type="Material" uid="uid://d4c3v3nsg3m00" path="res://art/materials/M_marble_triplanar.tres" id="2_i8i16"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_x81j1"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_ei2ai"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_w8dpe"]
+
+[node name="Statue" type="StaticBody3D"]
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0.986178, 0)
+billboard = 2
+texture = ExtResource("1_4ykpr")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.01114, 0)
+shape = SubResource("CylinderShape3D_x81j1")
+
+[node name="Pedistal" type="StaticBody3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Pedistal"]
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, -0.00456178, -0.56143, 0)
+material_override = ExtResource("2_i8i16")
+mesh = SubResource("BoxMesh_ei2ai")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Pedistal"]
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, -0.00853083, -0.557513, 0)
+shape = SubResource("BoxShape3D_w8dpe")
