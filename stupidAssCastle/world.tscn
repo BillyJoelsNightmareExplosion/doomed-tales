@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cfk4li1nwsl2e"]
+[gd_scene load_steps=17 format=3 uid="uid://cfk4li1nwsl2e"]
 
 [ext_resource type="Script" path="res://world.gd" id="1_irkfu"]
 [ext_resource type="PackedScene" uid="uid://rvlyxsc8kbwx" path="res://character.tscn" id="2_gb0a7"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://xd4b58smg1ia" path="res://Room/Medkit.tscn" id="8_4mejy"]
 [ext_resource type="Texture2D" uid="uid://bl73g3sjolcv0" path="res://art/textures/clouds.png" id="8_cvfbw"]
 [ext_resource type="AudioStream" uid="uid://br4gh7u0g05mb" path="res://sound/mariometal.mp3" id="9_pn7ob"]
+[ext_resource type="PackedScene" uid="uid://don8s2361jneu" path="res://Enemies/tank_enemy.tscn" id="10_slwpt"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_hikpi"]
 sky_top_color = Color(0.423529, 0.203922, 0.54902, 1)
@@ -113,5 +114,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.503674, 0.545944, -23.6078)
 process_mode = 3
 stream = ExtResource("9_pn7ob")
 autoplay = true
+
+[node name="TankEnemy" parent="." instance=ExtResource("10_slwpt")]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0.36587, 0.764296, -33.0905)
 
 [connection signal="need_bluud" from="Player" to="bluud_handler" method="add_bluud"]
