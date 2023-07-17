@@ -28,6 +28,11 @@ signal need_bluud(posi, rot)
 
 @onready var world = get_tree().root.get_children()[0]
 
+@onready var s_fire = preload("res://sound/fire.wav")
+@onready var s_reload = preload("res://sound/reload.wav")
+@onready var s_enemy_hurt = preload("res://sound/e_hurt.wav")
+@onready var s_dash = preload("res://sound/dash.ogg")
+
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
@@ -40,6 +45,9 @@ var can_shoot = true
 
 var can_dash = true
 var is_dashing = false
+
+var stream_player
+var enemy_stream_player
 
 func _ready():
     # getting pellet spread to work
@@ -57,6 +65,14 @@ func _ready():
     
     $MeshInstance3D.visible = false
     $MeshInstance3D.queue_free()
+    
+    stream_player = AudioStreamPlayer.new()
+    add_child(stream_player)
+    stream_player.autoplay = true
+    
+    enemy_stream_player = AudioStreamPlayer.new()
+    add_child(enemy_stream_player)
+    enemy_stream_player.autoplay = true
 
 func _physics_process(delta):
     $Head/flash.hide()
@@ -69,6 +85,9 @@ func _physics_process(delta):
         anim_player.play("reload")
         # UI
         ammo = MAX_AMMO
+        
+        stream_player.stream = s_reload
+        stream_player.play()
     else:
         # recoil reset
         stock.rotation_degrees.x = stock.rotation_degrees.x * 0.97
@@ -89,6 +108,8 @@ func _physics_process(delta):
         var use_speed
         if is_dashing:
             use_speed = DASHSPEED
+            stream_player.stream = s_dash
+            stream_player.play()
         else:
             use_speed = SPEED
         velocity.x = direction.x * use_speed
@@ -137,6 +158,8 @@ func fire(kill=true): # I've added this kill arg just so positions get scrambled
         ammo -= 1
         can_shoot = false
         $ShotgunTimer.start()
+        stream_player.stream = s_fire
+        stream_player.play()
     
     for aim_cast in aim_casts:
         # rotate randomly
@@ -160,6 +183,8 @@ func fire(kill=true): # I've added this kill arg just so positions get scrambled
                     if target.is_in_group("enemy") and kill:
                         need_bluud.emit(collision.position, Vector3(90,(randi_range (0,360)),0))
                         target.health -= DAMAGE
+                        enemy_stream_player.stream = s_enemy_hurt
+                        enemy_stream_player.play()
                         
 func reset_dash():
     can_dash = true

@@ -8,6 +8,9 @@ signal hit_player
 @onready var try_attack_timer = $"../TryAttackTimer"
 @onready var animator: AnimatedSprite3D = $"../AnimatedSprite3D"
 
+@onready var s_player_hurt = preload("res://sound/p_hurt.ogg")
+@onready var s_attack = preload("res://sound/punch.wav")
+
 @onready var player: CharacterBody3D = get_tree().root.get_children()[0].get_player()
 
 @export var state_update_time = 1.0 #how often the enemy should try update state
@@ -25,6 +28,8 @@ signal hit_player
 @export var attack_damage = 10.0 #how much damage the attack does
 @export var attack_startup_time = 0.5 #how long the attack animation takes to play
 @export var attack_end_lag_time = 0.5 #how long the enemy will be stunned after attacking
+
+var stream_player
 
 var is_attacking = false
 var attacking = false
@@ -49,6 +54,10 @@ func _ready():
     try_attack_timer.start()
     
     current_state = States.Wander
+    
+    stream_player = AudioStreamPlayer.new()
+    add_child(stream_player)
+    stream_player.autoplay = true
 
 func update_state():
     #pick random state between wander and move closer
@@ -115,11 +124,15 @@ func attack():
     if attacking:
         attacking = false
         animator.play("attack")
+        stream_player.stream = s_attack
+        stream_player.play()
         await get_tree().create_timer(attack_startup_time).timeout
         if enemy.global_position.distance_to(player.global_position) < attack_range:
             if !is_dead:
                 print("Hit!")
                 player.health -= attack_damage
+                stream_player.stream = s_player_hurt
+                stream_player.play()
         else:
             print("Safe!")
             
