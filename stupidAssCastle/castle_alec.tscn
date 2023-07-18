@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cfxa4cfsmdg2c"]
+[gd_scene load_steps=17 format=3 uid="uid://cfxa4cfsmdg2c"]
 
 [ext_resource type="PackedScene" path="res://MeshScenes/bridge.tscn" id="1_iojuw"]
 [ext_resource type="PackedScene" uid="uid://bjtid8fpd786i" path="res://MeshScenes/column.tscn" id="3_0jwfu"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" path="res://MeshScenes/tree.tscn" id="5_rq4su"]
 [ext_resource type="Material" path="res://art/materials/M_cobble_triplanar.tres" id="5_yn0b6"]
 [ext_resource type="PackedScene" uid="uid://dtmnnit0p3350" path="res://CastleScenes/fountain.tscn" id="6_2le83"]
+[ext_resource type="PackedScene" uid="uid://xd4b58smg1ia" path="res://Room/Medkit.tscn" id="7_7up4d"]
 [ext_resource type="PackedScene" uid="uid://b03bmk4vyj25c" path="res://Room/room.tscn" id="8_noo3j"]
 [ext_resource type="QuadMesh" uid="uid://dgvcw031w3knl" path="res://art/particles/bluud_particle_mesh.tres" id="8_pbxg1"]
 [ext_resource type="PackedScene" path="res://MeshScenes/roof.tscn" id="8_um7i8"]
@@ -111,7 +112,7 @@ transform = Transform3D(100, 0, 0, 0, -4.37114e-06, 100, 0, -100, -4.37114e-06, 
 transform = Transform3D(0.02, 0, 0, 0, -8.74228e-10, -0.02, 0, 0.02, -8.74228e-10, 95.0608, 15.277, 7.20972)
 
 [node name="Column3" parent="vert_plat4" instance=ExtResource("3_0jwfu")]
-transform = Transform3D(1.885, 0, 0, 0, 1.885, -7.10543e-15, 0, 7.10543e-15, 1.885, 139.286, 164.749, 691.846)
+transform = Transform3D(1.885, 0, 0, 0, 1.885, -1.04361e-14, 0, 4.70681e-15, 1.885, 139.286, 145.503, 691.846)
 material_override = ExtResource("5_yn0b6")
 
 [node name="Column6" parent="vert_plat4" instance=ExtResource("3_0jwfu")]
@@ -119,7 +120,13 @@ transform = Transform3D(5, 0, 0, 0, 5, 7.10543e-14, 0, -7.10543e-14, 5, 140.34, 
 material_override = ExtResource("5_yn0b6")
 
 [node name="Fountain" parent="vert_plat4" instance=ExtResource("6_2le83")]
-transform = Transform3D(50, 0, 0, 0, -2.18557e-06, 50, 0, -50, -2.18557e-06, 138.56, 162.841, -66.7786)
+transform = Transform3D(50, 0, 0, 0, -2.18557e-06, 50, 0, -50, -2.18557e-06, 138.56, 142.881, -66.7786)
+
+[node name="Medkit" parent="vert_plat4" instance=ExtResource("7_7up4d")]
+transform = Transform3D(50, 0, 0, 0, -2.18557e-06, 50, 0, -50, -2.18557e-06, 137.981, -44.6608, -27.8807)
+
+[node name="Medkit2" parent="vert_plat4" instance=ExtResource("7_7up4d")]
+transform = Transform3D(50, 0, 0, 0, -2.18557e-06, 50, 0, -50, -2.18557e-06, 129.269, 345.608, -37.6324)
 
 [node name="tree_group" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.84905, 0)
@@ -381,6 +388,18 @@ light_energy = 200.0
 shadow_enabled = true
 spot_range = 39.511
 spot_angle = 22.04
+
+[node name="Medkit" parent="FinalBoss" instance=ExtResource("7_7up4d")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -35.4213, 1.01871, -12.8859)
+
+[node name="Medkit4" parent="FinalBoss" instance=ExtResource("7_7up4d")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -35.4213, 1.01871, 3.09332)
+
+[node name="Medkit2" parent="FinalBoss" instance=ExtResource("7_7up4d")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -44.2515, 1.07461, -10.9863)
+
+[node name="Medkit3" parent="FinalBoss" instance=ExtResource("7_7up4d")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -44.3612, 1.10306, 0.399465)
 
 [editable path="FinalBoss"]
 [editable path="FinalBoss/NavigationRegion3D/Column4/Fountain2"]
