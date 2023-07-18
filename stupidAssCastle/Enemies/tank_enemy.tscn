@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://don8s2361jneu"]
+[gd_scene load_steps=11 format=3 uid="uid://don8s2361jneu"]
 
 [ext_resource type="PackedScene" uid="uid://dkjdhrwjpc45o" path="res://Enemies/base_enemy.tscn" id="1_5j1g0"]
 [ext_resource type="Texture2D" uid="uid://cu5ibdwpiibey" path="res://Enemies/tank_sprites/wolf_attack1.png" id="2_71f7h"]
+[ext_resource type="Texture2D" uid="uid://bgjsabqhss4sm" path="res://Enemies/tank_sprites/wolf_attack2.png" id="3_c5hj0"]
 [ext_resource type="Texture2D" uid="uid://c54bxs3ww77tc" path="res://Enemies/ginger_bread_man_sprites/gingerman_death.png" id="4_461t3"]
 [ext_resource type="Texture2D" uid="uid://c6s0e4thye7lp" path="res://Enemies/tank_sprites/wolf_idle.png" id="5_c165q"]
 [ext_resource type="Texture2D" uid="uid://c37b4fd0ha56f" path="res://Enemies/tank_sprites/wolf_walk.png" id="6_k6luq"]
@@ -16,7 +17,7 @@ animations = [{
 "texture": ExtResource("2_71f7h")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_71f7h")
+"texture": ExtResource("3_c5hj0")
 }, {
 "duration": 1.0,
 "texture": ExtResource("2_71f7h")
@@ -75,7 +76,7 @@ transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 1.5, 0)
 [node name="AnimatedSprite3D" parent="." index="5"]
 transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 1.28405, 0)
 sprite_frames = SubResource("SpriteFrames_xa3ei")
-animation = &"attack"
+animation = &"idle"
 
 [node name="Sprite3D" type="Sprite3D" parent="." index="6"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.67481, 0)
