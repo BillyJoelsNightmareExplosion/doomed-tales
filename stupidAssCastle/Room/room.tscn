@@ -1,10 +1,12 @@
-[gd_scene load_steps=12 format=3 uid="uid://b03bmk4vyj25c"]
+[gd_scene load_steps=14 format=3 uid="uid://b03bmk4vyj25c"]
 
 [ext_resource type="Script" path="res://Room/room.gd" id="1_14i6b"]
 [ext_resource type="PackedScene" uid="uid://dkjdhrwjpc45o" path="res://Enemies/base_enemy.tscn" id="2_7gxee"]
 [ext_resource type="Texture2D" uid="uid://damhtqkk1m7ho" path="res://art/textures/T_chandeleire.png" id="3_6lqsx"]
 [ext_resource type="Texture2D" uid="uid://c25i0docnxc00" path="res://art/textures/T_Chandeleire_mask.png" id="4_h2biq"]
 [ext_resource type="Script" path="res://Room/RoomEntered.gd" id="6_g1bd7"]
+[ext_resource type="Script" path="res://Room/EndScreen.gd" id="6_w0bxr"]
+[ext_resource type="FontFile" uid="uid://bmxyyghpqp65p" path="res://art/fonts/doomed.ttf" id="7_pxshn"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_0e8hc"]
 vertices = PackedVector3Array(-4.98335, 0.831143, 2.0188, -1.98335, 0.831143, 5.0188, 1.76665, 0.831143, 5.0188, 5.01665, 0.831143, 1.7688, 5.01665, 0.831143, -1.9812, 2.01665, 0.831143, -4.9812, 2.01665, 0.831143, -4.9812, -1.98335, 0.831143, -4.9812, -4.98335, 0.831143, -1.9812, -4.98335, 0.831143, 2.0188, 1.76665, 0.831143, 5.0188, 5.01665, 0.831143, 1.7688)
@@ -77,4 +79,55 @@ shape = SubResource("BoxShape3D_3wlnc")
 material_override = SubResource("StandardMaterial3D_nmd0n")
 mesh = SubResource("BoxMesh_crced")
 
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="EndScreen" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("6_w0bxr")
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/EndScreen"]
+layout_mode = 0
+offset_right = 1413.0
+offset_bottom = 1057.0
+color = Color(0.105882, 0.00392157, 0.0862745, 1)
+
+[node name="Game Over" type="RichTextLabel" parent="CanvasLayer/EndScreen"]
+layout_mode = 0
+offset_left = 127.0
+offset_top = -32.0
+offset_right = 1332.0
+offset_bottom = 516.0
+theme_override_colors/default_color = Color(0.862745, 0.0509804, 0, 1)
+theme_override_fonts/normal_font = ExtResource("7_pxshn")
+theme_override_font_sizes/normal_font_size = 135
+bbcode_enabled = true
+text = " [center] You Won! Play again? [/center]"
+
+[node name="RestartButton" type="Button" parent="CanvasLayer/EndScreen"]
+layout_mode = 0
+offset_left = 491.0
+offset_top = 587.0
+offset_right = 918.0
+offset_bottom = 678.0
+theme_override_colors/font_color = Color(0.862745, 0.0509804, 0, 1)
+theme_override_fonts/font = ExtResource("7_pxshn")
+theme_override_font_sizes/font_size = 60
+text = "Restart Game"
+
+[node name="QuitButton" type="Button" parent="CanvasLayer/EndScreen"]
+layout_mode = 0
+offset_left = 529.0
+offset_top = 708.0
+offset_right = 879.0
+offset_bottom = 799.0
+theme_override_colors/font_color = Color(0.862745, 0.0509804, 0, 1)
+theme_override_fonts/font = ExtResource("7_pxshn")
+theme_override_font_sizes/font_size = 60
+text = "Quit Game"
+
 [connection signal="body_entered" from="RoomEntered" to="RoomEntered" method="_on_body_entered"]
+[connection signal="pressed" from="CanvasLayer/EndScreen/RestartButton" to="CanvasLayer/EndScreen" method="_on_restart_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/EndScreen/QuitButton" to="CanvasLayer/EndScreen" method="_on_quit_button_pressed"]

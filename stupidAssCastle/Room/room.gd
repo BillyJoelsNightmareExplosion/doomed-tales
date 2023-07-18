@@ -5,8 +5,14 @@ extends Node3D
 
 @export var enemy_pool: Array[PackedScene] = []
 
+@export var is_final_boss = false
+
 var enemy_count = 0
 
+signal game_end
+
+func  _ready():
+    $CanvasLayer/EndScreen.visible = false
 
 func spawn_enemies():
     enemy_count = randi_range(num_enemies_min, num_enemies_max)
@@ -41,3 +47,10 @@ func enemy_died():
     if enemy_count <= 0:
         for door in get_node("Doors").get_children():
             door.open()
+        if is_final_boss:
+            await get_tree().create_timer(2.5).timeout
+            end_game()
+
+func end_game():
+    $CanvasLayer/EndScreen.visible = true
+    Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)

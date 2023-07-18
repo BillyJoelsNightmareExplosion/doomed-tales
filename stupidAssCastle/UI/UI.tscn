@@ -85,7 +85,7 @@ theme_override_colors/default_color = Color(0.862745, 0.0509804, 0, 1)
 theme_override_fonts/normal_font = ExtResource("4_0nu61")
 theme_override_font_sizes/normal_font_size = 140
 bbcode_enabled = true
-text = "[center] Stupid Ass Castle [/center]"
+text = "[center] Doomed Tales [/center]"
 
 [node name="StartButton" type="Button" parent="StartScreen"]
 layout_mode = 0
