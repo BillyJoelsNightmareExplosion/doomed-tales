@@ -49,9 +49,9 @@ func _ready():
     curve.add_point(Vector3.ZERO)
     #curve.set_point_position(0, position)
     curve.set_point_position(1, end_pos_local)
-#    var end_in = ( end_pos_local - end_pos_local/2 ) * -1
-#    end_in.y = end_pos_local.y - DROOP_Y
-#    curve.set_point_in(1, end_in)
+    var end_in = ( end_pos_local - end_pos_local/2 ) * -1
+    end_in.y = end_pos_local.y - DROOP_Y
+    curve.set_point_in(1, end_in)
     path_follow = PathFollow3D.new()
     add_child(path_follow)
     # path_follow.loop = false
